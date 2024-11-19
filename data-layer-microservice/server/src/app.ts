@@ -1,6 +1,7 @@
 import express, { Request, Response} from "express"
 import { mongoDbClient, postgresClient } from "./db_connections/prismaClients"
-import userRoutes from "./routes/userRoutes"
+import mongoDbRouter from "./routes/mongodb/mongoDbRouter"
+import postgresRouter from "./routes/postgres/postgresRouter"
 
 const app = express()
 const PORT = process.env.PORT || 5000
@@ -10,7 +11,10 @@ app.get("/", (req: Request, res: Response)=>{
 })
 
 // Define routes for the app
-app.use('/users', userRoutes);
+app.use('/api/database/mongodb', mongoDbRouter);
+app.use('/api/database/postgres', postgresRouter);
+
+
 
 // Graceful shutdown - Disconnect Prisma Clients when the server shuts down
 process.on('SIGINT', async () => {

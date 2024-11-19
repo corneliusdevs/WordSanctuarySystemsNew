@@ -1,13 +1,11 @@
 # Project Setup with Prisma (MongoDB & PostgreSQL)
 Consult the /server/prisma/README.md file to understand how to generate prisma files and run migrations
 
-Here's the updated **`ARCHITECTURE.md`** with a clear **Table of Contents** and correctly formatted sections pointing to their corresponding content:
-
 ---
 
 # Architecture and Flow of the Application
 
-This document explains the architecture and the flow of execution in the Express application, which is structured to interact with two separate databases: **MongoDB** and **PostgreSQL**. The application follows a **Model-View-Controller (MVC)** pattern, and Prisma is used to manage database interactions.
+This document explains the architecture and flow of execution in the Express application, which interacts with both **MongoDB** and **PostgreSQL** databases. The application follows the **Model-View-Controller (MVC)** pattern, and **Prisma** is used to manage database interactions.
 
 ## Table of Contents
 
@@ -30,10 +28,10 @@ This document explains the architecture and the flow of execution in the Express
 The architecture of this application follows the **Model-View-Controller (MVC)** pattern, where:
 
 - **Models**: Define the database schema and structure (using Prisma for MongoDB and PostgreSQL).
-- **Controllers**: Contain the business logic for handling requests, performing database operations via Prisma Clients, and sending responses.
+- **Controllers**: Contain the business logic for handling requests, interacting with the Prisma Clients, and sending responses.
 - **Routes**: Define the HTTP routes that map to specific controller methods.
 
-The application handles both **MongoDB** and **PostgreSQL** databases separately. Each database has its own Prisma schema file and corresponding Prisma client, which allows us to keep database interactions isolated.
+The application separates the logic for **MongoDB** and **PostgreSQL**, with each having its own set of routes and controllers. This modular architecture ensures that the application is scalable, maintainable, and flexible in handling multiple database types.
 
 ---
 
@@ -41,46 +39,42 @@ The application handles both **MongoDB** and **PostgreSQL** databases separately
 
 ### App Initialization
 
-When the application starts, the `app.ts` (or `index.ts`) file is executed. Here, the **Express** server is initialized, middleware is set up, and routes are registered.
+When the application starts, the **Express** server is initialized in `app.ts`. Middleware such as `express.json()` is configured to handle request bodies, and routes for both MongoDB and PostgreSQL are set up.
 
 ### Routes
 
-Routes map specific URL paths to corresponding controller methods. The routes for user-related operations are defined in **`userRoutes.ts`**. For example, the following routes are defined:
+Routes are defined for each type of database and interact with the corresponding controllers:
 
-- **GET /users/mongo**: Fetches users from MongoDB.
-- **POST /users/mongo**: Creates a new user in MongoDB.
-- **GET /users/postgres**: Fetches users from PostgreSQL.
-- **POST /users/postgres**: Creates a new user in PostgreSQL.
+- **MongoDB routes** are prefixed with `/api/database/mongodb` and handled by the `mongoDbRouter`.
+- **PostgreSQL routes** are prefixed with `/api/database/postgres` and handled by the `postgresRouter`.
+
+Both routers are responsible for handling requests such as creating users or fetching users from their respective databases.
 
 ### Controllers
 
-The controller methods define the logic for handling the incoming HTTP requests. These methods interact with the **Prisma Clients** (MongoDB or PostgreSQL) to fetch or manipulate data.
+Controllers define the logic for interacting with the databases via Prisma Clients. They contain functions that are invoked by routes to perform specific tasks like fetching users or creating new records.
 
-The controllers are responsible for:
-
-- Handling the request data (e.g., parsing JSON body).
-- Interacting with the Prisma Client to fetch or create users in the respective databases.
-- Sending a response back to the client with the data or an error message.
-
-For example, the **`userController.ts`** file defines the following functions:
+For example, in `userController.ts`, we have the following functions:
 
 - **`getUsersFromMongo`**: Fetches users from the MongoDB database.
-- **`getUsersFromPostgres`**: Fetches users from the PostgreSQL database.
 - **`createUserInMongo`**: Creates a new user in MongoDB.
+- **`getUsersFromPostgres`**: Fetches users from the PostgreSQL database.
 - **`createUserInPostgres`**: Creates a new user in PostgreSQL.
+
+These functions interact with the Prisma Clients (`mongoDbClient` and `postgresClient`) to fetch or manipulate data in the databases.
 
 ### Database Interaction (Prisma Clients)
 
-The controllers use the Prisma Clients to interact with **MongoDB** or **PostgreSQL**. These clients are initialized in the **`prismaClients.ts`** file and imported into the controllers for database operations.
+The application uses **Prisma** to manage interactions with both **MongoDB** and **PostgreSQL**:
 
-- **MongoDB**: Uses the `mongoDbClient` (generated from `schema.mongodb.prisma`) to interact with the MongoDB database.
-- **PostgreSQL**: Uses the `postgresClient` (generated from `schema.postgresql.prisma`) to interact with the PostgreSQL database.
+- **MongoDB**: The `mongoDbClient` is used to interact with MongoDB, leveraging the Prisma MongoDB schema.
+- **PostgreSQL**: The `postgresClient` is used to interact with PostgreSQL, leveraging the Prisma PostgreSQL schema.
 
-Each Prisma Client provides methods (e.g., `findMany`, `create`, etc.) to perform CRUD operations on the database.
+Each client provides methods such as `findMany()`, `create()`, and others to perform CRUD operations on the databases.
 
 ### Graceful Shutdown
 
-The application ensures that the Prisma Clients are disconnected properly when the server shuts down. This is handled in the `process.on('SIGINT')` event listener in **`app.ts`**, which disconnects both the **MongoDB** and **PostgreSQL** clients before exiting the application.
+To ensure a smooth shutdown, the Prisma Clients are disconnected when the application receives a `SIGINT` signal (e.g., when you press `Ctrl + C` to stop the server). This is done in the `process.on('SIGINT')` event listener in `app.ts`, where the MongoDB and PostgreSQL clients are disconnected before the application exits.
 
 ---
 
@@ -88,55 +82,26 @@ The application ensures that the Prisma Clients are disconnected properly when t
 
 ### Fetch Users from PostgreSQL
 
-**URL**: `http://localhost:5000/users/postgres`
+**URL**: `http://localhost:5000/api/database/postgres/users`
 
 **Flow**:
-1. The browser sends an HTTP **GET** request to `http://localhost:5000/users/postgres`.
-2. The request is routed to the **`getUsersFromPostgres`** function in the **`userController.ts`**.
+1. The browser sends an HTTP **GET** request to `http://localhost:5000/api/database/postgres/users`.
+2. The request is routed to the `getUsersFromPostgres` function in the `postgres/userController.ts`.
 3. Inside the controller, the Prisma Client for PostgreSQL (`postgresClient`) is used to query the PostgreSQL database for users.
-4. The result (list of users) is sent as a response to the client in JSON format.
+4. The result (list of users) is sent as a JSON response to the client.
 
-**Expected Response**:
-```json
-[
-  {
-    "id": 1,
-    "name": "John Doe",
-    "email": "johndoe@example.com"
-  },
-  {
-    "id": 2,
-    "name": "Jane Smith",
-    "email": "janesmith@example.com"
-  }
-]
-```
+
 
 ### Fetch Users from MongoDB
 
-**URL**: `http://localhost:5000/users/mongo`
+**URL**: `http://localhost:5000/api/database/mongodb/users`
 
 **Flow**:
-1. The browser sends an HTTP **GET** request to `http://localhost:5000/users/mongo`.
-2. The request is routed to the **`getUsersFromMongo`** function in the **`userController.ts`**.
+1. The browser sends an HTTP **GET** request to `http://localhost:5000/api/database/mongodb/users`.
+2. The request is routed to the `getUsersFromMongo` function in the `mongodb/userController.ts`.
 3. Inside the controller, the Prisma Client for MongoDB (`mongoDbClient`) is used to query the MongoDB database for users.
-4. The result (list of users) is sent as a response to the client in JSON format.
+4. The result (list of users) is sent as a JSON response to the client.
 
-**Expected Response**:
-```json
-[
-  {
-    "id": "5f8b3c2e29b5b217b3f9f7b3",
-    "name": "Alice Cooper",
-    "email": "alicecooper@example.com"
-  },
-  {
-    "id": "5f8b3c2e29b5b217b3f9f7b4",
-    "name": "Bob Marley",
-    "email": "bobmarley@example.com"
-  }
-]
-```
 
 ---
 
@@ -158,5 +123,33 @@ The application ensures that the Prisma Clients are disconnected properly when t
 4. **Database Not Connected**: Double-check your `.env` file to make sure the MongoDB and PostgreSQL connection strings are correct.
 
 ---
+
+## Folder Structure
+
+For reference, here is the folder structure of the application:
+
+```
+src/
+|-- routes/
+|   |-- mongodb/
+|   |   |-- mongoDbRouter.ts
+|   |   |-- userRouter.ts
+|   |-- postgres/
+|   |   |-- postgresRouter.ts
+|   |   |-- userRouter.ts
+|-- controllers/
+|   |-- mongodb/
+|   |   |-- userController.ts
+|   |-- postgres/
+|   |   |-- userController.ts
+|-- db_connections/
+|   |-- prismaClients.ts
+|-- app.ts
+|-- .env
+```
+
+This modular structure ensures that MongoDB and PostgreSQL logic is cleanly separated, making the codebase more maintainable and scalable.
+
+--- 
 
 

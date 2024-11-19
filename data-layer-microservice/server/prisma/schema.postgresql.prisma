@@ -1,0 +1,15 @@
+generator client_postgres {
+    provider = "prisma-client-js"
+    output = "./generated-clients/postgres"
+}
+
+datasource postgresql {
+    provider = "postgresql"
+    url = env("POSTGRES_CONN_URI")
+}
+
+model UserPostgres {
+    id    Int    @id @default(autoincrement())
+    name  String
+    email String @unique
+}

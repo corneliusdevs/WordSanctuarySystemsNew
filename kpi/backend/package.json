@@ -1,0 +1,24 @@
+{
+  "name": "kpi-backend-service",
+  "version": "1.0.0",
+  "description": "This service scraps data from other microsevices, calculates the kpi, stores and serves them via its api endpoints",
+  "main": "index.js",
+  "scripts": {
+    "start": "node dist/app.js", 
+    "dev": "nodemon",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "corneliusdevs",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.9.1",
+    "nodemon": "^3.1.7",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
+  }
+}

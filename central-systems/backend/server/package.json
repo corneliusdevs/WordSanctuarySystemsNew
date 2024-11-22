@@ -1,0 +1,24 @@
+{
+  "name": "central-systems-api",
+  "version": "1.0.0",
+  "description": "This will expose and server all the api end points unique to the central-systems",
+  "main": "app.js",
+  "scripts": {
+    "start": "tsc",
+    "dev": "nodemon",
+    "build": "node dist/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "corneliusdevs",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.9.1",
+    "nodemon": "^3.1.7",
+    "ts-node": "^10.9.2",
+    "typecript": "^0.0.1-security"
+  }
+}

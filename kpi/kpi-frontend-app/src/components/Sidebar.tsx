@@ -3,17 +3,21 @@
 // import { useState } from "react";
 // Correct import for Heroicons v2
 import {
-  ViewGridIcon,
-  UsersIcon,
+  // Bars2Icon,
+  Bars2Icon,
+  UserIcon,
+
   UserGroupIcon,
-  OfficeBuildingIcon,
+   
+  BuildingOffice2Icon,
   StarIcon,
-  ChatIcon,
+  ChatBubbleLeftIcon,
+ 
   CogIcon,
   UserCircleIcon,
   LockClosedIcon,
-} from "@heroicons/react/outline";
-
+} from "@heroicons/react/24/outline";
+// import { Bars2Icon } from "@heroicons/react/24/outline";
 interface SidebarProps {
   onMenuSelect: (menu: string) => void;
 }
@@ -32,14 +36,14 @@ const Sidebar = ({ onMenuSelect }: SidebarProps) => {
             className="hover:bg-blue-700 px-4 py-2 rounded cursor-pointer flex items-center space-x-2"
             onClick={() => onMenuSelect("dashboard")}
           >
-            <ViewGridIcon className="h-5 w-5" />
+            <Bars2Icon className="h-5 w-5" />
             <a>Dashboard</a>
           </li>
           <li
             className="hover:bg-blue-700 px-4 py-2 rounded cursor-pointer flex items-center space-x-2"
             onClick={() => onMenuSelect("users")}
           >
-            <UsersIcon className="h-5 w-5" />
+            <UserIcon className="h-5 w-5" />
             <a>Users Manager</a>
           </li>
           <li
@@ -53,7 +57,7 @@ const Sidebar = ({ onMenuSelect }: SidebarProps) => {
             className="hover:bg-blue-700 px-4 py-2 rounded cursor-pointer flex items-center space-x-2"
             onClick={() => onMenuSelect("departments")}
           >
-            <OfficeBuildingIcon className="h-5 w-5" />
+            <BuildingOffice2Icon className="h-5 w-5" />
             <a>Department Manager</a>
           </li>
           <li
@@ -67,7 +71,7 @@ const Sidebar = ({ onMenuSelect }: SidebarProps) => {
             className="hover:bg-blue-700 px-4 py-2 rounded cursor-pointer flex items-center space-x-2"
             onClick={() => onMenuSelect("messaging")}
           >
-            <ChatIcon className="h-5 w-5" />
+            <ChatBubbleLeftIcon className="h-5 w-5" />
             <a>Messaging</a>
           </li>
           <li

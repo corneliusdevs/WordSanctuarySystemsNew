@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import OTPForm from "@/components/auth/OTPForm";
 
 const OTPPage = () => {

@@ -16,7 +16,6 @@ export const getUsersFromPostgres = async (req: Request, res: Response) => {
 // Create a user in PostgreSQL
 export const createUserInPostgres = async (req: Request, res: Response) => {
   try {
-    console.log(req, req.body)
     // const { name, email } = req.body;
     const user = await postgresClient.userPostgres.create({
       // data: { name, email },

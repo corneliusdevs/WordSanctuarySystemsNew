@@ -5,6 +5,7 @@ import postgresRouter from "./routes/postgres/postgresRouter"
 
 const app = express()
 const PORT = process.env.PORT || 5000
+app.use(express.json()); // Middleware for parsing JSON bodies
 
 app.get("/", (req: Request, res: Response)=>{
     res.send("hello, database microservice running")

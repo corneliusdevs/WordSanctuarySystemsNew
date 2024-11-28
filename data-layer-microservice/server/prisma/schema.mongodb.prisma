@@ -1,16 +1,70 @@
-
 generator client_mongo {
     provider = "prisma-client-js"
-    output = "./generated-clients/mongo"
+    output   = "./generated-clients/mongo"
 }
 
 datasource mongodb {
     provider = "mongodb"
-    url = env("MONGODB_CONN_URI")
+    url      = env("MONGODB_CONN_URI")
 }
 
+enum LeaderShipLevel {
+    PASTOR
+    MINISTER
+    HOD
+    ASSISTANT_HOD
+    EXECUTIVE_ASSISTANT
+    WORKER
+    MEMBER
+}
+
+enum FinanceEntityType {
+    DEPARTMENT
+    INDIVIDUAL
+    CENTRAL
+    INSTALLATION
+}
+
+// test schema for checking db connection
 model UserMongo {
-    id String @id @default(auto()) @map("_id") @mongodb.ObjectId
-    name String
+    id    String @id @default(auto()) @map("_id") @mongodb.ObjectId
+    name  String
     email String @unique
+}
+
+model ProfilesSnapShots {
+    profile_snapshot_id String          @id @default(auto()) @map("_id") @mongodb.ObjectId
+    profile_id          String
+    name                String
+    surname             String
+    email               String
+    giving_number       String
+    leadership_level    LeaderShipLevel
+    lifeclass_topic     Int
+    mentor_profile_id   String
+    kpi_result_id       String // used to associate snapshot with a specific kpi result
+    createdAt           DateTime        @default(now()) // automatically set to the current date/time when the profile snapshot is created
+    modifiedAt          DateTime        @updatedAt
+}
+
+model FinanceSnapShots {
+    finance_id    String            @id @default(auto()) @map("_id") @mongodb.ObjectId
+    entity_type   FinanceEntityType // tell us the category the snapshot belongs to
+    entity_id     String // tell us the specific id of the individual or installation or department that owns the snapshot
+    kpi_result_id String // used to associate snapshot with a specific kpi result 
+    createdAt     DateTime          @default(now()) // automatically set to the current date/time when the document is created
+    modifiedAt    DateTime          @updatedAt
+}
+
+model DepartmentalSnapShots {
+    department_snapshot_id   String   @id @default(auto()) @map("_id") @mongodb.ObjectId
+    department_id            String // tell us the specific id of the department that owns the snapshot
+    installation_id          String // id of the installation the department is under
+    department_name          String
+    finance_id               String // the finance id of the department to get their finance records
+    members                  Json // array of each member in the department corresponding to the DeptMember type definition
+    dues_paid_per_individual Json // it is a json structure but will enforce the Dues type definition
+    kpi_result_id            String // used to associate snapshot with a specific kpi result
+    createdAt                DateTime @default(now()) // automatically set to the current date/time when the document is created
+    modifiedAt               DateTime @updatedAt
 }

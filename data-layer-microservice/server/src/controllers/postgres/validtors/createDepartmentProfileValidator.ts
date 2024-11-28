@@ -70,7 +70,7 @@ export const CreateDepartmetalProfileSchema = z.object({
 });
 
 export const UpdateDepartmentProfileSchema = z.object({
-  profile_id: z.string(),
+  department_id: z.string(),
   department_name: z.string().min(3, {
     message: "department_name must be at least 3 characters",
   }).optional(),
@@ -117,12 +117,9 @@ export const UpdateDepartmentProfileSchema = z.object({
       member: z.number(),
     }).optional(),
 
-  centrals: z.array(z.string()),
+  centrals: z.array(z.string()).optional(),
 });
 
-export const EmailValidatorObj = z.object({
-  email: z.string().email(),
-});
 
 export const DepartmentalIdValidator = z.object({
   department_id: z.string().min(7, {

@@ -47,6 +47,9 @@ model Profiles {
     installation_id String
     departments     String[] // where each item in the array is the departmentalId of the department this profile or individual is associated with
     centrals        String[] // where each item in the array is the centralId of the cetrals this profile or individual is associated with
+
+    // accounts associated with the profile
+    // accounts String[] //an array of account ids associated with the profile e.g kpi account id, general account id, worker account id
 }
 
 model Installations {
@@ -87,8 +90,25 @@ model Centrals {
 
 model DepartmentClass {
     department_class_id   String   @id @default(cuid())
-    department_Class_name String @unique
+    department_class_name String @unique
     description  String
     createdAt                DateTime @default(now()) // automatically set to the current date/time when the
     modifiedAt               DateTime @updatedAt
 }
+
+// model AccountsClass {
+//     account_class_id   String   @id @default(cuid())
+//     account_class_name String @unique
+//     description  String
+//     createdAt                DateTime @default(now()) // automatically set to the current date/time when the
+//     modifiedAt               DateTime @updatedAt
+// }
+
+// model Accounts {
+//     account_id   String   @id @default(cuid())
+//     profile_id String // Id of the profile associated with the account
+//     account_type_id String  // must correspond to an account class id
+//     permisions  Json
+//     createdAt                DateTime @default(now()) // automatically set to the current date/time when the
+//     modifiedAt               DateTime @updatedAt
+// }

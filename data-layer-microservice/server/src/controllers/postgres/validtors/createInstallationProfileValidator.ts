@@ -42,10 +42,10 @@ export const UpdateInstallationProfileSchema = z.object({
   installation_id: z.string(),
   name: z.string().min(3, {
     message: "name must be at least 3 characters",
-  }),
+  }).optional(),
   finance_id: z.string().min(7, {
     message: "invalid finance_id field",
-  }),
+  }).optional(),
   members: z
     .array(
       z.object({
@@ -64,7 +64,7 @@ export const UpdateInstallationProfileSchema = z.object({
     )
     .min(1, {
       message: "Installations must have at least 1 member",
-    }),
+    }).optional(),
 });
 
 export const InstallationIdValidator = z.object({
@@ -72,3 +72,12 @@ export const InstallationIdValidator = z.object({
     message: "invalid installation_id",
   }),
 });
+
+export const extractProfileIds = (members: InstallationMember[]): string[]=>{
+    const profileIds: string[] = []
+    members.forEach((member)=>{
+      profileIds.push(member.profile_id)
+    })
+
+    return profileIds
+}

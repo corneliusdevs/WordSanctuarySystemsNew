@@ -145,11 +145,12 @@ export const updateDepartmentProfileById = async (
 ) => {
   try {
     const parsedBody = UpdateDepartmentProfileSchema.parse(req.body);
-    const { profile_id, ...restProps } = parsedBody;
+
+    const { department_id, ...restProps } = parsedBody;
 
     const existingProfile = await postgresClient.departments.findUnique({
       where: {
-        department_id: profile_id,
+        department_id: department_id,
       },
     });
 
@@ -159,7 +160,7 @@ export const updateDepartmentProfileById = async (
     } else {
       const updatedProfile = await postgresClient.departments.update({
         where: {
-          department_id: profile_id,
+          department_id: department_id,
         },
         data: {
           ...restProps,
@@ -172,7 +173,7 @@ export const updateDepartmentProfileById = async (
           .json({ message: "Updated department profile successfully" });
       } else {
         throw new Error(
-          `Could not update department profile with id ${profile_id}`
+          `Could not update department profile with id ${department_id}`
         );
       }
     }

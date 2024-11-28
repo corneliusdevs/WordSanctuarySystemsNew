@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { postgresClient } from "../../../db_connections/prismaClients";
 import {
   CreateInstallationProfileSchema,
+  extractProfileIds,
   InstallationIdValidator,
   UpdateInstallationProfileSchema,
 } from "../validtors/createInstallationProfileValidator";
@@ -15,16 +16,44 @@ export const createInstallationProfile = async (
   try {
     const parsedBody = CreateInstallationProfileSchema.parse(req.body);
 
-    const createdProfile = await postgresClient.installations.create({
-      data: parsedBody,
+    // Validate that all profiles exist
+    const extractedProfileIdsFromReq = extractProfileIds(parsedBody.members);
+    const profilesExists = await postgresClient.profiles.findMany({
+      where: {
+        profile_id: {
+          in: extractedProfileIdsFromReq,
+        },
+      },
     });
 
-    if (createdProfile) {
-      res
-        .status(201)
-        .json({ message: "Installation Profile created successfully" });
+    // If the number of found centrals does not match the number of centrals in the request,
+    // it means some central IDs do not exist.
+    if (profilesExists.length !== extractedProfileIdsFromReq.length) {
+      const nonExistentProfiles = extractedProfileIdsFromReq.filter(
+        (profileId) =>
+          !profilesExists.some((profile) => profile.profile_id === profileId)
+      );
+      res.status(400).json({
+        message: "Invalid profile IDs",
+        errorMessage: `The following profile IDs do not exist: ${nonExistentProfiles.join(
+          ", "
+        )}`,
+      });
     } else {
-      throw new Error(`Could Not create Installation profile. Try again later`);
+      // create the installation profile
+      const createdProfile = await postgresClient.installations.create({
+        data: parsedBody,
+      });
+
+      if (createdProfile) {
+        res
+          .status(201)
+          .json({ message: "Installation Profile created successfully" });
+      } else {
+        throw new Error(
+          `Could Not create Installation profile. Try again later`
+        );
+      }
     }
   } catch (err) {
     console.log("error creating Installation profile ", err);
@@ -63,9 +92,9 @@ export const getInstallationProfileById = async (
         errorMessage: "Invalid or non-existent installation profile id",
       });
     } else {
-      const profile = await postgresClient.departments.findUnique({
+      const profile = await postgresClient.installations.findUnique({
         where: {
-          department_id: installation_id,
+          installation_id: installation_id,
         },
       });
 
@@ -108,9 +137,9 @@ export const updateInstallationProfileById = async (
       res.status(400).json({ message: "Installation profile does not exist" });
       res.end(); //end the response
     } else {
-      const updatedProfile = await postgresClient.departments.update({
+      const updatedProfile = await postgresClient.installations.update({
         where: {
-          department_id: installation_id,
+          installation_id: installation_id,
         },
         data: {
           ...restProps,
@@ -149,10 +178,13 @@ export const updateInstallationProfileById = async (
   }
 };
 
-export const getAllInstallationProfiles = async (req: Request, res: Response) => {
+export const getAllInstallationProfiles = async (
+  req: Request,
+  res: Response
+) => {
   try {
     const result = await postgresClient.installations.findMany();
-    res.status(200).json({ allProfiles: result });
+    res.status(200).json({ installations: result });
   } catch (err) {
     console.log("error fetching all installations profiles ", err);
     res.status(500).json({
@@ -177,11 +209,9 @@ export const deleteInstallationProfileById = async (
     });
 
     if (!(isInDb?.installation_id === parsedBody.installation_id)) {
-      res
-        .status(404)
-        .json({
-          message: `installation with id ${parsedBody.installation_id} does not exist`,
-        });
+      res.status(404).json({
+        message: `installation with id ${parsedBody.installation_id} does not exist`,
+      });
     } else {
       const result = await postgresClient.installations.delete({
         where: {

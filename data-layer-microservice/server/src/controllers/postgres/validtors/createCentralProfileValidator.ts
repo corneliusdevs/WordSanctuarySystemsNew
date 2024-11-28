@@ -26,9 +26,6 @@ export const CreateCentralProfileSchema = z.object({
         department_type: z.string(),
       })
     )
-    .min(1, {
-      message: "Centrals must have at least 1 department",
-    }),
 });
 
 export const UpdateCentralProfileSchema = z.object({
@@ -58,9 +55,6 @@ export const UpdateCentralProfileSchema = z.object({
         department_type: z.string(),
       })
     )
-    .min(1, {
-      message: "Centrals must have at least 1 department",
-    })
     .optional(),
 });
 

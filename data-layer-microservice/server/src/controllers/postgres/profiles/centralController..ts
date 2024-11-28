@@ -47,7 +47,7 @@ export const createCentralProfile = async (req: Request, res: Response) => {
 export const getAllCentralsProfiles = async (req: Request, res: Response) => {
   try {
     const result = await postgresClient.centrals.findMany();
-    res.status(200).json({ allProfiles: result });
+    res.status(200).json({ centrals: result });
   } catch (err) {
     console.log("error fetching all centrals profiles ", err);
     res.status(500).json({
@@ -107,11 +107,10 @@ export const updateCentralProfileById = async (req: Request, res: Response) => {
 
     if (!existingProfile) {
       res.status(400).json({ message: "central profile does not exist" });
-      res.end(); //end the response
     } else {
-      const updatedProfile = await postgresClient.departments.update({
+      const updatedProfile = await postgresClient.centrals.update({
         where: {
-          department_id: central_id,
+          central_id: central_id,
         },
         data: {
           ...restProps,

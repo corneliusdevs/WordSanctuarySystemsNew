@@ -3,7 +3,7 @@ import {
   DeptMemberRole,
   Dues,
   Heirarchy,
-} from "../../../types/general";
+} from "../../types/general";
 import * as z from "zod";
 
 export interface TCreateDepartmentalProfile {

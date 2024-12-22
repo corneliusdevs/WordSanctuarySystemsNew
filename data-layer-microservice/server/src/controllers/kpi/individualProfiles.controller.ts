@@ -7,7 +7,7 @@ import {
 import {
   profileIdListValidator,
   profileIdValidator,
-} from "../postgres/validtors/createIndividualProfileValidator";
+} from "../validtors/createIndividualProfileValidator";
 import { ZodError } from "zod";
 
 export const getAllIndividualProfileSnapShots = async (

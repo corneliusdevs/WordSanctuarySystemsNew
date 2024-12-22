@@ -5,7 +5,7 @@ import {
   GivingNumberValidatorObj,
   profileIdValidator,
   UpdateIndividualProfileSchema,
-} from "../validtors/createIndividualProfileValidator";
+} from "../../validtors/createIndividualProfileValidator";
 import { ZodError } from "zod";
 import { postgresClient } from "../../../db_connections/prismaClients";
 import { PrismaClientKnownRequestError } from "../../../../prisma/generated-clients/postgres/runtime/library";

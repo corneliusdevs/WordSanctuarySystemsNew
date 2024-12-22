@@ -3,7 +3,7 @@ import {
   CreateDepartmentClassSchema,
   DepartmentClassIdValidator,
   UpdateDepartmentClassSchema,
-} from "./validtors/createDepartmentalClassValidator";
+} from "../validtors/createDepartmentalClassValidator";
 import { postgresClient } from "../../db_connections/prismaClients";
 import { ZodError } from "zod";
 import { PrismaClientKnownRequestError } from "../../../prisma/generated-clients/postgres/runtime/library";

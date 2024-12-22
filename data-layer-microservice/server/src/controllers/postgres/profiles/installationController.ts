@@ -5,7 +5,7 @@ import {
   extractProfileIds,
   InstallationIdValidator,
   UpdateInstallationProfileSchema,
-} from "../validtors/createInstallationProfileValidator";
+} from "../../validtors/createInstallationProfileValidator";
 import { ZodError } from "zod";
 import { PrismaClientKnownRequestError } from "../../../../prisma/generated-clients/postgres/runtime/library";
 

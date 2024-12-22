@@ -8,7 +8,7 @@ import {
   saveDepartmentMembersProfileSnapShotsService,
   saveDepartmentSnapshotByIdService,
 } from "../../services/departmentService";
-import { DepartmentalIdValidator } from "../postgres/validtors/createDepartmentProfileValidator";
+import { DepartmentalIdValidator } from "../validtors/createDepartmentProfileValidator";
 import { mongoDbClient } from "../../db_connections/prismaClients";
 import { ZodError } from "zod";
 import { SaveDeparmentKpiResultsInputValidator } from "../../types/mongodb_types";

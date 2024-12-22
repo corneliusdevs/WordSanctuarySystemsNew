@@ -4,7 +4,7 @@ import {
   CreateDepartmetalProfileSchema,
   DepartmentalIdValidator,
   UpdateDepartmentProfileSchema,
-} from "../validtors/createDepartmentProfileValidator";
+} from "../../validtors/createDepartmentProfileValidator";
 import { ZodError } from "zod";
 import { PrismaClientKnownRequestError } from "../../../../prisma/generated-clients/postgres/runtime/library";
 

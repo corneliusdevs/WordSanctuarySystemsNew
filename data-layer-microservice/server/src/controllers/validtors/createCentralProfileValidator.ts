@@ -1,4 +1,4 @@
-import { DepartmentInCentralType } from "../../../types/general";
+import { DepartmentInCentralType } from "../../types/general";
 
 import * as z from "zod";
 

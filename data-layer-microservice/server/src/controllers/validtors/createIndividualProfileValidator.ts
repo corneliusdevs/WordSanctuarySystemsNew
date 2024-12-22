@@ -1,4 +1,4 @@
-import { Heirarchy } from "../../../types/general"
+import { Heirarchy } from "../../types/general"
 import * as z from "zod"
 
 export interface TCreateIndividualProfile  {

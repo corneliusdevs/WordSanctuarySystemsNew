@@ -1,5 +1,5 @@
 import * as z from "zod";
-import { Heirarchy } from "../../../types/general";
+import { Heirarchy } from "../../types/general";
 
 export const IndividualProfilesSnapshotValidator = z.object({
   profile_id: z.string(),

@@ -4,8 +4,8 @@ import { v4 as uuidv4 } from "uuid";
 import {
   DepartmentMemberArrayValidator,
   DepartmentSnapshotValidator,
-} from "../controllers/postgres/validtors/createDepartmentProfileValidator";
-import { IndividualProfilesSnapshotValidator } from "../controllers/postgres/validtors/snapshotsValidators";
+} from "../controllers/validtors/createDepartmentProfileValidator";
+import { IndividualProfilesSnapshotValidator } from "../controllers/validtors/snapshotsValidators";
 import * as z from "zod";
 import { getIndividualProfilesById } from "./individualProfileService";
 import {

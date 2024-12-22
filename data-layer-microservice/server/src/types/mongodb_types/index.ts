@@ -1,4 +1,4 @@
-import { DepartmentSnapshotValidator } from "../../controllers/postgres/validtors/createDepartmentProfileValidator";
+import { DepartmentSnapshotValidator } from "../../controllers/validtors/createDepartmentProfileValidator";
 import * as z from "zod";
 import { DeptMemberRole, Heirarchy } from "../general";
 

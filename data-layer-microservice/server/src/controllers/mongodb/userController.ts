@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { mongoDbClient, postgresClient } from '../../db_connections/prismaClients';
+import { mongoDbClient } from '../../db_connections/prismaClients';
 
 // Get users from MongoDB
 export const getUsersFromMongo = async (req: Request, res: Response) => {

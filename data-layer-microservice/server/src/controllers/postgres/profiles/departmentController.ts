@@ -87,7 +87,6 @@ export const getDepartmentProfileById = async (req: Request, res: Response) => {
   let departmentId = "";
   try {
     const department_id = req.params?.departmentId;
-    departmentId = department_id;
 
     if (!department_id) {
       res.status(404).json({

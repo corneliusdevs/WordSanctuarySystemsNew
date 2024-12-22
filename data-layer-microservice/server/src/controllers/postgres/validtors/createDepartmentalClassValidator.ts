@@ -7,8 +7,10 @@ export interface TCreateCentralProfile {
   description: string;
 }
 
+
+
 export const CreateDepartmentClassSchema = z.object({
-  department_Class_name: z.string().min(3, {
+  department_class_name: z.string().min(3, {
     message: "department_Class_name must be at least 3 characters",
   }),
   description: z.string().min(3, {

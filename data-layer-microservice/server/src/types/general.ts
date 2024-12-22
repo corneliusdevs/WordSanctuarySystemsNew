@@ -34,6 +34,10 @@ export type Dues = {
     WORKER = "WORKER",
     MEMBER = "MEMBER",
   };
+
+  // export enum LeadershipLevel {
+
+  // }
   
   export type DeptMember = {
     role: DeptMemberRole;
@@ -43,6 +47,7 @@ export type Dues = {
   export enum DeptMemberRole {
     HEAD_OF_DEPARTMENT = "HEAD OF DEPARTMENT",
     ASSISTANT_HEAD_OF_DEPARTMENT = "ASSISTANT HEAD OF DEPARTMENT",
+    EXECUTIVE_ASSISTANT = "EXECUTIVE ASSISTANT",
     EVANGELISM_ASSISTANT = "EVANGELISM ASSISTANT",
     PRAYER_ASSISTANT = "PRAYER ASSISTANT",
     FINANCE_ASSISTANT = "FINANCE ASSISTANT",

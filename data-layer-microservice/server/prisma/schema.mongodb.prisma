@@ -48,7 +48,8 @@ model ProfilesSnapShots {
 }
 
 model FinanceSnapShots {
-    finance_id    String            @id @default(auto()) @map("_id") @mongodb.ObjectId
+    id            String            @id @default(auto()) @map("_id") @mongodb.ObjectId
+    finance_id    String            @unique
     entity_type   FinanceEntityType // tell us the category the snapshot belongs to
     entity_id     String // tell us the specific id of the individual or installation or department that owns the snapshot
     kpi_result_id String // used to associate snapshot with a specific kpi result 
@@ -56,15 +57,40 @@ model FinanceSnapShots {
     modifiedAt    DateTime          @updatedAt
 }
 
+// model DepartmentalSnapShots {
+//     department_snapshot_id   String   @id @default(auto()) @map("_id") @mongodb.ObjectId
+//     department_id            String // tell us the specific id of the department that owns the snapshot
+//     department_type          String // if it is a choir or media or power and sound type of department
+//     department_name          String
+//     description              String //Gives extra details for the Departmental incase if it is combined with other Departments
+//     installation_id          String // id of the installation the department is under
+//     finance_id               String // the finance id of the department to get their finance records
+//     members                  Json // array of each member in the department corresponding to the DeptMember type definition
+//     dues_paid_per_individual Json // it is a json structure but will enforce the Dues type definition
+//     kpi_result_id            String // used to associate snapshot with a specific kpi result
+//     createdAt                DateTime @default(now()) // automatically set to the current date/time when the document is created
+//     modifiedAt               DateTime @updatedAt
+// }
+
 model DepartmentalSnapShots {
-    department_snapshot_id   String   @id @default(auto()) @map("_id") @mongodb.ObjectId
-    department_id            String // tell us the specific id of the department that owns the snapshot
-    installation_id          String // id of the installation the department is under
-    department_name          String
-    finance_id               String // the finance id of the department to get their finance records
-    members                  Json // array of each member in the department corresponding to the DeptMember type definition
-    dues_paid_per_individual Json // it is a json structure but will enforce the Dues type definition
-    kpi_result_id            String // used to associate snapshot with a specific kpi result
-    createdAt                DateTime @default(now()) // automatically set to the current date/time when the document is created
-    modifiedAt               DateTime @updatedAt
+    deptSnapShotId String @id @default(auto()) @map("_id") @mongodb.ObjectId
+    department_id  String @unique // tell us the specific id of the department that owns the snapshot
+
+    snapshots Json // will be an array of department snapshots each with an id
 }
+
+model IndividualProfileSnapShots {
+    profileSnapShotId String @id @default(auto()) @map("_id") @mongodb.ObjectId
+    profile_id        String @unique // tell us the specific id of the department that owns the snapshot
+    snapshots Json // will be an array of individual profile each with an id of the person that owns the snapshot
+}
+
+model DepartmentalKpiResults {
+    dept_kpi_result_id String @id @default(auto()) @map("_id") @mongodb.ObjectId
+    department_id  String @unique // tell us the specific id of the department that owns the result
+
+    kpis Json // will be an array of results each with an id
+    createdAt     DateTime          @default(now()) // automatically set to the current date/time when the document is created
+    modifiedAt    DateTime          @updatedAt
+}
+

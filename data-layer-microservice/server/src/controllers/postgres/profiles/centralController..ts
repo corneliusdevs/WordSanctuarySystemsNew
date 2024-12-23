@@ -6,7 +6,7 @@ import {
   CentralIdValidator,
   CreateCentralProfileSchema,
   UpdateCentralProfileSchema,
-} from "../../validtors/createCentralProfileValidator";
+} from "../../validators/createCentralProfileValidator";
 
 export const createCentralProfile = async (req: Request, res: Response) => {
   try {

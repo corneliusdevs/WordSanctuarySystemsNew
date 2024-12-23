@@ -4,8 +4,8 @@ import { v4 as uuidv4 } from "uuid";
 import {
   DepartmentMemberArrayValidator,
   DepartmentSnapshotValidator,
-} from "../controllers/validtors/createDepartmentProfileValidator";
-import { IndividualProfilesSnapshotValidator } from "../controllers/validtors/snapshotsValidators";
+} from "../controllers/validators/createDepartmentProfileValidator";
+import { IndividualProfilesSnapshotValidator } from "../controllers/validators/snapshotsValidators";
 import * as z from "zod";
 import { getIndividualProfilesById } from "./individualProfileService";
 import {

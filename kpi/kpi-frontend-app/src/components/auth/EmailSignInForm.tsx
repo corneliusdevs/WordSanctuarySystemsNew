@@ -65,7 +65,7 @@ const EmailSignInForm = () => {
       </div>
       <button
         type="submit"
-        className={`w-full py-2 px-4 text-white bg-[#006AFF] rounded-lg ${
+        className={`w-full py-2 px-4 text-white bg-blue-800 rounded-lg ${
           loading ? "opacity-50 cursor-not-allowed" : ""
         }`}
         disabled={loading}

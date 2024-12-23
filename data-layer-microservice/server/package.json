@@ -17,8 +17,10 @@
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^5.22.0",
+    "@types/nodemailer": "^6.4.17",
     "express": "^4.21.1",
     "mongoose": "^8.8.2",
+    "nodemailer": "^6.9.16",
     "pg": "^8.13.1",
     "uuid": "^11.0.3",
     "zod": "^3.23.8"

@@ -1,10 +1,13 @@
 import express from 'express'
-import { accessRequestController } from '../../controllers/accounts/accessRequest.controller'
+import { createAccessRequestController, getAllAccessRequests } from '../../controllers/accounts/accessRequest.controller'
 
 
  const authRouter = express.Router()
 
- authRouter.post("/access/request", accessRequestController)
+ authRouter.post("/access/request", createAccessRequestController)
+ authRouter.post("/access/request/process", createAccessRequestController)
+ authRouter.get("/access/requests/all", getAllAccessRequests)
+
 
 
 

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import DashboardItemCard from "./DashboardItemCard";
 
 const DashboardHomeComponent = () => {
@@ -8,11 +9,13 @@ const DashboardHomeComponent = () => {
       </div>
       <div className="p-3">
         <div className="grid grid-cols-3 gap-3">
-          <DashboardItemCard
-            toptext="Invitations"
-            bottomText="25 invitations sents"
-            styles=""
-          />
+          <Link href={"/dashboard/invitations"}>
+            <DashboardItemCard
+              toptext="Invitations"
+              bottomText="25 invitations sents"
+              styles=""
+            />
+          </Link>
           <DashboardItemCard
             toptext="Access Requests"
             bottomText="10 new requests"

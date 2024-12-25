@@ -1,6 +1,5 @@
 "use client"
 
-import DashboardHomeComponent from "@/components/dashboard/DashboardHome";
 import DashboardNavbar from "@/components/dashboard/DashboardNavbar";
 import OnBoardHomeComponent from "@/components/dashboard/OnBoardHomeContent";
 

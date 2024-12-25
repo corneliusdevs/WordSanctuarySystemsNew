@@ -1,6 +1,6 @@
 import { transporter } from "../../lib/nodemailer";
 import crypto from "crypto"
-import { saveTokenService } from "./saveTokenService";
+import { saveTokenService, TokenTypes } from "./saveTokenService";
 
 // Generate 6-digit random code
 function generateCode() {
@@ -10,7 +10,7 @@ function generateCode() {
   // Generate expiring link (e.g., with a unique token)
   function generateExpiringLink() {
     const token = crypto.randomBytes(16).toString('hex');
-    const expiration = Date.now() + 20 * 60 * 1000; // expires in 20 minutes
+    const expiration = Date.now() + 15 * 60 * 1000; // expires in 15 minutes
     return { token, expiration };
   }
   
@@ -21,7 +21,7 @@ function generateCode() {
   
     // Save the token and expiration time in your database 
 
-    const savedToken = await saveTokenService(recepientEmail, token, expiration)
+    const savedToken = await saveTokenService(recepientEmail, token, expiration, code, TokenTypes.INVITATION)
 
     if(!savedToken){
         throw new Error(`could not save token in database `)
@@ -36,8 +36,8 @@ function generateCode() {
       html: `
         <p>Here is your 6-digit code: <strong>${code}</strong></p>
         <p>This code will expire in 15 minutes.</p>
-        <p>Click the following link to verify your account (expires in 20 minutes):</p>
-        <p><a href="http://localhost:5000/verify?token=${token}">Verify your account</a></p>
+        <p>Click the following link to verify your account (expires in 15 minutes):</p>
+        <p><a href=${process.env.CENTRAL_SYSTEMS_FRONTEND_URL}/accept-invite/verify?token=${token}">Accept Invite</a></p>
       `
     };
   

@@ -12,7 +12,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { SetStateAction, Dispatch } from "react";
-import toast from "react-hot-toast";
 import { Input } from "../Input";
 import { LoginFormSchema } from "./LoginSchema";
 import { Button } from "../ui/button";

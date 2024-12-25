@@ -1,12 +1,36 @@
 import express, { Request, Response } from "express";
+import authRouter from "./routers/auth.router";
+import dotenv from "dotenv"
+import cors from "cors" 
+
 
 const app = express();
 
-const PORT = process.env.PORT || 5005;
+const PORT = process.env.PORT || 4999;
+
+dotenv.config() // call the dotenv package to use the env variables
+
+app.use(express.json()) // middleware for parsing body of requests 
+
+
+// Define CORS options (optional)
+const corsOptions = {
+  origin: 'http://localhost:3000', // specify the allowed domain or use '*' to allow all
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // allowed methods
+  allowedHeaders: ['Content-Type', 'Authorization'], // allowed headers
+  credentials: true, // allow cookies to be sent across domains
+};
+
+// Enable CORS for all routes (if you want it to be global)
+app.use(cors(corsOptions));
+
+
 
 app.get("/", (req: Request, res: Response) => {
   res.send("hello, central-systems server running");
 });
+
+app.use("/api/auth", authRouter)
 
 // Graceful shutdown - Disconnect Prisma Clients when the server shuts down
 process.on("SIGINT", async () => {

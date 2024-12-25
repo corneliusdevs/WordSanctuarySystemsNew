@@ -23,6 +23,13 @@ const OnBoardHomeComponent = () => {
               styles=""
             />
           </Link>
+          <Link href={"/dashboard/onboard/department/type"}>
+            <DashboardItemCard
+              toptext="Department Types"
+              bottomText="10 Created"
+              styles=""
+            />
+          </Link>
           <Link href={"/dashboard/onboard/individual"}>
             <DashboardItemCard
               toptext="Individual"

@@ -1,3 +1,3 @@
-export const CENTRAL_SYSTEMS_BASE_API = "http://localhost:5000/api/database"
-export const CENTRAL_KPI_ENDPOINT = "http://localhost:5000/api/kpi"
-export const CENTRAL_SYSTEMS_POSTGRESS_API = "http://localhost:5000/api/database/postgres"
+export const CENTRAL_SYSTEMS_BASE_API = process.env.CENTRAL_SYSTEMS_BASE_API
+export const CENTRAL_KPI_ENDPOINT = process.env.CENTRAL_KPI_ENDPOINT
+export const CENTRAL_SYSTEMS_POSTGRESS_API = process.env.CENTRAL_SYSTEMS_POSTGRESS_API

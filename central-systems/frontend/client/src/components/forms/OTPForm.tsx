@@ -19,7 +19,6 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
-import toast from "react-hot-toast";
 import { useToast } from "@/hooks/use-toast";
 import { Dispatch, SetStateAction } from "react";
 
@@ -33,13 +32,16 @@ interface InputOTPFormProps {
   isProcessingInputHandler: Dispatch<SetStateAction<boolean>>;
   isProcessingInput: boolean;
   updateOTPStateHandler: Dispatch<SetStateAction<string>>;
+
+  customSubmitButton?: React.ReactNode;
 }
 
 export function InputOTPForm({
-    isProcessingInputHandler,
-    isProcessingInput,
-    updateOTPStateHandler
-}:InputOTPFormProps) {
+  isProcessingInputHandler,
+  isProcessingInput,
+  updateOTPStateHandler,
+  customSubmitButton,
+}: InputOTPFormProps) {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -50,16 +52,8 @@ export function InputOTPForm({
   const { toast } = useToast();
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    isProcessingInputHandler(true)
-    updateOTPStateHandler(data.pin)
-    toast({
-      title: "Logging You In",
-      description: (
-        <div className="mt-2 w-[340px] rounded-md p-4 shadow-md">
-          <span>This might take a while...</span>
-        </div>
-      ),
-    });
+    isProcessingInputHandler(true);
+    updateOTPStateHandler(data.pin);
   }
 
   return (
@@ -94,12 +88,16 @@ export function InputOTPForm({
             )}
           />
 
-          <Button
-            type="submit"
-            className="w-full bg-primarycol text-white mt-3"
-          >
-            Submit
-          </Button>
+          {customSubmitButton ? (
+            customSubmitButton
+          ) : (
+            <Button
+              type="submit"
+              className="w-full bg-primarycol text-white mt-3"
+            >
+              Submit
+            </Button>
+          )}
         </form>
       </Form>
     </div>

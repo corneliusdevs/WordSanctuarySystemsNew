@@ -25,6 +25,11 @@ enum AccessRequestsStatus {
     DENIED
 }
 
+enum TokenType {
+    INVITATION
+}
+
+
 enum FinanceEntityType {
     DEPARTMENT
     INDIVIDUAL
@@ -107,6 +112,15 @@ model AuthTokens {
     token      String
     expiration Int
     email      String
+    otp        String
+    token_type TokenType
     createdAt  DateTime @default(now())
     modifiedAt DateTime @updatedAt
+}
+
+model InvitationRequets {
+    invite_id String  @id @default(auto()) @map("_id") @mongodb.ObjectId
+    email String
+    description String // reason for the invite
+    //profile_id_of_sender 
 }

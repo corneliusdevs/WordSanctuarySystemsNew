@@ -1,18 +1,11 @@
-"use client"
 import DashboardNavbar from "@/components/dashboard/DashboardNavbar";
+import OnboardIndividualComponent from "@/components/dashboard/IndividualOnboardingComponent";
 
 export default function OnboardIndividualPage() {
   return (
     <div>
       <DashboardNavbar />
-
-      <div className="mt-4">
-        <div className="w-full justify-center items-center flex">
-          <span className="text-primarycol text-center text-2xl">
-            Onboard an Individual
-          </span>
-        </div>
-      </div>
+      <OnboardIndividualComponent titleText="Onboard an Individual"/>
     </div>
   );
 }

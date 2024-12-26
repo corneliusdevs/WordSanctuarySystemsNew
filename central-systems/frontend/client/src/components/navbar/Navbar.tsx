@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 import Image from "next/image";
 import { AlignJustify, X } from "lucide-react";
 
@@ -9,9 +9,9 @@ import { usePathname } from "next/navigation";
 
 import MaxwidthWrapper from "../Min_Max_Width_Wrapper";
 
-interface NavbarProps {}
+// interface NavbarProps {}
 
-const Navbar: FC<NavbarProps> = () => {
+const Navbar: FC = () => {
   const navbarItems = [
     {
       text: "Home",
@@ -41,6 +41,8 @@ const Navbar: FC<NavbarProps> = () => {
 
   const [openNavbar, setOpenNavbar] = useState<boolean>(false);
   const [isUser, setIsUser] = useState<boolean>(false);
+
+  console.log(setIsUser)
 
   const currentPath = usePathname();
 //   const { isLoading, data, error } = trpc.auth.getUserSession.useQuery();

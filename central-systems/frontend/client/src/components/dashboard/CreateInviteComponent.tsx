@@ -7,7 +7,6 @@ import * as z from "zod";
 import { CreateInviteForm } from "../forms/invites/CreateInviteForm";
 import { CreateInvitationFormSchema } from "../forms/invites/CreateInviteFormSchema";
 import { toast } from "@/hooks/use-toast";
-import { Description } from "@radix-ui/react-toast";
 import { Button } from "../ui/button";
 import { Check, X } from "lucide-react";
 
@@ -30,6 +29,8 @@ export default function CreateInviteComponent() {
   useEffect(() => {
     const sendInvitation = async () => {
       if (hasUserFilledForm && formDetails) {
+
+        console.log(inviteRequestError)
         toast({
           title: "",
           description: (
@@ -79,7 +80,7 @@ export default function CreateInviteComponent() {
     };
 
     sendInvitation();
-  }, [hasUserFilledForm, formDetails]);
+  }, [hasUserFilledForm, formDetails, hasMadeRequest, inviteRequestError]);
 
   useEffect(() => {
     if (hasUserFilledForm && hasMadeRequest) {
@@ -113,7 +114,7 @@ export default function CreateInviteComponent() {
       setFormDetails(null);
       setHasMadeRequest(false)
     }
-  }, [inviteRequestSuccess, hasUserFilledForm]);
+  }, [inviteRequestSuccess, hasUserFilledForm, hasMadeRequest]);
 
   return (
     <div>

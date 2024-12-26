@@ -16,6 +16,7 @@ import { SetStateAction, Dispatch } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/Input";
 import { CreateDepartmetalProfileSchema } from "./CreateDepartmentFormSchema";
+import { SelectWithSearch } from "@/components/SelectSearchComponent";
 
 interface CreateDepartmentFormProps {
   isMutatingDbResourceHandler: Dispatch<SetStateAction<boolean>>;
@@ -85,6 +86,28 @@ export function CreateDepartmentForm({
             }}
           />
 
+          <div>
+            <SelectWithSearch placeholderSearchText="search department type" placeholderText="Select department type" 
+            searchEmptyText="No department type matched..."
+            options={[{
+              label: "Word Sanctuary dramatists",
+              value: "WSD"
+              
+            },
+            {
+              label: "Word Sanctuary Choir",
+              value: "WSC"
+              
+            },
+            {
+              label: "Evangelism",
+              value: "Evangelism"
+            },
+          
+          ]}
+            />
+          </div>
+
           <FormField
             control={form.control}
             name="description"
@@ -136,21 +159,26 @@ export function CreateDepartmentForm({
             }}
           />
 
-          <FormField
-            control={form.control}
-            name="centrals"
-            render={({ field }) => {
-              return (
-                <FormItem className="mb-2">
-                  <FormLabel>Installation </FormLabel>
-                  <FormControl>
-                    <Input placeholder="enter your installation" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              );
-            }}
-          />
+         <div>
+            <SelectWithSearch placeholderSearchText="search installation" placeholderText="Select installation" 
+            searchEmptyText="No installation matched..."
+            options={[{
+              label: "College of health sciences(COHS)",
+              value: "College of health sciences(COHS)"
+            },
+            {
+              label: "FUTA",
+              value: "FUTA"
+              
+            },
+            {
+              label: "Abuja",
+              value: "Abuja"
+            },
+          
+          ]}
+            />
+          </div>
 
           <div className="flex justify-center items-center text-xl">
             <span>Dues</span>

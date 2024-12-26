@@ -19,7 +19,6 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
-import { useToast } from "@/hooks/use-toast";
 import { Dispatch, SetStateAction } from "react";
 
 const FormSchema = z.object({
@@ -38,7 +37,6 @@ interface InputOTPFormProps {
 
 export function InputOTPForm({
   isProcessingInputHandler,
-  isProcessingInput,
   updateOTPStateHandler,
   customSubmitButton,
 }: InputOTPFormProps) {
@@ -49,7 +47,6 @@ export function InputOTPForm({
     },
   });
 
-  const { toast } = useToast();
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     isProcessingInputHandler(true);

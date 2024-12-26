@@ -8,9 +8,9 @@ import {
 } from "../../validators/calculateKpiValidator";
 import * as z from "zod";
 import { countDeptMembersByLeadershipLevel } from "./getExpectedMonthlyCashFlow";
-import { CENTRAL_KPI_ENDPOINT } from "../../configs/externalApis";
 import { ZodError } from "zod";
 import { NUMBER_OF_SECONDS_IN_A_WEEK } from "../../utils/constants";
+import { get_Data_Layer_Base_Api_Endpoint } from "../../helpers/getApiEndpoints";
 
 function calculateIncreaseParameters(
   deparmentSnapshotData: z.infer<typeof DepartmentSnapShotSchema>,
@@ -267,9 +267,10 @@ const calculateLifeClassIncrease = async (
   try {
     //  get the individual profiles of all members of the department below the HOD level because, the HODS until they are ministers are not able to take life classes
 
+    const data_layer_kpi_api_endpoint = get_Data_Layer_Base_Api_Endpoint()
     // get the individualProfilesSnapshot
     const individualProfilesSnapshot = await fetch(
-      `${CENTRAL_KPI_ENDPOINT}/individuals/snapshots/byProfileIds/`,
+      `${data_layer_kpi_api_endpoint}/individuals/snapshots/byProfileIds/`,
       {
         method: "POST",
         headers: {

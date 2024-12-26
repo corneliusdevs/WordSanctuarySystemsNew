@@ -14,6 +14,7 @@ export default function CentralOnboardingComponent() {
     typeof CreateCentralProfileSchema
   > | null>(null);
 
+  console.log(formDetails)
   return (
     <div>
       <DashboardNavbar />

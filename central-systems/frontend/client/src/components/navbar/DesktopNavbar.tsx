@@ -2,15 +2,14 @@
 
 import React, { FC, useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { AlignJustify, Home, X } from "lucide-react";
+// import { AlignJustify, Home, X } from "lucide-react";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import MaxwidthWrapper from "../Min_Max_Width_Wrapper";
 
-interface DesktopNavbarProps {}
 
-const DesktopNavbar: FC<DesktopNavbarProps> = () => {
+const DesktopNavbar: FC = () => {
   const navbarItems = [
     {
       text: "Home",
@@ -46,6 +45,7 @@ const DesktopNavbar: FC<DesktopNavbarProps> = () => {
 
   const currentPath = usePathname();
   
+  console.log(openNavbar, setIsUser, scrollYPosition)
 
 
   useEffect(() => {
@@ -60,7 +60,7 @@ const DesktopNavbar: FC<DesktopNavbarProps> = () => {
     return () => {
       window.removeEventListener("scroll", handleScrollY);
     };
-  }, [scrollYPositionRef.current]);
+  }, []);
 
   const shouldBgBeWhite = (currentPath: string) => {
     // determines if the desktop nav bar should have a transparent or white background based on the current url

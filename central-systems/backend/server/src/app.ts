@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import authRouter from "./routers/auth.router";
 import dotenv from "dotenv"
 import cors from "cors" 
+import profilesRouter from "./routers/profiles.router";
 
 
 const app = express();
@@ -31,6 +32,7 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.use("/api/auth", authRouter)
+app.use("/api/profiles", profilesRouter)
 
 // Graceful shutdown - Disconnect Prisma Clients when the server shuts down
 process.on("SIGINT", async () => {

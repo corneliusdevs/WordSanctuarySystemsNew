@@ -14,7 +14,7 @@ export const CreateInstallationProfileSchema = z.object({
   name: z.string().min(3, {
     message: "name must be at least 3 characters",
   }),
-  finance_id: z.string().min(7, {
+  finance_id: z.string().min(4, {
     message: "invalid finance_id field",
   }),
   members: z

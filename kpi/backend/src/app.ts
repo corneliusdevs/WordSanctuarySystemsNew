@@ -1,8 +1,10 @@
 import express, { Request, Response} from "express"
 import kpiRouter from "./routers/kpi.router"
+import dotenv from "dotenv"
 
 
 const app = express()
+dotenv.config() // allows us to use the env variables
 app.use(express.json()); // Middleware for parsing JSON bodies
 const PORT = process.env.PORT || 5003
 
@@ -11,6 +13,8 @@ app.get("/", (req: Request, res: Response)=>{
 })
 
 app.use("/api/kpi", kpiRouter)
+
+
 
 
 

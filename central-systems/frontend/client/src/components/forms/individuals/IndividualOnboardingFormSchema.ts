@@ -11,7 +11,7 @@ export interface TCreateIndividualProfile {
   lifeclass_topic: number;
   lifeclass_teacher_profile_id: string;
   mentor_profile_id: string;
-  installation_id: String;
+  installation_id: string;
   signature: string;
   passport: string;
   birthday: string;
@@ -29,7 +29,7 @@ export interface TIndividualProfile {
   lifeclass_topic: number;
   lifeclass_teacher_profile_id: string;
   mentor_profile_id: string;
-  installation_id: String;
+  installation_id: string;
   signature: string;
   passport: string;
   birthday: string;
@@ -48,12 +48,16 @@ export const CreateIndividualProfileSchema = z.object({
     message: "surname must be at least 3 characters",
   }),
   email: z.string().email(),
-  installation_id: z.string().min(4, {
-    message: "invalid installation_id field",
-  }),
+  
   giving_number: z.string().min(3, {
     message: "giving_number must be at least 3 characters",
   }),
+
+  installation_id: z.string().min(4, {
+    message: "invalid installation_id field",
+  }).optional(),
+
+
   leadership_level: z.enum([
     Heirarchy.ASSISTANT_HOD,
     Heirarchy.EXECUTIVE_ASSISTANT,
@@ -62,20 +66,22 @@ export const CreateIndividualProfileSchema = z.object({
     Heirarchy.MINISTER,
     Heirarchy.PASTOR,
     Heirarchy.WORKER,
-  ]),
-  lifeclass_topic: z.number(),
+  ]).optional(),
+
+  lifeclass_topic: z.number().optional(),
+
   lifeclass_teacher_profile_id: z.string().min(4, {
     message: "invalid lifeclass_teacher_profile_id field",
-  }),
+  }).optional(),
+
   mentor_profile_id: z.string().min(4, {
     message: "invalid mentor_profile_id field",
-  }),
-  // departments: z.array(z.string()).min(1, {
-  //     message: "departments field must have at least 1 element"
-  // }),
-  departments: z.string().min(1, {
-    message: "departments field must have at least 1 element",
-  }),
+  }).optional(),
+
+  departments: z.array(z.string()).min(1, {
+      message: "departments field must have at least 1 element"
+  }).optional(),
+
   passport: zfd
     .file()
     .refine((file) => file.size < 250000, {
@@ -104,8 +110,8 @@ export const CreateIndividualProfileSchema = z.object({
     ),
   phone_contact: z.string(),
   birthday: z.string().refine((val) => birthdayRegex.test(val)), // uses a regex to validate the birthday field
-  // centrals: z.array(z.string())
-  centrals: z.string(),
+
+  centrals: z.array(z.string()).optional(),
 });
 
 export const UpdateIndividualProfileSchema = z.object({
@@ -174,6 +180,50 @@ export const UpdateIndividualProfileSchema = z.object({
     .optional(), // uses a regex to validate the birthday field
   centrals: z.array(z.string()).optional(),
 });
+
+
+// export const CreateIndividualProfileSchema = z.object({
+//   name: z.string().min(3, {
+//     message: "name must be at least 3 characters",
+//   }),
+//   surname: z.string().min(3, {
+//     message: "surname must be at least 3 characters",
+//   }),
+//   email: z.string().email(),
+//   giving_number: z.string().min(3, {
+//     message: "giving_number must be at least 3 characters",
+//   }),
+
+//   passport: zfd
+//     .file()
+//     .refine((file) => file.size < 250000, {
+//       message: "File can't be bigger than 250kb",
+//     })
+//     .refine(
+//       (file) => {
+//         return ["image/jpeg", "image/png", "image/jpg"].includes(file.type);
+//       },
+//       {
+//         message: "File format must be either jpg, jpeg or png",
+//       }
+//     ),
+//     signature: zfd
+//     .file()
+//     .refine((file) => file.size < 250000, {
+//       message: "File can't be bigger than 250kb",
+//     })
+//     .refine(
+//       (file) => {
+//         return ["image/jpeg", "image/png", "image/jpg"].includes(file.type);
+//       },
+//       {
+//         message: "File format must be either jpg, jpeg or png",
+//       }
+//     ),
+//   phone_contact: z.string(),
+//   birthday: z.string().refine((val) => birthdayRegex.test(val)), // uses a regex to validate the birthday field
+// });
+
 
 export const EmailValidatorObj = z.object({
   email: z.string().email(),

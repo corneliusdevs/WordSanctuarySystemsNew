@@ -11,6 +11,8 @@ const LoginComponent = () => {
 
   const [hasEnteredEmail, setHasEnteredEmail] = useState<boolean>(false);
 
+  console.log(otp, email)
+
   return (
     <div className="bg-center" style={{ backgroundImage: "url('/assets/new4.jpg')"}}>
       <div

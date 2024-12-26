@@ -1,10 +1,10 @@
-"use-client";
+"use client";
 
-import { CalendarDays, Contact2, Mail, MailCheck } from "lucide-react";
+// import { CalendarDays, Contact2, Mail, MailCheck } from "lucide-react";
 
 import Image from "next/image";
 
-import { Dispatch, FC, SetStateAction } from "react";
+import { FC } from "react";
 
 import Link from "next/link";
 
@@ -12,9 +12,9 @@ import ButtonWithIcons from "../ButtonWithIcon";
 import Sidebar from "../Sidebar";
 import { usePathname } from "next/navigation";
 
-interface DashboardNavbarProps {}
+// interface DashboardNavbarProps {}
 
-const DashboardNavbar: FC<DashboardNavbarProps> = (props) => {
+const DashboardNavbar: FC = () => {
   const currentPath = usePathname();
 
   return (

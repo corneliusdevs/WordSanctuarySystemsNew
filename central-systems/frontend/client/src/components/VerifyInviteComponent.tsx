@@ -142,7 +142,7 @@ const VerifyInviteComponent = ({
         ),
       });
     }
-  }, [verificationSuccess, verificationErorr]);
+  }, [verificationSuccess, verificationErorr, hasEnteredOtp, isVerifiedStateHandler, tokenExpiredError]);
 
   return (
     <div

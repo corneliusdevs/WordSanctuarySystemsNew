@@ -1,11 +1,11 @@
-import { CENTRAL_KPI_ENDPOINT } from "../configs/externalApis";
+import { DATA_LAYER_MICROSERVICE_KPI_API } from "../configs/externalApis";
 
 export const getDepartmentKpiResultByIdService = async (
   departmentId: string
 ) => {
   try {
     const kpi_result = await fetch(
-      `${CENTRAL_KPI_ENDPOINT}/departments/kpi/id/${departmentId}`
+      `${DATA_LAYER_MICROSERVICE_KPI_API}/departments/kpi/id/${departmentId}`
     ) // get the departmentSnapShot
       .then((result) => {
         return result.json();

@@ -14,8 +14,10 @@ interface CarouselComponentProps {
 const CarouselComponent: React.FC<CarouselComponentProps> = ({ images }) => {
   // State to make carousel auto-slide
   const [api, setApi] = React.useState<CarouselApi>();
-  const [current, setCurrent] = React.useState(0);
-  const [count, setCount] = React.useState(0);
+  // const [current, setCurrent] = React.useState(0);
+  // const [count, setCount] = React.useState(0);
+
+  console.log(api)
 
   return (
     <Carousel
@@ -150,8 +152,10 @@ export const HomeCarousel: React.FC<HomeCarouselProps> = ({
 }) => {
   // State to make carousel auto-slide
   const [api, setApi] = React.useState<CarouselApi>();
-  const [current, setCurrent] = React.useState(0);
-  const [count, setCount] = React.useState(0);
+  // const [current, setCurrent] = React.useState(0);
+  // const [count, setCount] = React.useState(0);
+
+  console.log(api)
   return (
     <div className="flex relative justify-center h-[55vh] md:h-[88vh] w-full">
       <Carousel

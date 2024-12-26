@@ -4,11 +4,12 @@ import {
   DepartmentSnapShotSchema,
 } from "../validators/calculateKpiValidator";
 import { ZodError } from "zod";
-import { CENTRAL_KPI_ENDPOINT } from "../configs/externalApis";
+// import { data_layer_kpi_api_endpoint } from "../configs/externalApis";
 import { getDeptFinanceScoreService } from "../services/kpi/calculateFinanceScore";
 import { getOperationsScoreService } from "../services/kpi/calculateOperationsScore";
 import { getPeopleScoreService } from "../services/kpi/calculatePeopleScore";
 import { getDepartmentKpiResultByIdService } from "../services/getDepartmentKpiResultService";
+import { get_Data_Layer_Base_Api_Endpoint } from "../helpers/getApiEndpoints";
 
 export const getDepartmentKpiById = async (req: Request, res: Response) => {
   try {
@@ -44,8 +45,10 @@ export const getDepartmentKpiById = async (req: Request, res: Response) => {
 export const calculateDepartmentKpi = async (req: Request, res: Response) => {
   try {
     const parsedBody = DepartmentKpiMetaData.parse(req.body);
+    const data_layer_kpi_api_endpoint = get_Data_Layer_Base_Api_Endpoint()
+
     const departmentSnapShot = await fetch(
-      `${CENTRAL_KPI_ENDPOINT}/departments/snapshots/id/${parsedBody.department_id}`
+      `${data_layer_kpi_api_endpoint}/departments/snapshots/id/${parsedBody.department_id}`
     ) // get the departmentSnapShot
       .then((result) => {
         return result.json();
@@ -81,7 +84,7 @@ export const calculateDepartmentKpi = async (req: Request, res: Response) => {
 
     // save the result in the database
     const savedKpiResult = await fetch(
-      `${CENTRAL_KPI_ENDPOINT}/departments/results/save`,
+      `${data_layer_kpi_api_endpoint}/departments/results/save`,
       {
         method: "POST",
         headers: {

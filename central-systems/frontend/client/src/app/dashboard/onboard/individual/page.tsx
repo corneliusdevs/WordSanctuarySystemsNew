@@ -1,3 +1,4 @@
+"use client"
 import DashboardNavbar from "@/components/dashboard/DashboardNavbar";
 import OnboardIndividualComponent from "@/components/dashboard/IndividualOnboardingComponent";
 

@@ -17,7 +17,6 @@ interface HomeCarouselBannerProps {
 const HomeCarouselBanner: FC<HomeCarouselBannerProps> = ({
   src,
   alt,
-  caption,
   captionPreText,
   captionText,
   captionHeader,

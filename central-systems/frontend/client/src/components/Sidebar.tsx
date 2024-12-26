@@ -2,15 +2,15 @@
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
-  SheetClose,
+  // SheetClose,
   SheetContent,
-  SheetDescription,
+  // SheetDescription,
   SheetFooter,
   SheetHeader,
-  SheetTitle,
+  // SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { AlignJustify, X } from "lucide-react";
+import { AlignJustify } from "lucide-react";
 import { FC } from "react";
 
 interface SidebarProps  {

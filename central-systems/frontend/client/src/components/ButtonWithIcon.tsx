@@ -10,7 +10,7 @@ interface ButtonWithIconsProps
   text: string;
   icon?: React.ReactNode;
   extraInfo?: string;
-  clickHandler?: Function;
+  clickHandler?: ()=>any;
   containerStyles?: string;
 }
 

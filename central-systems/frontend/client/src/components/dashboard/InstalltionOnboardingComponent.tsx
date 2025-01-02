@@ -16,11 +16,14 @@ export default function OnboardInstallationComponent() {
     typeof CreateInstallationProfileSchema
   > | null>(null);
 
+ 
+
 
   useEffect(() => {
+    console.log("here are all the form data submitted", formDetails);
+
     const createInstallation = async () => {
       // save the form details in the database
-      console.log("here are all the form data submitted", formDetails);
 
       // save form details in database
       if (formDetails && hasUserFilledForm) {
@@ -28,10 +31,10 @@ export default function OnboardInstallationComponent() {
 
         // let the user know that we are creating the profile
         toast({
-          title: "Creating Installation",
+          title: "Onboarding Installation",
           description: (
             <div className="mt-2 rounded-md w-full flex justify-center items-center">
-              <span>Installation is being created...</span>
+              <span>Installation is being onboarded...</span>
             </div>
           ),
         });
@@ -81,7 +84,7 @@ export default function OnboardInstallationComponent() {
               // upload the signature after that
             } else {
               toast({
-                title: "Create Installation Error",
+                title: "Onboard Installation Error",
                 description: (
                   <div className="mt-2 w-full flex justify-center items-center">
                     <span className="text-red-500 mr-2">
@@ -95,18 +98,18 @@ export default function OnboardInstallationComponent() {
           })
           .catch((createDepartmentTypeError) => {
             console.log(
-              "failed to create department Type profile in database ",
+              "failed to create installation profile in database ",
               createDepartmentTypeError
             );
 
             toast({
-              title: "Create Department Type Error",
+              title: "Onboard Installation Error",
               description: (
                 <div className="mt-2 w-full flex justify-center items-center">
                   <span className="text-red-500 mr-2">
                     <X />
                   </span>
-                  <span>Could not create Installation.</span>
+                  <span>Could not create Onboard installation.</span>
                 </div>
               ),
             });
@@ -140,6 +143,8 @@ export default function OnboardInstallationComponent() {
           updateInstallationDetailsHandler={setFormDetails}
         />
       </div>
+
+      
     </div>
   );
 }

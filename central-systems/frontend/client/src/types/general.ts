@@ -69,3 +69,11 @@ export enum DepartMentNames {
     SID = "SANCTUARY INTELLIGENCE DEPARTMENT",
     EVANGELISM = "EVANGELISM",
 }
+
+export interface DepartmentType {
+  department_class_id: string,
+  department_class_name: string,
+  description: string,
+  createdAt: Date,
+  modifiedAt: Date
+}

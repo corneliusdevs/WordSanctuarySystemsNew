@@ -2,6 +2,7 @@ import { InstallationMember, InstallationMemberRoles } from "@/types/general";
 import * as z from "zod";
   
   export interface TCreateInstallationProfile {
+    installation_id: string
     name: string;
     finance_id: string;
     members: InstallationMember[];
@@ -13,18 +14,33 @@ import * as z from "zod";
     }),
     finance_id: z.string().min(4, {
       message: "invalid finance_id field",
+    }).optional(),
+    members: z
+      .array(
+        z.object({
+          role: z.string(),
+          profile_id: z.string().min(7, {
+            message: "Invalid member profile_id",
+          }),
+        })
+      )
+      .min(1, {
+        message: "Installations must have at least 1 member",
+      }).optional(),
+  });
+
+
+  export const ValidateCreateInstallationProfileSchema = z.object({
+    name: z.string().min(3, {
+      message: "name must be at least 3 characters",
+    }),
+    finance_id: z.string().min(4, {
+      message: "invalid finance_id field",
     }),
     members: z
       .array(
         z.object({
-          role: z.enum([
-            InstallationMemberRoles.HEAD_OF_INSTALLATION,
-            InstallationMemberRoles.HEAD_WORKER,
-            InstallationMemberRoles.LEADER,
-            InstallationMemberRoles.MEMBER,
-            InstallationMemberRoles.MINISTER_IN_CHARGE,
-            InstallationMemberRoles.WORKER,
-          ]),
+          role: z.string(),
           profile_id: z.string().min(7, {
             message: "Invalid member profile_id",
           }),

@@ -7,6 +7,7 @@ import {
   CreateCentralProfileSchema,
   UpdateCentralProfileSchema,
 } from "../../validators/createCentralProfileValidator";
+import { addCentralToDepartmentsProfilesService } from "../../../services/centralsService";
 
 export const createCentralProfile = async (req: Request, res: Response) => {
   try {
@@ -17,7 +18,36 @@ export const createCentralProfile = async (req: Request, res: Response) => {
     });
 
     if (createdProfile) {
-      res.status(201).json({ message: "central Profile created successfully" });
+      // add the departmentId to the profiles of the members of the department
+
+      const departmentsProfileIds = parsedBody.departments.map(
+        (dept) => dept.department_id
+      );
+
+      const addedDepartmentsResponse =
+        await addCentralToDepartmentsProfilesService(
+          departmentsProfileIds,
+          createdProfile.central_id
+        );
+
+      //  if departments are successfully added,
+      if (addedDepartmentsResponse.success) {
+        res.status(201).json({ message: "Central  created successfully" });
+
+        return 
+      } else {
+        res
+          .status(201)
+          .json({
+            message:
+              "Profile created successfully. But central not added to the departments' profiles",
+          });
+
+          return
+        }
+        
+        // take the snapshot of the profile
+
     } else {
       throw new Error(`Could Not create central profile. Try again later`);
     }
@@ -43,7 +73,6 @@ export const createCentralProfile = async (req: Request, res: Response) => {
   }
 };
 
-
 export const getAllCentralsProfiles = async (req: Request, res: Response) => {
   try {
     const result = await postgresClient.centrals.findMany();
@@ -56,7 +85,6 @@ export const getAllCentralsProfiles = async (req: Request, res: Response) => {
     });
   }
 };
-
 
 export const getCentralProfileById = async (req: Request, res: Response) => {
   let centralID = "";

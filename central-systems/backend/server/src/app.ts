@@ -3,7 +3,7 @@ import authRouter from "./routers/auth.router";
 import dotenv from "dotenv"
 import cors from "cors" 
 import profilesRouter from "./routers/profiles.router";
-
+import cookiesParser from "cookie-parser"
 
 const app = express();
 
@@ -13,6 +13,7 @@ dotenv.config() // call the dotenv package to use the env variables
 
 app.use(express.json()) // middleware for parsing body of requests 
 
+app.use(cookiesParser()); // allows us to read and set cookies
 
 // Define CORS options (optional)
 const corsOptions = {
@@ -45,3 +46,5 @@ process.on("SIGINT", async () => {
 app.listen(PORT, () => {
   console.log("central-systems server running on port ", PORT);
 });
+
+

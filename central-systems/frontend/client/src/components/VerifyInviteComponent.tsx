@@ -90,6 +90,17 @@ const VerifyInviteComponent = ({
           setVerificationSucess(true);
         } catch (err) {
           console.error("Error during verification:", err);
+          toast({
+            title: "Error",
+            description: (
+              <div className="mt-2 w-full flex justify-center items-center">
+                <span className="text-red-500 mr-2">
+                  <X />
+                </span>
+                <span>Cannot process request. Please try again later</span>
+              </div>
+            ),
+          });
           setVerificationSucess(false);
           setVerificationError(true);
         }

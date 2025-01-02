@@ -106,7 +106,6 @@ export const saveDepartmentSnapshotByIdService = async (
         memberProfiles
       );
 
-      console.log();
 
       //  check if snapshot is in database
       const existingSnapShotList =
@@ -209,7 +208,7 @@ export const getDeptMembersProfileDetailsService = async (
 ) => {
   console.log("profile id list ", memberProfileIds);
   try {
-    const membersProfileSnapshots = await postgresClient.profiles.findMany({
+    const membersProfile = await postgresClient.profiles.findMany({
       where: {
         profile_id: {
           in: memberProfileIds,
@@ -219,7 +218,7 @@ export const getDeptMembersProfileDetailsService = async (
 
     return {
       success: true,
-      data: membersProfileSnapshots,
+      data: membersProfile,
     };
   } catch (err) {
     console.error(
@@ -434,5 +433,70 @@ export const saveDepartmentKpiResultService = async (
     }
 
     return null
+  }
+};
+
+
+export const addDepartmentToMembersProfilesService = async (
+  profile_Ids: string[], department_id:string
+) => {
+  try {
+
+    // get the membersProfileSnapshotsData
+    const membersProfiles = (
+      await getDeptMembersProfileDetailsService(profile_Ids)
+    ).data;
+
+
+    // add the department to the member's profile
+    for (let i = 0; i < membersProfiles.length; i++) {
+      if (typeof membersProfiles[i].profile_id === "string") {
+        // find the existing profile  o that individual
+        const existingProfile =
+          await postgresClient.profiles.findUnique({
+            where: {
+              profile_id: membersProfiles[i].profile_id,
+            },
+          });
+
+
+          // make sure the member is not yet in the department before adding the member
+        if (existingProfile && existingProfile.departments.includes(department_id) === false) {
+
+          // filter out none values
+          const filteredDepartments = existingProfile.departments.filter(dept => dept !== "none")  
+
+          // update the profile
+          const updatedProfile = await postgresClient.profiles.update({
+            where: {
+              profile_id: existingProfile.profile_id
+            },
+            data: {
+              departments: [...filteredDepartments, department_id]
+            }
+          })
+
+          console.log("department added to member's profile ", department_id, existingProfile.profile_id)
+        } 
+      }
+    }
+
+    return {
+      success: true,
+      message: "department added to members profile",
+    };
+
+  } catch (err) {
+    console.error(
+      "could not add department to members profile. Please try again later ",
+      err
+    );
+
+    return {
+      success: false,
+      errorMessage:
+        "could not add department to members profile. Please try again later",
+      error: err,
+    };
   }
 };

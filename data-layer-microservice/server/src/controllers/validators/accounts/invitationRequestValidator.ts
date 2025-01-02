@@ -10,3 +10,8 @@ export const getInvitationTokenValidator = z.object({
     token: z.string(),
     otp: z.string()
 })
+
+export const getLoginCredentailsValidator = z.object({
+    email: z.string().email(),
+    otp: z.string()
+})

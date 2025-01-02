@@ -9,6 +9,7 @@ import {
 import { ZodError } from "zod";
 import { postgresClient } from "../../../db_connections/prismaClients";
 import { PrismaClientKnownRequestError } from "../../../../prisma/generated-clients/postgres/runtime/library";
+import { saveIndividualProfileByIdService } from "../../../services/individualProfileService";
 
 // create the profile
 export const createIndividualProfile = async (req: Request, res: Response) => {
@@ -21,6 +22,12 @@ export const createIndividualProfile = async (req: Request, res: Response) => {
 
     if (createdProfile) {
       res.status(201).json({ message: "Profile created successfully" });
+
+      //  create the snapshot of the individual
+      const createdSnapshot = await saveIndividualProfileByIdService([createdProfile.profile_id])
+
+      return
+
     } else {
       throw new Error(`Could Not create new profile. Try again later`);
     }
@@ -200,7 +207,7 @@ export const updateIndividualProfileById = async (
 
     if (!existingProfile) {
       res.status(400).json({ message: "Profile does not exist" });
-      res.end(); //end the response
+      return
     }
 
     const updatedProfile = await postgresClient.profiles.update({
@@ -215,6 +222,12 @@ export const updateIndividualProfileById = async (
 
     if (updatedProfile) {
       res.status(201).json({ message: "Updated profile successfully" });
+
+      //  create the snapshot of the individual
+      const saveIndividualSnapshot = await saveIndividualProfileByIdService([updatedProfile.profile_id])
+
+      return
+
     } else {
       throw new Error(`Could not update profile with id ${profile_id}`);
     }

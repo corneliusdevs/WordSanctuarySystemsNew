@@ -6,6 +6,7 @@ import OnboardIndividualComponent from "./dashboard/IndividualOnboardingComponen
 
 const VerifyInviteComponentWrapper = () => {
   const [isVerified, setIsverified] = useState<boolean>(false);
+  
   return (
     <div>
       {!isVerified ? (

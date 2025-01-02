@@ -19,20 +19,20 @@ export const createDepartmentSnapshot = async (req: Request, res: Response) => {
     const department_id = parsedBody.department_id;
 
     // get the snapshot
-    const getDepartmentSnapshot = await getDepartmentProfileByIdService(
+    const getDepartmentProfile = await getDepartmentProfileByIdService(
       department_id
     );
 
-    if (getDepartmentSnapshot) {
+    if (getDepartmentProfile) {
       // save the snapshot
       const savedDepartentSnapShot = await saveDepartmentSnapshotByIdService(
-        getDepartmentSnapshot
+        getDepartmentProfile
       );
 
       // create the snapshots of the members in the department.
       const createdMembersSnapshotsResponse =
         await saveDepartmentMembersProfileSnapShotsService(
-          getDepartmentSnapshot?.members
+          getDepartmentProfile?.members
         );
 
       // return the response

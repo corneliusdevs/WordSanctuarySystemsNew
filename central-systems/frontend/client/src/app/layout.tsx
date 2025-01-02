@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import { InstallationMemberStoreProvider } from "@/providers/AddMembersStoreProvider";
+import { DepartmentMemberStoreProvider } from "@/providers/AddDeptMemberProvider";
+import { AddDepartmentToCentralStoreProvider } from "@/providers/AddDepartmentToCentral.Provider";
 
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
@@ -25,14 +28,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      {/* <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      > */}
-      <body
-        className={`m-0 p-0 antialiased`}
-      >
-        {children}
-        <Toaster/>
+      <body className={`m-0 p-0 antialiased`}>
+        {/* the state used by add member component */}
+        <InstallationMemberStoreProvider>
+          <DepartmentMemberStoreProvider>
+            <AddDepartmentToCentralStoreProvider>
+              {children}
+            </AddDepartmentToCentralStoreProvider>
+          </DepartmentMemberStoreProvider>
+        </InstallationMemberStoreProvider>
+        <Toaster />
       </body>
     </html>
   );

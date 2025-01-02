@@ -13,8 +13,17 @@ export const CreateCentralProfileSchema = z.object({
   central_name: z.string().min(3, {
     message: "central_name must be at least 3 characters",
   }),
+  description: z.string().min(3, {
+    message: "description must be at least 3 characters",
+  }),
+});
+
+export const ValidateCreateCentralProfileSchema = z.object({
+  central_name: z.string().min(3, {
+    message: "central_name must be at least 3 characters",
+  }),
   finance_id: z.string().min(7, {
-    message: "invalid finance_id field",
+    message: "invalid or missing finance_id field",
   }),
   description: z.string().min(3, {
     message: "description must be at least 3 characters",
@@ -22,10 +31,16 @@ export const CreateCentralProfileSchema = z.object({
   departments: z
     .array(
       z.object({
-        department_id: z.string(),
-        department_type: z.string(),
+        department_id: z.string({
+          message: "missing department_id in one or more selected departments"
+        }),
+        department_type: z.string({
+          message: "missing department_type in one or more selected departments"
+        }),
       })
-    )
+    ).min(2, {
+     message: "A central must have at least two departments"
+    })
 });
 
 export const UpdateCentralProfileSchema = z.object({

@@ -1,5 +1,5 @@
 import express from 'express'
-import authRouter from '../accounts/auth.router'
+import authRouter from './auth.router'
 import { createInviteRequest, getInviteTokenController } from '../../services/accounts/inviteRequests'
 
  const accountsRouter = express.Router()

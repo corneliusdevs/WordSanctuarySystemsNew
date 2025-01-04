@@ -1,7 +1,8 @@
 import { mongoDbClient } from "../../db_connections/prismaClients"
 
 export enum TokenTypes {
- INVITATION = "INVITATION"
+ INVITATION = "INVITATION",
+ LOGIN = "LOGIN"
 }
 
 

@@ -19,30 +19,8 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 
-// const options = [
-//   {
-//     value: "next.js",
-//     label: "Next.js",
-//   },
-//   {
-//     value: "sveltekit",
-//     label: "SvelteKit",
-//   },
-//   {
-//     value: "nuxt.js",
-//     label: "Nuxt.js",
-//   },
-//   {
-//     value: "remix",
-//     label: "Remix",
-//   },
-//   {
-//     value: "astro",
-//     label: "Astro",
-//   },
-// ]
 
-type SelectWithSearchOptionType = {
+export type SelectWithSearchOptionType = {
     value: string,
     label: string
 }
@@ -51,12 +29,14 @@ interface SelectWithSearchProps{
     placeholderText: string,
     placeholderSearchText: string,
     searchEmptyText: string,
-    options: SelectWithSearchOptionType[]
+    options: SelectWithSearchOptionType[],
+    value: string,
+    setValue: (value:string)=>void,
 }
 
-export function SelectWithSearch({placeholderText, placeholderSearchText, searchEmptyText, options}: SelectWithSearchProps) {
+export function SelectWithSearch({placeholderText, placeholderSearchText, searchEmptyText, options, setValue, value}: SelectWithSearchProps) {
   const [open, setOpen] = React.useState(false)
-  const [value, setValue] = React.useState("")
+  // const [value, setValue] = React.useState("")
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -65,7 +45,7 @@ export function SelectWithSearch({placeholderText, placeholderSearchText, search
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[200px] justify-between"
+          className="w-[220px] justify-between"
         >
           {value
             ? options.find((option) => option.value === value)?.label
@@ -73,7 +53,7 @@ export function SelectWithSearch({placeholderText, placeholderSearchText, search
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[200px] p-0">
+      <PopoverContent className="w-[220px] p-0">
         <Command>
           <CommandInput placeholder={placeholderSearchText}/>
           <CommandList>

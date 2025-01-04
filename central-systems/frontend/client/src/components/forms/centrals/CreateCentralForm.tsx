@@ -7,7 +7,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-import { z } from "zod";
+import { z, ZodError } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -15,13 +15,17 @@ import { SetStateAction, Dispatch } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/Input";
-import { CreateCentralProfileSchema } from "./CreateCentralFormSchema";
+import { CreateCentralProfileSchema, ValidateCreateCentralProfileSchema } from "./CreateCentralFormSchema";
+import { AddDepartmentToCentralComponent } from "@/components/AddDeptsToCentralComponent";
+import { useAddDepartmentToCentralStore } from "@/providers/AddDepartmentToCentral.Provider";
+import { toast } from "@/hooks/use-toast";
+import { X } from "lucide-react";
 
 interface CreateCentralFormProps {
   isMutatingDbResourceHandler: Dispatch<SetStateAction<boolean>>;
   isMutatingDbResource: boolean;
   updateCreateCentralDetailsHandler: Dispatch<
-    SetStateAction<z.infer<typeof CreateCentralProfileSchema> | null>
+    SetStateAction<z.infer<typeof ValidateCreateCentralProfileSchema> | null>
   >;
 }
 
@@ -30,6 +34,9 @@ export function CreateCentralForm({
   isMutatingDbResourceHandler,
   updateCreateCentralDetailsHandler,
 }: CreateCentralFormProps) {
+
+  const {selectedDepartments} = useAddDepartmentToCentralStore(state => state.addDepartmentToCentralState)
+
   const form = useForm<z.infer<typeof CreateCentralProfileSchema>>({
     resolver: zodResolver(CreateCentralProfileSchema),
     defaultValues: {
@@ -39,8 +46,51 @@ export function CreateCentralForm({
 
   const onSubmit = async (data: z.infer<typeof CreateCentralProfileSchema>) => {
     console.log("here are the values of central  form ", data);
-    updateCreateCentralDetailsHandler(data);
+
+    try{
+
+      const submittedData = {
+        ...data,
+      finance_id : "none" + data.central_name, // placeholder finance id
+      departments: selectedDepartments.map(dept => ({department_id: dept.department_id, department_type: dept.department_type_id}))
+    }
+
+    // validate the data to detect errors
+    const validatedData = ValidateCreateCentralProfileSchema.parse(submittedData)
+
+    updateCreateCentralDetailsHandler({
+      ...validatedData
+    });
     isMutatingDbResourceHandler(true);
+  }catch(err){
+    console.log("Error from department members form ", err);
+    if(err instanceof ZodError){
+      toast({
+        title: "Invalid Inputs",
+        description: (
+          <div className="mt-2 w-full flex justify-center items-center">
+            <span className="text-red-500 mr-2">
+              <X />
+            </span>
+            <span>{err.errors[0].message}</span>
+          </div>
+        ),
+      });
+    }else {
+      toast({
+        title: "Invalid Inputs",
+        description: (
+          <div className="mt-2 w-full flex justify-center items-center">
+            <span className="text-red-500 mr-2">
+              <X />
+            </span>
+            <span>Please make sure all data is correctly entered</span>
+          </div>
+        ),
+      });
+
+    }
+  }
   };
 
   return (
@@ -82,28 +132,13 @@ export function CreateCentralForm({
               );
             }}
           />
-          <FormField
-            control={form.control}
-            name="finance_id"
-            render={({ field }) => {
-              return (
-                <FormItem className="mb-2">
-                  <FormLabel>Finance Id </FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="please enter some description of the central"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              );
-            }}
-          />
+
 
           <div className="flex justify-center items-center text-xl">
             <span>Departments</span>
           </div>
+
+          <AddDepartmentToCentralComponent />
 
           <Button
             type="submit"

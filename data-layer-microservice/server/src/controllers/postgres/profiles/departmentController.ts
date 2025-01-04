@@ -7,6 +7,7 @@ import {
 } from "../../validators/createDepartmentProfileValidator";
 import { ZodError } from "zod";
 import { PrismaClientKnownRequestError } from "../../../../prisma/generated-clients/postgres/runtime/library";
+import { addDepartmentToMembersProfilesService, createDepartmentSnapshotByIdService } from "../../../services/departmentService";
 
 export const createDepartmentProfile = async (req: Request, res: Response) => {
   try {
@@ -24,43 +25,70 @@ export const createDepartmentProfile = async (req: Request, res: Response) => {
         message: "Invalid department type",
         errorMessage: `department_type must correspond to an existing department_class_id`,
       });
-    }else{
-
+    } else {
       // Validate that all centrals exist
-    const centralsExist = await postgresClient.centrals.findMany({
-      where: {
-        central_id: {
-          in: parsedBody.centrals,
+      const centralsExist = await postgresClient.centrals.findMany({
+        where: {
+          central_id: {
+            in: parsedBody.centrals,
+          },
         },
-      },
-    });
+      });
 
-    // If the number of found centrals does not match the number of centrals in the request, 
-    // it means some central IDs do not exist.
-    if (centralsExist.length !== parsedBody.centrals.length) {
-      const nonExistentCentrals = parsedBody.centrals.filter(
-        (centralId) => !centralsExist.some((central) => central.central_id === centralId)
-      );
-       res.status(400).json({
-        message: "Invalid central IDs",
-        errorMessage: `The following central IDs do not exist: ${nonExistentCentrals.join(', ')}`,
-      });
-    }else{
-      
-      // create the profile
-      const createdProfile = await postgresClient.departments.create({
-        data: parsedBody,
-      });
-  
-      if (createdProfile) {
-        res.status(201).json({ message: "Profile created successfully" });
+      // If the number of found centrals does not match the number of centrals in the request,
+      // it means some central IDs do not exist.
+      if (centralsExist.length !== parsedBody.centrals.length) {
+        const nonExistentCentrals = parsedBody.centrals.filter(
+          (centralId) =>
+            !centralsExist.some((central) => central.central_id === centralId)
+        );
+        res.status(400).json({
+          message: "Invalid central IDs",
+          errorMessage: `The following central IDs do not exist: ${nonExistentCentrals.join(
+            ", "
+          )}`,
+        });
       } else {
-        throw new Error(`Could Not create department profile. Try again later`);
+        // create the profile
+        const createdProfile = await postgresClient.departments.create({
+          data: parsedBody,
+        });
+
+        if (createdProfile) {
+          // add the departmentId to the profiles of the members of the department
+
+          const membersProfileIds = parsedBody.members.map(member => member.profile_id)
+
+          const addedMembersResponse = await addDepartmentToMembersProfilesService(membersProfileIds, createdProfile.department_id) 
+
+
+          //  if members are successfully added,
+          if(addedMembersResponse.success){
+            
+            res.status(201).json({ message: "Profile created successfully" });
+
+          }else {
+            res.status(201).json({ message: "Profile created successfully. But department not added to the members profile" })
+          }
+          
+          // take the snapshot of the profile
+          const createdSnaphsot = await createDepartmentSnapshotByIdService(
+            createdProfile.department_id
+          );
+
+          console.log("department snapshot taken");
+
+          return
+
+
+          return;
+        } else {
+          throw new Error(
+            `Could Not create department profile. Try again later`
+          );
+        }
       }
     }
-    }
-
-
   } catch (err) {
     console.log("error creating department profile ", err);
     if (err instanceof ZodError) {
@@ -155,7 +183,7 @@ export const updateDepartmentProfileById = async (
 
     if (!existingProfile) {
       res.status(400).json({ message: "Department profile does not exist" });
-      res.end(); //end the response
+      return;
     } else {
       const updatedProfile = await postgresClient.departments.update({
         where: {
@@ -170,6 +198,15 @@ export const updateDepartmentProfileById = async (
         res
           .status(201)
           .json({ message: "Updated department profile successfully" });
+
+        // take the snapshot of the department
+        const createdSnaphsot = await createDepartmentSnapshotByIdService(
+          updatedProfile.department_id
+        );
+
+        console.log("department snapshot taken");
+
+        return;
       } else {
         throw new Error(
           `Could not update department profile with id ${department_id}`
@@ -213,11 +250,9 @@ export const deleteDepartmentProfileById = async (
     });
 
     if (!(isInDb?.department_id === parsedBody.department_id)) {
-      res
-        .status(404)
-        .json({
-          message: `department with id ${parsedBody.department_id} does not exist`,
-        });
+      res.status(404).json({
+        message: `department with id ${parsedBody.department_id} does not exist`,
+      });
     } else {
       const result = await postgresClient.departments.delete({
         where: {

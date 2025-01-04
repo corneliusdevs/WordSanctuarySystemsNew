@@ -176,6 +176,8 @@ export const updateDepartmentClassById = async (
         res
           .status(201)
           .json({ message: "Updated department class successfully" });
+
+          return
       } else {
         throw new Error(
           `Could not update department class with id ${department_class_id}`

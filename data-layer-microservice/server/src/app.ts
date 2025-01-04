@@ -3,7 +3,7 @@ import { mongoDbClient, postgresClient } from "./db_connections/prismaClients"
 import mongoDbRouter from "./routes/mongodb/mongoDbRouter"
 import postgresRouter from "./routes/postgres/postgresRouter"
 import kpiRouter from "./routes/kpi/kpi.router"
-import accountsRouter from "./routes/kpi/accounts.router"
+import accountsRouter from "./routes/accounts/accounts.router"
 import dotenv from "dotenv"
 
 const app = express()

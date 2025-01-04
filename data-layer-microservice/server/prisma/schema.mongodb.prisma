@@ -27,6 +27,7 @@ enum AccessRequestsStatus {
 
 enum TokenType {
     INVITATION
+    LOGIN
 }
 
 

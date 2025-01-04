@@ -1,5 +1,6 @@
 export enum TokenTypes {
-    INVITATION = "INVITATION"
+    INVITATION = "INVITATION",
+    LOGIN = "LOGIN"
    }
 
 

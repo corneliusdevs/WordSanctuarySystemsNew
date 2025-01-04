@@ -7,7 +7,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-import { z } from "zod";
+import { z, ZodError } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -15,14 +15,21 @@ import { SetStateAction, Dispatch } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/Input";
-import { CreateDepartmetalProfileSchema } from "./CreateDepartmentFormSchema";
-import { SelectWithSearch } from "@/components/SelectSearchComponent";
+import { CreateDepartmetalProfileSchema, DepartmentMemberArrayValidator, OtherCreateDepartmentValidators, ValidateCreateDepartmetalProfileSchema } from "./CreateDepartmentFormSchema";
+
+import { AddDepartmentMemberComponent } from "@/components/AddDepartmentMemberComponent";
+import { SelectInstallationComponent } from "@/components/SelectInstallationComponent";
+import { SelectDepartmentTypeComponent } from "@/components/SelectDepartmentType";
+import { useAddDepartmentMemberStore } from "@/providers/AddDeptMemberProvider";
+import { useAddMemberStore } from "@/providers/AddMembersStoreProvider";
+import { toast } from "@/hooks/use-toast";
+import { X } from "lucide-react";
 
 interface CreateDepartmentFormProps {
   isMutatingDbResourceHandler: Dispatch<SetStateAction<boolean>>;
   isMutatingDbResource: boolean;
   updateDepartmentDetailsHandler: Dispatch<
-    SetStateAction<z.infer<typeof CreateDepartmetalProfileSchema> | null>
+    SetStateAction<z.infer<typeof ValidateCreateDepartmetalProfileSchema> | null>
   >;
 }
 
@@ -38,12 +45,81 @@ export function CreateDepartmentForm({
     },
   });
 
+  const { currentlySelectedDeptTypeId, selectedDepartmentMembers } = useAddDepartmentMemberStore((state)=> state.addMemberToDepartmentState)
+  const { currentlySelectedInstallationId } = useAddMemberStore((state)=> state.addMemberToinstallationState)
+
+
   const onSubmit = async (
     data: z.infer<typeof CreateDepartmetalProfileSchema>
   ) => {
-    console.log("here are the values of create department form ", data);
-    updateDepartmentDetailsHandler(data);
-    isMutatingDbResourceHandler(true);
+    // console.log("here are the values of create department form ", data);
+
+    try{
+
+      const validatedExtraInputs = OtherCreateDepartmentValidators.parse({
+        members: selectedDepartmentMembers,
+        installation_id: currentlySelectedInstallationId,
+        department_type_id: currentlySelectedDeptTypeId
+      });
+
+      const {pastors_dues, ministers_dues, hods_dues, asst_hods_dues, executive_assistants_dues, workers_dues, members_dues, ...restFields} = data
+
+      //  reorganize the submitted data
+      const submittedData = {
+        ...restFields,
+        members: validatedExtraInputs.members,
+        finance_id: "none" + data.department_name,
+        installation_id: currentlySelectedInstallationId,
+        department_type: currentlySelectedDeptTypeId,
+        centrals: [],
+        dues_paid_per_individual: {
+              pastors: pastors_dues,
+              ministers: ministers_dues,
+              hod: hods_dues,
+              asst_hod: asst_hods_dues,
+              executive_assistant: executive_assistants_dues,
+              worker: workers_dues,
+              member: members_dues,
+            },
+      }
+
+      console.log("here are the values of create department form ", submittedData);
+
+      updateDepartmentDetailsHandler({
+        ...submittedData
+      });
+
+      isMutatingDbResourceHandler(true);
+    }catch(err){
+      console.log("Error from department members form ", err);
+      if(err instanceof ZodError){
+        toast({
+          title: "Invalid Inputs",
+          description: (
+            <div className="mt-2 w-full flex justify-center items-center">
+              <span className="text-red-500 mr-2">
+                <X />
+              </span>
+              <span>{err.errors[0].message}</span>
+            </div>
+          ),
+        });
+      }else {
+        toast({
+          title: "Invalid Inputs",
+          description: (
+            <div className="mt-2 w-full flex justify-center items-center">
+              <span className="text-red-500 mr-2">
+                <X />
+              </span>
+              <span>Please make sure all data is correctly entered</span>
+            </div>
+          ),
+        });
+
+      }
+    }
+
   };
 
   return (
@@ -67,45 +143,10 @@ export function CreateDepartmentForm({
               );
             }}
           />
-          <FormField
-            control={form.control}
-            name="department_type"
-            render={({ field }) => {
-              return (
-                <FormItem className="mb-2">
-                  <FormLabel>Type of Department</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="please enter some description of the department type"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              );
-            }}
-          />
 
-          <div>
-            <SelectWithSearch placeholderSearchText="search department type" placeholderText="Select department type" 
-            searchEmptyText="No department type matched..."
-            options={[{
-              label: "Word Sanctuary dramatists",
-              value: "WSD"
-              
-            },
-            {
-              label: "Word Sanctuary Choir",
-              value: "WSC"
-              
-            },
-            {
-              label: "Evangelism",
-              value: "Evangelism"
-            },
-          
-          ]}
-            />
+          <div className="my-4">
+            <div className="text-sm">Department type</div>
+            <SelectDepartmentTypeComponent />
           </div>
 
           <FormField
@@ -127,57 +168,9 @@ export function CreateDepartmentForm({
             }}
           />
 
-          <FormField
-            control={form.control}
-            name="finance_id"
-            render={({ field }) => {
-              return (
-                <FormItem className="mb-2">
-                  <FormLabel>Finance Id </FormLabel>
-                  <FormControl>
-                    <Input placeholder="enter your finance id" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              );
-            }}
-          />
-
-          <FormField
-            control={form.control}
-            name="installation_id"
-            render={({ field }) => {
-              return (
-                <FormItem className="mb-2">
-                  <FormLabel>Installation </FormLabel>
-                  <FormControl>
-                    <Input placeholder="enter your installation" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              );
-            }}
-          />
-
-         <div>
-            <SelectWithSearch placeholderSearchText="search installation" placeholderText="Select installation" 
-            searchEmptyText="No installation matched..."
-            options={[{
-              label: "College of health sciences(COHS)",
-              value: "College of health sciences(COHS)"
-            },
-            {
-              label: "FUTA",
-              value: "FUTA"
-              
-            },
-            {
-              label: "Abuja",
-              value: "Abuja"
-            },
-          
-          ]}
-            />
+          <div className="my-4">
+            <div className="text-sm">Installation</div>
+            <SelectInstallationComponent />
           </div>
 
           <div className="flex justify-center items-center text-xl">
@@ -379,9 +372,13 @@ export function CreateDepartmentForm({
             }}
           />
 
-          <div className="flex justify-center items-center text-xl">
+          <div className="flex justify-center items-center text-xl my-3">
             <span>Members</span>
           </div>
+
+          {/* ADD MEMBER COMPONENT */}
+
+          <AddDepartmentMemberComponent />
 
           <Button
             type="submit"

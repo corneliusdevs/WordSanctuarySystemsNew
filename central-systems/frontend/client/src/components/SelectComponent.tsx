@@ -10,6 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Dispatch, FC, SetStateAction } from "react";
+import { Button } from "./ui/button";
 
 export type SelectItem = {
   value: string;
@@ -20,7 +21,13 @@ interface SelectProps {
   placeholder: string;
   label: string;
   itemsToSelect: SelectItem[];
-  onValueChange: Dispatch<SetStateAction<string>>
+  // onValueChange: Dispatch<SetStateAction<string>>
+  onValueChange: (value:string)=>void;
+  onValueChangeTaskFxn?: ()=> void
+  selectedValue?: string
+  shouldDisplayExecuteValueChangeButton?: boolean,
+  executeValueChangeButtonText?: string,
+  executeValueChangeButtonStyle?: string
 }
 
 const SelectComponent: FC<SelectProps> = ({
@@ -28,8 +35,24 @@ const SelectComponent: FC<SelectProps> = ({
   label,
   itemsToSelect,
   onValueChange,
+  onValueChangeTaskFxn,
+  selectedValue,
+  shouldDisplayExecuteValueChangeButton,
+  executeValueChangeButtonText,
+  executeValueChangeButtonStyle
 }) => {
+
+  React.useEffect(()=>{
+    if(onValueChangeTaskFxn){
+      // execute the onValueChangeTaskFxn function
+      onValueChangeTaskFxn()
+    }
+
+  }, [selectedValue])
+
   return (
+    <div>
+
     <Select onValueChange={onValueChange}>
       <SelectTrigger className="">
         <SelectValue placeholder={placeholder} />
@@ -50,6 +73,14 @@ const SelectComponent: FC<SelectProps> = ({
         </SelectGroup>
       </SelectContent>
     </Select>
+    {
+       shouldDisplayExecuteValueChangeButton && executeValueChangeButtonText &&  <Button variant={"default"} className={executeValueChangeButtonStyle} onClick={()=>{
+          onValueChangeTaskFxn && onValueChangeTaskFxn()
+       }}>
+          {executeValueChangeButtonText}
+       </Button>
+    }
+    </div>
   );
 };
 

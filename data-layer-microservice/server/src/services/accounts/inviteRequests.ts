@@ -4,13 +4,15 @@ import { getInvitationTokenValidator, InvitationRequestValidator } from "../../c
 import { saveInvitationRequestSevice } from "./saveInvitationRequestService";
 import { mongoDbClient } from "../../db_connections/prismaClients";
 import { ZodError } from "zod";
+import { TokenTypes } from "../mailing/saveTokenService";
+
 
 
 export const createInviteRequest = async (req:Request, res:Response)=>{
     try{
        const parsedBody = InvitationRequestValidator.parse(req.body);
        
-       const response = await sendEmailWithCodeAndLink(parsedBody.email)
+       const response = await sendEmailWithCodeAndLink(parsedBody.email, TokenTypes.INVITATION)
 
        // save the invitation request
        const saveInvitationRequest = await saveInvitationRequestSevice(parsedBody.email, parsedBody.description)

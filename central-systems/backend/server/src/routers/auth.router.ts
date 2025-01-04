@@ -1,17 +1,22 @@
 import express from 'express'
-import { invitationRequestController, submitAccessRequestController, verifyInvitationRequestController } from '../controllers/auth.controller'
+import { invitationRequestController, requestLoginCredentailsController, submitAccessRequestController, verifyInvitationRequestController, verifyLoginRequestController } from '../controllers/auth.controller'
 
 
+const authRouter = express.Router()
 
- const authRouter = express.Router()
+//  login route handlers
 
- authRouter.post("/access/request/submit", submitAccessRequestController)
+authRouter.post("/access/request/login", requestLoginCredentailsController)
 
- authRouter.post("/access/request/process", )
+authRouter.post("/access/request/login/verify", verifyLoginRequestController)
 
- authRouter.post("/invitations/request/submit", invitationRequestController)
+authRouter.post("/access/request/submit", submitAccessRequestController)
 
- authRouter.post("/invitations/request/verify", verifyInvitationRequestController)
+authRouter.post("/access/request/process", )
+
+authRouter.post("/invitations/request/submit", invitationRequestController)
+
+authRouter.post("/invitations/request/verify", verifyInvitationRequestController)
 
 //  authRouter.get("/access/requests/all", getAllAccessRequests)
 

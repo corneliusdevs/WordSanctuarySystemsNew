@@ -1,150 +1,89 @@
-"use client"
-import Link from "next/link";
-import TooltipComponent from "../TooltipComponent";
-import { Facebook, Mail } from "lucide-react";
+import React, { FC } from "react";
+import Image from "next/image";
+import {
+  Facebook,
+  Instagram,
+  Twitter as X,
+  Youtube,
+} from "lucide-react";
 
-export default function Footer (){
+const Footer: FC = () => {
+  const year = new Date().getFullYear();
 
-    return (
-        <main>
-            <footer >
-      {/* top part of footer */}
-      <div className="bg-primarycol px-6 py-4 text-white flex justify-center items-center w-full" >
-        {/* Useful links section */}
-        {/* <div className="text-secondarycol pt-8 pb-4">
-          <span>Useful Links</span>
-        </div> */}
+  return (
+    <footer className="bg-primarycol text-white py-10">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Logo */}
+        <div className="mb-0 pl-3 ml-0">
+          <Image
+            src="/assets/globalLogo.png"
+            alt="Global Logo"
+            width={150}
+            height={150}
+            className="object-contain"
+          />
+        </div>
 
-        {/* Useful links */}
-        {/* <div>
-          {usefulLinks.map((usefulLink, index) => {
-            return (
-              <div
-                key={usefulLink.link + index}
-                className="text-white/70 flex border-b-[1px] border-secondarycol py-2 transition-all duration-300 hover:cursor-pointer  hover:text-secondarycol"
-              >
-                <span className="mr-2">
-                  <ArrowRightIcon />
-                </span>
-                <Link href={usefulLink.link}>
-                  <span>{usefulLink.name}</span>
-                </Link>
-              </div>
-            );
-          })}
-        </div> */}
-
-        {/* Our services section */}
-        {/* <div className="text-secondarycol pt-8 pb-4">
-          <span>Our Services</span>
-        </div> */}
-
-        {/* Our Services Links
-        <div>
-          {ourServicesLinks.map((serviceLink, index) => {
-            return (
-              <div
-                key={serviceLink + index}
-                className="text-white/75 flex border-b-[1px] border-secondarycol py-2 transition-all duration-300 hover:cursor-pointer hover:text-secondarycol"
-              >
-                <span className="mr-0.9">
-                  <ChevronRight />
-                </span>
-                <span>{serviceLink}</span>
-              </div>
-            );
-          })}
-        </div> */}
-
-        {/* address */}
-        <div className="w-[96%] flex justify-center items-center flex-col">
+        {/* Columns */}
+        <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-3 gap-8">
+          {/* Connect Column */}
           <div>
-            <h5 className="text-secondarycol pt-8 pb-4">
-              Word Sanctuary Global
-            </h5>
+            <h6 className="text-sm uppercase mb-4">Connect With Us</h6>
+            <ul>
+              <li><a href="#" className="text-[12px] sm:text-[20px] lg:text-[23px] sm:text-base font-bold capitalize">Watch Online</a></li>
+              <li><a href="#" className="text-[12px] sm:text-[20px] lg:text-[23px] sm:text-base font-bold capitalize">Central Prayer</a></li>
+              <li><a href="#" className="text-[12px] sm:text-[20px] lg:text-[23px] sm:text-base font-bold capitalize">Wealth Nation</a></li>
+              <li><a href="#" className="text-[12px] sm:text-[20px] lg:text-[23px] sm:text-base font-bold capitalize">Global</a></li>
+              <li><a href="#" className="text-[12px] sm:text-[20px] lg:text-[23px] sm:text-base font-bold capitalize">Operation One Soul</a></li>
+            </ul>
           </div>
-          <div className="">
-            {/* <div className="text-textwhitecol">
-              Address <br />
-              {}
-            </div> */}
-            <div className="text-textwhitecol">
-              {/* <span className="text-secondarycol">
-                Phone: {companyPhoneNumber}{" "}
-              </span> */}
-              {/* this is the email address */}
-              {/* <span className="block break-words">{companyEmail}</span> */}
-            </div>
 
-            {/* social media links and icons */}
-            <div className="flex font-bolder mt-8 text-secondarycol mb-4">
-              <TooltipComponent
-                childComponent={
-                  <Link href={""}>
-                    <div className="bg-white mr-2 p-[2px] rounded-full shadow-xl flex justify-center items-center w-8 h-8  hover:cursor-pointer transition-all duration-200 hover:text-textwhitecol hover:bg-secondarycol text-primarycol">
-                      <Facebook className="" size={20} />
-                    </div>
-                  </Link>
-                }
-                info="facebook"
-              />
+          {/* Installation Column */}
+          <div>
+            <h3 className="text-sm uppercase mb-4">Fellowship With Us</h3>
+            <ul>
+              <li><a href="#" className="text-[12px] sm:text-[20px] lg:text-[23px] sm:text-base font-bold capitalize">Ilorin</a></li>
+              <li><a href="#" className="text-[12px] sm:text-[20px] lg:text-[23px] sm:text-base font-bold capitalize">Abuja</a></li>
+              <li><a href="#" className="text-[12px] sm:text-[20px] lg:text-[23px] sm:text-base font-bold capitalize">Lagos</a></li>
+            </ul>
+          </div>
 
-              {/* Tiktok */}
-              {/* <TooltipComponent
-                childComponent={
-                  <Link href={tiktokPageUrl}>
-                    <div className="bg-white mr-2 p-[2px] rounded-full shadow-xl flex justify-center items-center w-8 h-8 hover:cursor-pointer hover:text-textwhitecol hover:bg-secondarycol transform-[1.2]">
-                      <FontAwesomeIcon
-                        icon={faTiktok}
-                        className="w-[18px] h-[18px]"
-                      />
-                    </div>
-                  </Link>
-                }
-                info="tiktok"
-              /> */}
-
-
-              {/* EMAIL ICON */}
-              <TooltipComponent
-                info="email"
-                childComponent={
-                  <div
-                    className="bg-white mr-2 p-[2px] rounded-full shadow-xl flex justify-center items-center w-8 h-8 hover:cursor-pointer hover:text-textwhitecol hover:bg-secondarycol text-primarycol"
-                    onClick={() => {
-                      window.location.href = `mailto:${''}`;
-                    }}
-                  >
-                    <Mail className="" size={20} />
-                  </div>
-                }
-              />
-            </div>
+          {/* Resources Column */}
+          <div>
+            <h3 className="text-sm uppercase mb-8 sm:mb-4 ">Resources</h3>
+            <ul className="">
+              <li><a href="#" className="text-[12px] sm:text-[20px] lg:text-[23px] sm:text-base font-bold capitalize">Life Class</a></li>
+              <li><a href="#" className="text-[12px] sm:text-[20px] lg:text-[23px] sm:text-base font-bold capitalize">Foundation Training</a></li>
+              <li><a href="#" className="text-[12px] sm:text-[20px] lg:text-[23px] sm:text-base font-bold capitalize">Central Trainings</a></li>
+            </ul>
           </div>
         </div>
-      </div>
-      {/* copyright */}
-      <div className="bg-white text-black/75 text-center font-smallCustom py-4 flex flex-col justify-center items-center break-words px-2">
-        <div>
-          &#169; copyright {new Date().getFullYear()} |{" "}
-          <span className="">www.wordsanctuaryglobal.com</span> | All
-          Rights Reserved |{" "}
-          <Link href={"/"} className="underline mx-2">
-            Terms & Conditions{" "}
-          </Link>{" "}
-          |{" "}
-        </div>
-        <div>
-          <Link href={"/"} className="underline mx-2">
-            Privacy Policy
-          </Link>
-          |{" "}
-          <Link href={"/"} className="underline mx-2">
-            Cookies Policy
-          </Link>
+
+        {/* Bottom Section */}
+        <div className="mt-10 flex flex-row sm:flex-row justify-between items-center border-t border-white pt-6">
+          <div className="text-center text-sm">
+            &copy; {year} WORD SANCTUARY GLOBAL. All rights reserved. <a href="#" className="underline">Terms & Conditions</a> | <a href="#" className="underline">Privacy Policy</a> | <a href="#" className="underline">Cookies Policy</a>
+          </div>
+
+          {/* Social Media Icons */}
+          <div className="flex space-x-4 mt-4 sm:mt-0">
+            <a href="#" className="hover:opacity-75">
+              <Facebook className="w-5 h-5" />
+            </a>
+            <a href="#" className="hover:opacity-75">
+              <Instagram className="w-5 h-5" />
+            </a>
+            <a href="#" className="hover:opacity-75">
+              <X className="w-5 h-5" />
+            </a>
+            <a href="#" className="hover:opacity-75">
+              <Youtube className="w-5 h-5" />
+            </a>
+          </div>
         </div>
       </div>
     </footer>
-        </main>
-    )
-}
+  );
+};
+
+export default Footer;

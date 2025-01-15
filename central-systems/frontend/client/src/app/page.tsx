@@ -1,13 +1,12 @@
 //import MaxwidthWrapper from "@/components/Min_Max_Width_Wrapper";
 import DesktopNavbar from "@/components/navbar/DesktopNavbar";
-//import Navbar from "@/components/navbar/Navbar";
+import Navbar from "@/components/navbar/Navbar";
 import Hero from "@/components/Hero";
 //import HomeHeroSlider from "../components/HomeHeroSlider";
 //import HomeContent from "@/components/HomeContent";
 import AboutSection from "@/components/AboutSection";
 import VisionSection from "@/components/VisionSection";
 import Installation from "@/components/Installation";
-import Pastor from "@/components/Pastor";
 import Footer from "@/components/footer/Footer";
 
 export default function Home() {
@@ -18,6 +17,7 @@ export default function Home() {
         {/* <DesktopNavbar />
         <Navbar /> */}
           <DesktopNavbar />
+          <Navbar />
           {/* <Navbar /> */}
           <Hero />
           {/* <HomeHeroSlider /> */}
@@ -25,7 +25,6 @@ export default function Home() {
           <AboutSection />
           <VisionSection />
           <Installation />
-          <Pastor />
         </main>
         <Footer/>
       {/* </MaxwidthWrapper> */}

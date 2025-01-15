@@ -2,97 +2,93 @@
 
 import React, { FC } from "react";
 import Image from "next/image";
+import MaxwidthWrapper from "./Min_Max_Width_Wrapper";
 
 const AboutSection: FC = () => {
   return (
-    <section className="bg-white py-10 px-5">
+    <section className="bg-white py-10 px-5 w-full overflow-hidden">
+      <MaxwidthWrapper>
         {/* Top Section */}
-        <div className="text-purple-950">
-          {/* Title */}
-          <div className="flex items-center mb-8">
-            <Image
-              src="/assets/globalLogo.png"
-              alt="Icon"
-              height={40} // Original height
-              width={40} // Original width
-              className="object-contain mr-4"
-            />
-            <h1 className="text-1xl uppercase">Word Sanctuary Central Systems</h1>
-          </div>
+        <div className="text-purple-950 flex flex-col sm:flex-row justify-between items-start sm:justify-start mb-8 w-full gap-4 px-0 ml-0">
+          <div className="flex flex-col items-start text-left flex-1">
+            {/* Welcome Text */}
+            <div className="mb-4">
+              <h2 className="text-[31px] sm:text-[47.5px] lg:text-[50px] font-normal uppercase">
+                Welcome To
+              </h2>
+              <h2 className="text-[32.8px] sm:text-[37.5px] lg:text-[45px] font-bold uppercase">
+                Mount Zion!
+              </h2>
+            </div>
 
-          {/* Welcome Text */}
-          <div className="mb-6">
-            <h2 className="text-6xl uppercase">Welcome To</h2>
-            <h2 className="text-7xl font-bold uppercase">Mount Zion!</h2>
+            {/* Description Text */}
+            <div>
+              <p className="text-base sm:text-lg lg:text-xl font-medium leading-relaxed text-[17px]">
+                The Heavenly Jerusalem
+                <br />
+                A church that is heaven
+              </p>
+            </div>
           </div>
+        </div>
+      </MaxwidthWrapper>
 
-          {/* Description Text */}
-          <div className="mb-4">
-            <p className="text-lg font-medium">
-              The Heavenly Jerusalem
-              <br />
-              A church that is heaven
+      {/* Image Section */}
+      <div className="grid grid-cols-3 sm:grid-cols-3 gap-8 justify-items-center w-full ml-0 px-0">
+        {/* First Image */}
+        <div className="relative rounded-lg w-24 h-48 sm:w-32 sm:h-64 md:w-36 md:h-72">
+          <Image
+            src="/assets/about1.jpg"
+            alt="Who We Are"
+            layout="fill"
+            className="object-cover rounded-2xl"
+          />
+          <div className="absolute inset-0 flex flex-col justify-between p-4 text-white text-center">
+            <h3 className="text-sm sm:text-xl lg:text-2xl capitalised">
+              Who We Are
+            </h3>
+            <p className="text-[10px] sm:text-xs lg:text-base flex items-center justify-center">
+             Learn more
             </p>
           </div>
+        </div>
 
-          {/* Scroll Down Button */}
-          <div className="mb-10">
-            <button className="px-6 py-2 bg-purple-900 text-white shadow-lg hover:bg-purple-800">
-              Scroll down
-            </button>
+        {/* Second Image */}
+        <div className="relative rounded-lg w-24 h-48 sm:w-32 sm:h-64 md:w-36 md:h-72">
+          <Image
+            src="/assets/about2.jpg"
+            alt="Connect With Us"
+            layout="fill"
+            className="object-cover rounded-2xl"
+          />
+          <div className="absolute inset-0 flex flex-col justify-between p-4 text-white text-center">
+            <h3 className="text-sm sm:text-xl lg:text-2xl capitalised">
+              Connect <br /> With Us
+            </h3>
+            <p className="text-[10px] sm:text-xs lg:text-base flex items-center justify-center">
+             Learn more
+            </p>
           </div>
         </div>
 
-        {/* Image Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center"> {/* Center the image containers */}
-          {/* First Image */}
-          <div className="relative overflow-hidden rounded-lg h-72 w-72"> 
-            <Image
-              src="/assets/about1.jpg"
-              alt="Who We Are"
-              layout="fill" 
-              className="object-cover rounded-2xl" 
-            />
-            <div className="absolute inset-0 flex flex-col justify-between p-4 text-white">
-              <h3 className="text-xl text-center uppercase">Who We Are</h3>
-              <p className="text-lg flex items-center">
-                Learn more <span className="ml-2">&rarr;</span>
-              </p>
-            </div>
-          </div>
-
-          {/* Second Image */}
-          <div className="relative overflow-hidden rounded-lg h-72 w-72"> 
-            <Image
-              src="/assets/about2.jpg"
-              alt="Connect With Us"
-              layout="fill" 
-              className="object-cover rounded-2xl" 
-            />
-            <div className="absolute inset-0 flex flex-col justify-between p-4 text-white">
-              <h3 className="text-xl text-center uppercase">Connect <br /> With Us</h3>
-              <p className="text-lg flex items-center">
-                Learn more <span className="ml-2">&rarr;</span>
-              </p>
-            </div>
-          </div>
-
-          {/* Third Image */}
-          <div className="relative overflow-hidden rounded-lg h-72 w-72"> 
-            <Image
-              src="/assets/about3.jpg"
-              alt="Our Celebration"
-              layout="fill" 
-              className="object-cover rounded-2xl" 
-            />
-            <div className="absolute inset-0 flex flex-col justify-between p-4 text-white">
-              <h3 className="text-xl text-center uppercase">Our <br /> Celebration</h3>
-              <p className="text-lg flex items-center">
-                Learn more <span className="ml-2">&rarr;</span>
-              </p>
-            </div>
+        {/* Third Image */}
+        <div className="relative rounded-lg w-24 h-48 sm:w-32 sm:h-64 md:w-36 md:h-72">
+          <Image
+            src="/assets/about3.jpg"
+            alt="Our Celebration"
+            layout="fill"
+            className="object-cover rounded-2xl"
+          />
+          <div className="absolute inset-0 flex flex-col justify-between p-4 text-white text-center">
+            <h3 className="text-sm sm:text-xl lg:text-2xl capitalised">
+              Our <br /> Celebration
+            </h3>
+            <p className="text-[10px] sm:text-xs lg:text-base flex items-center justify-center">
+             Learn more
+            </p>
           </div>
         </div>
+      </div>
     </section>
   );
 };

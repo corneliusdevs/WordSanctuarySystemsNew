@@ -8,20 +8,17 @@ const Installation: FC = () => {
     { location: "Ilorin", churches: "7 churches", imgSrc: "/assets/ilorin.jpg" },
     { location: "Lagos", churches: "1 church", imgSrc: "/assets/lagos.jpg" },
     { location: "Abuja", churches: "3 churches", imgSrc: "/assets/abuja.jpg" },
-    { location: "Ibadan", churches: "3 churches", imgSrc: "/assets/ibadan.jpg" },
+    { location: "Ibadan", churches: "2 churches", imgSrc: "/assets/ibadan.jpg" },
     { location: "USA", churches: "1 church", imgSrc: "/assets/usa.jpg" },
   ];
 
   return (
     <section className="w-full py-10 bg-white">
       <div className="max-w-7xl mx-auto px-4">
-        {/* Heading */}
-        <h2 className="text-4xl font-bold text-purple-950 text-left mb-8">OUR INSTALLATIONS</h2>
-
         {/* Images */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 justify-center items-center">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 justify-center items-center">
           {installations.map((installation, index) => (
-            <div key={index} className="relative w-48 h-64 overflow-hidden rounded-lg">
+            <div key={index} className="relative w-28 h-52 overflow-hidden rounded-lg">
               <Image
                 src={installation.imgSrc}
                 alt={installation.location}
@@ -42,3 +39,4 @@ const Installation: FC = () => {
 };
 
 export default Installation;
+

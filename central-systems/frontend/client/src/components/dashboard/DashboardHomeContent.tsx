@@ -8,7 +8,7 @@ const DashboardHomeComponent = () => {
         <span className="text-primarycol text-center text-2xl">Home</span>
       </div>
       <div className="p-3">
-        <div className="grid grid-cols-3 gap-3">
+        <div className="flex justify-between ">
           <Link href={"/dashboard/invitations"}>
             <DashboardItemCard
               toptext="Invitations"

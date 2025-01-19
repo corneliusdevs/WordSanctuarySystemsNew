@@ -8,7 +8,7 @@ import DashboardHomeContent from "./DashboardHomeContent"
 
 const DashboardHomeComponent = ()=>{
    return (
-    <div>
+    <div className="">
         
         <DashboardHomeContent/>
     </div>

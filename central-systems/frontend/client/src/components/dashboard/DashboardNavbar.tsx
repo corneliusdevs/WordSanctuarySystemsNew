@@ -4,7 +4,7 @@
 
 import Image from "next/image";
 
-import { FC } from "react";
+import { FC, useState } from "react";
 
 import Link from "next/link";
 
@@ -17,41 +17,31 @@ import { usePathname } from "next/navigation";
 const DashboardNavbar: FC = () => {
   const currentPath = usePathname();
 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen((prev) => !prev);
+  };
+
   return (
-    <div className="w-full flex flex-row-reverse justify-between items-center sticky top-0 z-40 bg-white shadow-sm">
+    <div className=" flex justify-between pr-[40px]">
       {/* logo */}
       <Link href={"/"}>
         <div className="">
           <Image
-            src="/assets/logo.jpg"
+            src="/assets/logo1.svg"
             alt="mclev logo"
-            height={70}
-            width={70}
-            className="object-fill opacity-100 transform scale-[0.85]"
+            height={50}
+            width={200}
           />
         </div>
       </Link>
-      <div className="">
+      {/* <div className="">
         <Sidebar
-          side={"left"}
+          side={"right"}
           childComponent={
             <div className="h-[90px] flex flex-col justify-around pt-[60px]">
-              {/* <ButtonWithIcons
-                icon={<Mail size={20} />}
-                text={"Chats"}
-                extraInfo={`${10}`}
-                className={`w-full ${
-                  props.dashBoardState === "chats" &&
-                  "bg-accentcol hover:bg-accentcol"
-                }`}
-                variant={`${
-                  props.dashBoardState === "chats" ? "default" : "outline"
-                }`}
-                clickHandler={() => {
-                  props.handleDashboardState("chats");
-                  console.log("chats  clicked");
-                }}
-              /> */}
+ 
               <Link href={"/dashboard/home"}>
                 <ButtonWithIcons
                   text={"Home"}
@@ -79,7 +69,7 @@ const DashboardNavbar: FC = () => {
                 />
               </Link>
 
-              <Link href={"/dashboard/onboard"}>
+              <Link href={"/dashboard/profile"}>
                 <ButtonWithIcons
                   text={"Profiles"}
                   className={`${
@@ -95,7 +85,74 @@ const DashboardNavbar: FC = () => {
             </div>
           }
         />
+      </div> */}
+
+      <div className=" p-[20px]">
+      <nav className="hidden md:flex space-x-8 text-sm font-medium text-black">
+          <a
+            href="#home"
+            className="hover:text-purple-500 transition-colors duration-200"
+          >
+            Home
+          </a>
+          <a
+            href="#support"
+            className="hover:text-purple-500 transition-colors duration-200"
+          >
+            Support
+          </a>
+          <a
+            href="#profile"
+            className="hover:text-purple-500 transition-colors duration-200"
+          >
+            Profile
+          </a>
+        </nav>
+
+        {/* Menu Icon for Mobile */}
+        <button
+          type="button"
+          onClick={toggleMenu}
+          className="flex items-center justify-center w-8 h-8 md:hidden text-purple-900 bg-white rounded-full border border-gray-300 shadow-sm hover:bg-gray-100"
+          aria-label="Toggle menu"
+        >
+          <span
+            className={`w-4 h-4 border-b-2 border-t-2 border-purple-800 block transform transition-transform ${
+              isMenuOpen ? "rotate-90" : ""
+            }`}
+          ></span>
+        </button>
       </div>
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="absolute top-16 right-0 w-2/3 bg-white text-purple-800 shadow-lg rounded-lg p-4 z-10 md:hidden">
+          <nav className="flex flex-col space-y-4">
+            <a
+              href="#home"
+              className="hover:text-purple-500 transition-colors duration-200"
+              onClick={toggleMenu} // Close the menu when a link is clicked
+            >
+              Home
+            </a>
+            <a
+              href="#support"
+              className="hover:text-purple-500 transition-colors duration-200"
+              onClick={toggleMenu}
+            >
+              Support
+            </a>
+            <a
+              href="#profile"
+              className="hover:text-purple-500 transition-colors duration-200"
+              onClick={toggleMenu}
+            >
+              Profile
+            </a>
+          </nav>
+          
+      </div>
+      )}
     </div>
   );
 };

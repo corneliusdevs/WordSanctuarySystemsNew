@@ -1,15 +1,25 @@
 "use client";
+import Image from "next/image";
+import { LuMessageSquareDiff } from "react-icons/lu";
 
 interface DashboardItemCardProps {
   styles: string;
+  title: string;
   toptext: string;
   bottomText: string;
+  // imageSrc: string;
+  Icon: React.ReactNode;
+  progress?: number;
 }
 
 const DashboardItemCard = ({
   styles,
+  title,
   toptext,
   bottomText,
+  // imageSrc,
+  Icon,
+  progress
 }: DashboardItemCardProps) => {
   return (
     // <div className="">
@@ -22,22 +32,27 @@ const DashboardItemCard = ({
     //   </div>
     // </div>
 
-    <section className="rounded-lg border border-gray-200 shadow-sm p-4 bg-white max-w-xs">
+    <section className="rounded-2xl shadow-lg border p-4 bg-white max-w-full max-h-xs">
       <header className="flex items-center justify-between">
-        <h2 className="text-sm font-medium text-gray-500 uppercase">
-          Invitation Requests
-        </h2>
-        <button
-          type="button"
-          className="flex items-center justify-center w-6 h-6 text-gray-600 border border-gray-300 rounded-full hover:bg-gray-100"
-          aria-label="Add new request"
-        >
-          +
-        </button>
+        <h2 className="text-xl font-medium text-gray-500 uppercase">{title}</h2>
+        <div>{Icon}</div>
       </header>
-      <div className="mt-4">
-        <p className="text-4xl font-bold text-gray-900">{toptext}</p>
-        <p className="text-sm font-medium text-gray-500">{bottomText}</p>
+      <div className="mt-4 flex justify-between">
+        <h1 className="font-bold text-gray-900 text-9xl">{toptext}</h1>
+        <p className="text-2xl font-medium p-5 mt-6">{bottomText}</p>
+      </div>
+      <div>
+      {progress !== undefined && (
+        <div className="mt-4">
+          <div className="relative h-5 bg-gray-200 rounded-full">
+            <div
+              className="absolute h-full bg-[#392C49] rounded-full"
+              style={{ width: `${progress}%` }}
+            ></div>
+          </div>
+          <p className="mt-1 text-lg font-semibold">RESPOSE RATE</p>
+        </div>
+      )}
       </div>
     </section>
   );

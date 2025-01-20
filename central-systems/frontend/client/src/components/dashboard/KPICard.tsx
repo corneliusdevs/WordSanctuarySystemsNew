@@ -1,14 +1,14 @@
 import React from "react";
 import { KPICardProps } from "../../types/general";
-import CustomPieChart from "../../components/charts/CustomPieChart";
+import CustomPieChart from "./charts/CustomPieChart";
 import LoadingState from "../../helpers/LoadingState";
 import ErrorState from "../../helpers/ErrorState";
 
 const COLORS = {
-  finance: "#22c55e", // green
-  people: "#4338ca", // blue
-  operation: "#fbbf24", // yellow
-  improvement: "#ef4444", // red
+  finance: "#4C168D", // green
+  people: "#7035BA", // blue
+  operation: "#88769F", // yellow
+  improvement: "#442B62", // red
 };
 
 const KPICard: React.FC<KPICardProps> = ({
@@ -79,7 +79,9 @@ const KPICard: React.FC<KPICardProps> = ({
           ></span>
           <span className="text-sm">Improvement </span>
         </div>
-        <button className="border w-20 h-10 ml-40 shadow-lg rounded-2xl">more</button>
+        <button className="border w-20 h-10 ml-40 shadow-lg rounded-2xl">
+          more
+        </button>
       </div>
     </div>
   );

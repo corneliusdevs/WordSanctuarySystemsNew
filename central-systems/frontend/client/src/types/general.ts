@@ -77,3 +77,23 @@ export interface DepartmentType {
   createdAt: Date,
   modifiedAt: Date
 }
+
+
+export type UserData = {
+  username: string;
+  title: string;
+}
+
+export interface KPIData {
+  finance: number;
+  people: number;
+  operation: number;
+  improvement: number;
+  location: string;
+}
+
+export interface KPICardProps {
+  data: KPIData[]; // Accepts an array
+  isLoading?: boolean;
+  error?: string | null;
+}

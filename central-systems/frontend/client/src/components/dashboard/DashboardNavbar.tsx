@@ -11,6 +11,7 @@ import Link from "next/link";
 import ButtonWithIcons from "../ButtonWithIcon";
 import Sidebar from "../Sidebar";
 import { usePathname } from "next/navigation";
+import { FiMenu, FiX } from "react-icons/fi";
 
 // interface DashboardNavbarProps {}
 
@@ -24,12 +25,12 @@ const DashboardNavbar: FC = () => {
   };
 
   return (
-    <div className=" flex justify-between pr-[40px]">
+    <div className=" flex justify-between relative bg-[#3A2D4A]">
       {/* logo */}
       <Link href={"/"}>
         <div className="">
           <Image
-            src="/assets/logo1.svg"
+            src="/assets/logo-main.png"
             alt="mclev logo"
             height={50}
             width={200}
@@ -87,72 +88,96 @@ const DashboardNavbar: FC = () => {
         />
       </div> */}
 
-      <div className=" p-[20px]">
-      <nav className="hidden md:flex space-x-8 text-sm font-medium text-black">
-          <a
-            href="#home"
-            className="hover:text-purple-500 transition-colors duration-200"
-          >
-            Home
-          </a>
-          <a
-            href="#support"
-            className="hover:text-purple-500 transition-colors duration-200"
-          >
-            Support
-          </a>
-          <a
-            href="#profile"
-            className="hover:text-purple-500 transition-colors duration-200"
-          >
-            Profile
-          </a>
-        </nav>
-
-        {/* Menu Icon for Mobile */}
-        <button
-          type="button"
-          onClick={toggleMenu}
-          className="flex items-center justify-center w-8 h-8 md:hidden text-purple-900 bg-white rounded-full border border-gray-300 shadow-sm hover:bg-gray-100"
-          aria-label="Toggle menu"
-        >
-          <span
-            className={`w-4 h-4 border-b-2 border-t-2 border-purple-800 block transform transition-transform ${
-              isMenuOpen ? "rotate-90" : ""
-            }`}
-          ></span>
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="absolute top-16 right-0 w-2/3 bg-white text-purple-800 shadow-lg rounded-lg p-4 z-10 md:hidden">
-          <nav className="flex flex-col space-y-4">
+      <div className="">
+        <div className="pr-[20px]">
+          <Image
+            src="/assets/Vector.png"
+            alt="mclev logo"
+            height={10}
+            width={73.02}
+            className=""
+          />
+        </div>
+        <div className=" pl-[50px] pt-[10px]">
+          <nav className="hidden md:flex space-x-8 text-sm font-medium text-gray-500">
             <a
               href="#home"
-              className="hover:text-purple-500 transition-colors duration-200"
-              onClick={toggleMenu} // Close the menu when a link is clicked
+              className="hover:text-[#FFFFFF] transition-colors duration-200"
             >
               Home
             </a>
             <a
               href="#support"
-              className="hover:text-purple-500 transition-colors duration-200"
-              onClick={toggleMenu}
+              className="hover:text-[#FFFFFF] transition-colors duration-200"
             >
-              Support
+              Onboard
             </a>
             <a
               href="#profile"
-              className="hover:text-purple-500 transition-colors duration-200"
-              onClick={toggleMenu}
+              className="hover:text-[#FFFFFF] transition-colors duration-200"
             >
               Profile
             </a>
+            <a
+              href="#support"
+              className="hover:text-[#FFFFFF] transition-colors duration-200"
+            >
+              Log Out
+            </a>
           </nav>
-          
+
+          {/* Menu Icon for Mobile */}
+          <button
+            type="button"
+            onClick={toggleMenu}
+            className="flex items-center justify-center w-[20px] h-[60px] md:hidden text-white font-bold rounded-full shadow-sm"
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? (
+              <FiX className="w-5 h-5" />
+            ) : (
+              <FiMenu className="w-5 h-5" />
+            )}
+          </button>
+        </div>
+
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <div className="absolute top-16 right-0 w-1/4 bg-[#3A2D4A] text-gray-400 shadow-lg rounded-lg p-4 z-10 md:hidden">
+            <nav className="flex flex-col space-y-4">
+              <a
+                href="#home"
+                className="hover:text-[#FFFFFF] transition-colors duration-200"
+                onClick={toggleMenu} // Close the menu when a link is clicked
+              >
+                Home
+              </a>
+              <a
+                href="#support"
+                className="hover:text-[#FFFFFF] transition-colors duration-200"
+                onClick={toggleMenu}
+              >
+                Onboard
+              </a>
+
+              <a
+                href="#profile"
+                className="hover:text-[#FFFFFF] transition-colors duration-200"
+                onClick={toggleMenu}
+              >
+                Profile
+              </a>
+              <a
+                href="#support"
+                className="hover:text-[#FFFFFF] transition-colors duration-200"
+                onClick={toggleMenu}
+              >
+                Log Out
+              </a>
+            </nav>
+          </div>
+        )}
       </div>
-      )}
     </div>
   );
 };

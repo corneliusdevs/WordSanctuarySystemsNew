@@ -1,230 +1,50 @@
 "use client";
 
-import React, { FC, useEffect, useRef, useState } from "react";
+import React, { FC } from "react";
 import Image from "next/image";
-// import { AlignJustify, Home, X } from "lucide-react";
-
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import MaxwidthWrapper from "../Min_Max_Width_Wrapper";
-
 
 const DesktopNavbar: FC = () => {
   const navbarItems = [
-    {
-      text: "Home",
-      link: "/",
-    },
-    {
-      text: "Services",
-      link: "services",
-    },
-    {
-      text: "About",
-      link: "about-us",
-    },
-    {
-      text: "Contact",
-      link: "contact-us",
-    },
-    {
-      text: "Pricing",
-      link: "pricing",
-    },
-    {
-      text: "Book",
-      link: "book-now",
-    },
+    { text: "Home", link: "/" },
+    { text: "About", link: "about-us" },
+    { text: "Installations", link: "installation" },
+    { text: "Services", link: "services" },
+    { text: "Sign In", link: "sign-in" }, // Replacing "Onboard" with "Sign In"
   ];
 
-  const [openNavbar, setOpenNavbar] = useState<boolean>(false);
-  const [isUser, setIsUser] = useState<boolean>(false);
-  const [scrollYPosition, setScrollYposition] = useState<number>(0);
+  return (
+    <nav className="hidden md:block w-full bg-primarycol shadow-lg">
+      <MaxwidthWrapper>
+        <div className="flex justify-between items-center h-20 px-29">
+          {/* Logo */}
+          <div>
+            <Image
+              src="/assets/globalLogo.png"
+              alt="Logo"
+              height={190}
+              width={190}
+              className="object-contain"
+            />
+          </div>
 
-  const scrollYPositionRef = useRef<number>(0);
-
-  const currentPath = usePathname();
-  
-  console.log(openNavbar, setIsUser, scrollYPosition)
-
-
-  useEffect(() => {
-    const handleScrollY = () => {
-      console.log("scroll position ", window.scrollY);
-      setScrollYposition(window.scrollY);
-      scrollYPositionRef.current = window.scrollY;
-    };
-
-    window.addEventListener("scroll", handleScrollY);
-
-    return () => {
-      window.removeEventListener("scroll", handleScrollY);
-    };
-  }, []);
-
-  const shouldBgBeWhite = (currentPath: string) => {
-    // determines if the desktop nav bar should have a transparent or white background based on the current url
-    if (
-      currentPath?.toLowerCase().indexOf("contact") !== -1 ||
-      currentPath?.toLowerCase().indexOf("book") !== -1 ||
-      currentPath?.toLowerCase().indexOf("admin") !== -1 ||
-      currentPath?.toLowerCase().indexOf("sign") !== -1 ||
-      currentPath?.toLowerCase().indexOf("log") !== -1 ||
-      currentPath?.toLowerCase().indexOf("auth") !== -1 ||
-      currentPath?.toLowerCase().indexOf("policy") !== -1 ||
-      currentPath?.toLowerCase().indexOf("conditions") !== -1
-    ) {
-      return true;
-    }
-    return false;
-  };
-
-  // change the background color when the scroll position gets updated
-  const uiTools = (): React.ReactNode => {
-    if (currentPath && currentPath !== "/admin-dashboard") {
-      return (
-        <nav
-          className={`hidden md:flex items-center fixed pt-2 px-4${
-            scrollYPositionRef.current > 240 || shouldBgBeWhite(currentPath)
-              ? "bg-white/90"
-              : "bg-transparent"
-          } h-14 top-0 z-[100] inset-x-0 backdrop-blur-sm transition-all w-full  border-slate-20`}
-        >
-          <MaxwidthWrapper className="bg-transparent">
-            <div className="flex justify-between items-center bg-transparent">
-              {/* logo */}
-              <div className="">
-                <Image
-                  src="/assets/logo.jpg"
-                  alt="Church logo"
-                  height={60}
-                  width={60}
-                  className="object-fill opacity-100 transform scale-[0.85]"
-                />
-              </div>
-
-              <div
-                className="flex items-center justify-center mx-4 hover:cursor-pointer w-full bg-transparent"
-                onClick={() => {}}
+          {/* Navbar Links */}
+          <div className="flex items-center space-x-8">
+            {navbarItems.map((item, index) => (
+              <Link
+                key={`${item.text}-${index}`}
+                href={`/${item.link}`}
+                className="text-white hover:text-gray-300 transition duration-300 text-lg uppercase"
               >
-                <div className="flex transition-all items-center duration-[2000ms] z-100 animate-accordion-down ease-in-out text-white bg-transparent w-full max-w-[1000px] justify-around">
-                  {navbarItems.map((item, index) => {
-                    return (
-                      <Link
-                        key={item.link + item.text + index}
-                        href={`/${item.link}`}
-                        onClick={() => {
-                          setOpenNavbar((v) => !v);
-                        }}
-                        className={`mr-2 ${
-                          scrollYPositionRef.current > 240 ||
-                          shouldBgBeWhite(currentPath)
-                            ? "bg-none"
-                            : "bg-transparent"
-                        }`}
-                      >
-                        <div
-                          key={"div" + item.text + index}
-                          className={`${
-                            scrollYPositionRef.current > 240 ||
-                            shouldBgBeWhite(currentPath)
-                              ? "bg-none text-black/80 hover:text-secondarycol"
-                              : "bg-transparent hover:bg-secondarycol hover:text-white"
-                          } text-center py-2 transition-all duration-300 px-2`}
-                        >
-                          {/* change the home icon toa better one */}
-                          {/* {item.text === "Home" ? <Home /> : item.text} */}
-                          {item.text}
-                        </div>
-                      </Link>
-                    );
-                  })}
-                  {isUser ? (
-                    <div
-                      key={Date.now() + "link 1"}
-                      className={`mr-2 ${
-                        scrollYPositionRef.current > 240 ||
-                        shouldBgBeWhite(currentPath)
-                          ? "bg-none"
-                          : "bg-transparent"
-                      }`}
-                    >
-                      <div
-                        className={`${
-                          scrollYPositionRef.current > 240 ||
-                          shouldBgBeWhite(currentPath)
-                            ? "bg-none text-black/80 hover:text-secondarycol"
-                            : "bg-transparent hover:bg-secondarycol hover:text-white"
-                        } text-center py-2 transition-all duration-300 px-2`}
-                        onClick={() => {
-                          setOpenNavbar((v) => !v);
-                        }}
-                      >
-                        Logout
-                      </div>
-                    </div>
-                  ) : (
-                    <Link
-                      href={"/sign-in"}
-                      className={`mr-2 ${
-                        scrollYPositionRef.current > 240 ||
-                        shouldBgBeWhite(currentPath)
-                          ? "bg-none"
-                          : "bg-transparent"
-                      }`}
-                      key={Date.now() + "link 2"}
-                      onClick={() => {
-                        setOpenNavbar((v) => !v);
-                      }}
-                    >
-                      <div
-                        className={`${
-                          scrollYPositionRef.current > 240 ||
-                          shouldBgBeWhite(currentPath)
-                            ? "bg-none text-black/80 hover:text-secondarycol"
-                            : "bg-transparent hover:bg-secondarycol hover:text-white"
-                        } text-center py-2 transition-all duration-300 px-2`}
-                      >
-                        {`Sign In`}
-                      </div>
-                    </Link>
-                  )}
-                  <Link
-                    href={"/admin-dashboard"}
-                    key={Date.now()}
-                    onClick={() => {
-                      setOpenNavbar((v) => !v);
-                    }}
-                    className={`mr-2 ${
-                      scrollYPositionRef.current > 240 ||
-                      shouldBgBeWhite(currentPath)
-                        ? "bg-none"
-                        : "bg-transparent"
-                    }`}
-                  >
-                    <div
-                      className={`${
-                        scrollYPositionRef.current > 240 ||
-                        shouldBgBeWhite(currentPath)
-                          ? "bg-none text-black/80 hover:text-secondarycol"
-                          : "bg-transparent hover:bg-secondarycol hover:text-white"
-                      } text-center py-2 transition-all duration-300 px-2`}
-                    >
-                      Dashboard
-                    </div>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </MaxwidthWrapper>
-        </nav>
-      );
-    }
-
-    return <div className="hidden"></div>;
-  };
-
-  return <>{uiTools()}</>;
+                {item.text}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </MaxwidthWrapper>
+    </nav>
+  );
 };
 
 export default DesktopNavbar;

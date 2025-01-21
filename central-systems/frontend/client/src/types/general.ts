@@ -97,3 +97,17 @@ export interface KPICardProps {
   isLoading?: boolean;
   error?: string | null;
 }
+
+
+export type Member = {
+  name: string;
+  installment: string;
+  position: string;
+};
+
+export interface InvitationsTable {
+  name: string;
+  email: string;
+  position: string;
+  status: 'Sent' | 'Registered' | 'Accepted' | 'Declined';
+}

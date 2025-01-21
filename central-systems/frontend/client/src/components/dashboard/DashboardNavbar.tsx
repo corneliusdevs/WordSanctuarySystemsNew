@@ -113,7 +113,7 @@ const DashboardNavbar: FC = () => {
               Onboard
             </a>
             <a
-              href="#profile"
+              href="/dashboard/members"
               className="hover:text-[#FFFFFF] transition-colors duration-200"
             >
               Profile
@@ -161,7 +161,7 @@ const DashboardNavbar: FC = () => {
               </a>
 
               <a
-                href="#profile"
+                href="/dashboard/members"
                 className="hover:text-[#FFFFFF] transition-colors duration-200"
                 onClick={toggleMenu}
               >

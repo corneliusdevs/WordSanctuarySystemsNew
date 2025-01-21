@@ -33,24 +33,24 @@ const KPICard: React.FC<KPICardProps> = ({
   }
 
   return (
-    <div>
+    <div className="">
       <div className="w-auto mt-20">
         <header className="mb-4">
-          <h2 className="text-2xl font-semibold text-purple-900 pl-10">
+          <h2 className="text-2xl font-semibold text-purple-900 pl-5">
             KPI Overview
           </h2>
         </header>
-        <article className=" flex justify-center items-center">
+        <article className=" flex ">
           {data.map((item, index) => (
             <div key={index} className="w-fit">
-              <h3 className="text-lg font-semibold pl-10">{item.location}</h3>
+              <h3 className="text-lg font-semibold pl-5">{item.location}</h3>
               <CustomPieChart data={item} />
             </div>
           ))}
         </article>
       </div>
 
-      <div className=" w-fit grid grid-cols-3 gap-4 pl-10">
+      <div className=" w-fit grid grid-cols-3 gap-4 px-5">
         <div className="flex items-center">
           <span
             className="w-6 h-6 rounded-lg mr-2"

@@ -10,7 +10,7 @@ import {
 
 export default function DashboardHome() {
   return (
-    <main className="">
+    <main className="overflow-hidden">
       <DashboardNavbar />
       <DashboardWelcomeComponent username={"Eluan"} title={""} />
       <div className="flex items-center justify-center w-auto">

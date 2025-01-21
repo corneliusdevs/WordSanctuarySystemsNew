@@ -50,8 +50,8 @@ const CustomPieChart: React.FC<{ data: KPIData }> = ({ data }) => {
   ];
 
   return (
-    <div className="w-60 h-60">
-      <ResponsiveContainer width="90%" height="90%">
+    <div className="w-48 h-60">
+      <ResponsiveContainer width="100%" height="90%">
         <PieChart>
           <Pie
             data={chartData}

@@ -53,10 +53,9 @@ const LoginComponent = () => {
           );
 
           const responseData = await authenticateEmailCredentials.json();
-          console.log("requetst Response:", responseData);
+          console.log("request Response:", responseData);
 
           if (!responseData?.success) {
-            // inform the user of the login status
             toast({
               title: "Invalid Credentials",
               description: (
@@ -69,35 +68,27 @@ const LoginComponent = () => {
               ),
             });
 
-            // set is email verified to false
             setIsEmailVerified(false);
             setHasEnteredEmail(false);
-            //  stop the execution
             return;
           }
 
           if (responseData?.success) {
-            // inform the user of the login status
             toast({
-              title: "Login credentails sent",
+              title: "Login credentials sent",
               description: (
                 <div className="mt-2 w-full flex justify-center items-center rounded-md">
                   <span className="text-green-600 mr-2">
                     <Check />
                   </span>
-                  <span>Check your email for your login credentails.</span>
+                  <span>Check your email for your login credentials.</span>
                 </div>
               ),
             });
 
-            // update the state
             setIsEmailVerified(true);
-
             return;
           }
-
-          // Set the verification status or handle further based on response
-          // setVerificationSucess(true);
         } catch (err) {
           console.error("Error during verification:", err);
 
@@ -112,10 +103,8 @@ const LoginComponent = () => {
               </div>
             ),
           });
-          // set is email verified to false
           setIsEmailVerified(false);
           setHasEnteredEmail(false);
-          //  stop the execution
           return;
         }
       }
@@ -155,7 +144,7 @@ const LoginComponent = () => {
           );
 
           const responseData = await authenticateLoginCredentials.json();
-          console.log("requetst Response:", responseData);
+          console.log("request Response:", responseData);
 
           if (responseData?.is_token_expired) {
             setTokenExpiredError(true);
@@ -175,7 +164,6 @@ const LoginComponent = () => {
           }
 
           if (responseData?.verified) {
-            // Set the verification status or handle further based on response
             setVerificationSucess(true);
             setTokenExpiredError(false);
             toast({
@@ -190,10 +178,8 @@ const LoginComponent = () => {
               ),
             });
 
-            //  redirect to members dashboard
-            navigate("/dashboard/members")
+            navigate("/dashboard/members");
           } else {
-
             toast({
               title: "Invalid Credentials",
               description: (
@@ -233,54 +219,60 @@ const LoginComponent = () => {
     verifyCredentials();
   }, [hasEnteredOtp, otp]);
 
-
-
   return (
-    <div
-      className="bg-center"
-      style={{ backgroundImage: "url('/assets/new4.jpg')" }}
-    >
-      <div className="flex justify-center items-center w-full h-[100vh] bg-gray-400/90 backdrop-blur-sm  px-5">
-        <div className="flex flex-col">
-          <div className="width-[210px] md:w-[400px] bg-white px-4 py-[50px] pt-[30px] rounded-md shadow-xl border-[1px]">
-            <div className="text-primarycol text-2xl text-center w-full mb-2">
-              {!isEmailVerified ? "Word Sanctuary Systems" : "Enter OTP"}
-            </div>
-
-            {!isEmailVerified ? (
-              <div>
-                <div className="w-full text-center font-bold text-xl mb-4">
-                  Welcome back!
-                </div>
-                <LoginForm
-                  isMutatingDbResource={hasEnteredEmail}
-                  isMutatingDbResourceHandler={setHasEnteredEmail}
-                  updateEmailStateHandler={setEmail}
-                />
-              </div>
-            ) : (
-              <div className="w-full my-4">
-                <InputOTPForm
-                  isProcessingInput={hasEnteredOtp}
-                  isProcessingInputHandler={setHasEnteredOtp}
-                  updateOTPStateHandler={setOtp}
-                />
-
-                <div className="flex justify-center items-center mt-2">
-                  <Button
-                    className="underline"
-                    variant={"ghost"}
-                    onClick={() => {
-                      setHasEnteredEmail(false);
-                      setIsEmailVerified(false);
-                    }}
-                  >
-                    Back
-                  </Button>
-                </div>
-              </div>
-            )}
+    <div className="flex flex-col h-[100vh]">
+      {/* Top Section */}
+      <div className="h-[40vh] relative">
+        <img
+          src="/assets/loginPage.jpg"
+          alt="Background"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute top-4 left-4">
+          <img
+            src="/assets/logo.svg"
+            alt="Logo"
+            className="h-12 w-auto"
+          />
+        </div>
+      </div>
+      {/* Bottom Section */}
+      <div className="h-[60vh] flex justify-center items-center mt-1 py-0">
+        <div className="flex flex-col w-[300px] md:w-[400px] bg-white px-4 py-[50px] ">
+          <div className="text-primarycol text-2xl text-center w-full mb-2">
+            {isEmailVerified ? "Enter OTP" : ""}
           </div>
+
+          {!isEmailVerified ? (
+            <div>
+              <LoginForm
+                isMutatingDbResource={hasEnteredEmail}
+                isMutatingDbResourceHandler={setHasEnteredEmail}
+                updateEmailStateHandler={setEmail}
+              />
+            </div>
+          ) : (
+            <div className="w-full my-4">
+              <InputOTPForm
+                isProcessingInput={hasEnteredOtp}
+                isProcessingInputHandler={setHasEnteredOtp}
+                updateOTPStateHandler={setOtp}
+              />
+
+              <div className="flex justify-center items-center mt-2">
+                <Button
+                  className="underline"
+                  variant={"ghost"}
+                  onClick={() => {
+                    setHasEnteredEmail(false);
+                    setIsEmailVerified(false);
+                  }}
+                >
+                  Back
+                </Button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

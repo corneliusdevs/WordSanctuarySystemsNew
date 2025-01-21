@@ -18,7 +18,7 @@ const Installation: FC = () => {
         {/* Images */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 justify-center items-center">
           {installations.map((installation, index) => (
-            <div key={index} className="relative w-28 h-52 overflow-hidden rounded-lg">
+            <div key={index} className="relative w-24 h-48 sm:w-28 sm:h-56 md:w-36 md:h-64 lg:w-40 lg:h-72 xl:w-48 xl:h-84 overflow-hidden rounded-lg">
               <Image
                 src={installation.imgSrc}
                 alt={installation.location}

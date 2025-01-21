@@ -67,16 +67,16 @@ const Footer: FC = () => {
 
           {/* Social Media Icons */}
           <div className="flex space-x-4 mt-4 sm:mt-0">
-            <a href="#" className="hover:opacity-75">
+            <a href="https://www.facebook.com/share/1F6g2S2xVG/" target="_blank" className="hover:opacity-75">
               <Facebook className="w-5 h-5" />
             </a>
-            <a href="#" className="hover:opacity-75">
+            <a href="https://www.instagram.com/wordsanctuaryglobal?igsh=bmtndGh2NHV6Z25r" target="_blank" className="hover:opacity-75">
               <Instagram className="w-5 h-5" />
             </a>
-            <a href="#" className="hover:opacity-75">
+            <a href="https://x.com/word_sanctuary?t=fP-aban2CQuGSIKvdSQAEA&s=35" target="_blank" className="hover:opacity-75">
               <X className="w-5 h-5" />
             </a>
-            <a href="#" className="hover:opacity-75">
+            <a href="https://youtube.com/@wordsanctuarytv?si=Qt4yBvPsoTu5iqLd" target="_blank" className="hover:opacity-75">
               <Youtube className="w-5 h-5" />
             </a>
           </div>

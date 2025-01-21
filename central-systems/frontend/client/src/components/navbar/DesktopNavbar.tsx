@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import React, { FC } from "react";
 import Image from "next/image";
@@ -10,8 +10,7 @@ const DesktopNavbar: FC = () => {
     { text: "Home", link: "/" },
     { text: "About", link: "about-us" },
     { text: "Installations", link: "installation" },
-    { text: "Services", link: "services" },
-    { text: "Sign In", link: "sign-in" }, // Replacing "Onboard" with "Sign In"
+    { text: "Contact Us", link: "contact-us" },
   ];
 
   return (
@@ -35,11 +34,21 @@ const DesktopNavbar: FC = () => {
               <Link
                 key={`${item.text}-${index}`}
                 href={`/${item.link}`}
-                className="text-white hover:text-gray-300 transition duration-300 text-lg uppercase"
+                className="text-white hover:text-gray-300 transition duration-300 text-lg capitalize"
               >
                 {item.text}
               </Link>
             ))}
+          </div>
+
+          {/* Sign In Button */}
+          <div>
+            <Link
+              href="/auth/login"
+              className="bg-white border border-primarycol text-primarycol py-2 px-4 rounded-md hover:bg-gray-100 transition duration-300"
+            >
+              Sign In
+            </Link>
           </div>
         </div>
       </MaxwidthWrapper>

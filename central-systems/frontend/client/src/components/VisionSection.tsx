@@ -29,8 +29,8 @@ const VisionSection: FC = () => {
       <div className="relative z-10 flex flex-col items-center justify-center uppercase text-center w-full h-full px-6">
         {/* Vision */}
         <div className="mb-10">
-          <h2 className="text-[clamp(24px, 5vw, 40px)] font-normal text-white">VISION</h2>
-          <p className="text-[clamp(16px, 4vw, 28px)] font-bold text-white mt-4 relative">
+        <h2 className="text-[clamp(60px, 8vw, 70px)] font-normal text-white lg:text-[clamp(60px, 8vw, 70px)] xl:text-[clamp(60px, 8vw, 70px)]">VISION</h2>
+        <p className="text-[clamp(16px, 4vw, 28px)] font-bold text-white mt-4 relative lg:text-[clamp(20px, 5vw, 32px)] xl:text-[clamp(24px, 6vw, 36px)]">
             A CHURCH THAT{" "}
             <span className="relative inline-block">
               <span className="absolute inset-0 w-auto h-full z-0">

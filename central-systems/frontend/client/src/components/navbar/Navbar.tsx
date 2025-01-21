@@ -26,8 +26,7 @@ const Navbar: FC = () => {
     { text: "Home", link: "/" },
     { text: "About", link: "about-us" },
     { text: "Installations", link: "installation" },
-    { text: "Services", link: "services" },
-    { text: "Sign In", link: "sign-in" },
+    { text: "Contact Us", link: "contact-us" },
   ];
 
   const [openNavbar, setOpenNavbar] = useState<boolean>(false);
@@ -72,11 +71,21 @@ const Navbar: FC = () => {
                   onClick={() => {
                     setOpenNavbar((v) => !v);
                   }}
-                  className="text-white hover:bg-secondarycol hover:text-white text-center py-2 w-full transition-all duration-300"
+                  className="text-white hover:bg-secondarycol hover:text-white text-center py-2 w-full transition-all duration-300 capitalize"
                 >
                   {item.text}
                 </Link>
               ))}
+              {/* Sign In Button */}
+              <Link
+                href="/auth/login"
+                onClick={() => {
+                  setOpenNavbar((v) => !v);
+                }}
+                className="bg-white border border-primarycol text-primarycol py-2 px-4 rounded-md hover:bg-gray-100 transition duration-300 mt-2 w-11/12 text-center"
+              >
+                Sign In
+              </Link>
             </div>
           </div>
         )}
@@ -86,3 +95,4 @@ const Navbar: FC = () => {
 };
 
 export default Navbar;
+

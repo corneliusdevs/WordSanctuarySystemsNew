@@ -1,19 +1,9 @@
-import { InvitationsTable } from '@/types/general';
-import React from 'react'
+import { InvitationsTable } from "@/types/general";
+import React from "react";
 
 interface InvitationsTableProps {
-    invitations: InvitationsTable[];
-  }
-
-  const getStatusColor = (status: InvitationsTable['status']): string => {
-    const colors = {
-      Sent: 'bg-purple-600',
-      Registered: 'bg-indigo-600',
-      Accepted: 'bg-green-600',
-      Declined: 'bg-red-600'
-    };
-    return colors[status] || 'bg-gray-600';
-  };
+  invitations: InvitationsTable[];
+}
 
 const InvitationsTable: React.FC<InvitationsTableProps> = ({ invitations }) => {
   return (
@@ -21,16 +11,28 @@ const InvitationsTable: React.FC<InvitationsTableProps> = ({ invitations }) => {
       <table className="min-w-full divide-y divide-gray-200">
         <thead className="bg-gray-50">
           <tr>
-            <th scope="col" className="px-6 py-3 text-left text-sm font-semibold text-gray-900">
+            <th
+              scope="col"
+              className="px-6 py-3 text-left text-sm font-semibold text-gray-900"
+            >
               Name
             </th>
-            <th scope="col" className="px-6 py-3 text-left text-sm font-semibold text-gray-900">
+            <th
+              scope="col"
+              className="px-6 py-3 text-left text-sm font-semibold text-gray-900"
+            >
               Email
             </th>
-            <th scope="col" className="px-6 py-3 text-left text-sm font-semibold text-gray-900">
+            <th
+              scope="col"
+              className="px-6 py-3 text-left text-sm font-semibold text-gray-900"
+            >
               Position
             </th>
-            <th scope="col" className="px-6 py-3 text-left text-sm font-semibold text-gray-900">
+            <th
+              scope="col"
+              className="px-6 py-3 text-left text-sm font-semibold text-gray-900"
+            >
               Status
             </th>
           </tr>
@@ -48,7 +50,9 @@ const InvitationsTable: React.FC<InvitationsTableProps> = ({ invitations }) => {
                 {invitation.position}
               </td>
               <td className="px-6 py-4 text-sm">
-                <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-white ${getStatusColor(invitation.status)}`}>
+                <span
+                  className={`inline-flex w-20 justify-center px-2.5 py-0.5 rounded-full text-xs font-medium text-white bg-[#3A2D4A]`}
+                >
                   {invitation.status}
                 </span>
               </td>
@@ -57,7 +61,7 @@ const InvitationsTable: React.FC<InvitationsTableProps> = ({ invitations }) => {
         </tbody>
       </table>
     </div>
-  )
-}
+  );
+};
 
-export default InvitationsTable
+export default InvitationsTable;

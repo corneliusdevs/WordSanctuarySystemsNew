@@ -9,6 +9,10 @@ import { CreateInvitationFormSchema } from "../forms/invites/CreateInviteFormSch
 import { toast } from "@/hooks/use-toast";
 import { Button } from "../ui/button";
 import { Check, X } from "lucide-react";
+import DashboardWelcomeComponent from "./DashboardWelcomeComponent";
+import { IoArrowBack } from "react-icons/io5";
+import Link from "next/link";
+
 
 export default function CreateInviteComponent() {
   const [hasUserFilledForm, sethasUserFilledForm] = useState<boolean>(false);
@@ -119,16 +123,21 @@ export default function CreateInviteComponent() {
   return (
     <div>
       <DashboardNavbar />
+      <DashboardWelcomeComponent username={""} title={""} />
 
-      <div className="mt-4">
+      <div className="mt-8">
+        
+    <Link href='/dashboard/invitations'>
+      <IoArrowBack className="h-10 w-20" />
+      </Link>
         <div className="w-full justify-center items-center flex">
-          <span className="text-primarycol text-center text-2xl">
-            Invite a Person
+          <span className="text-primarycol text-center text-3xl mb-8 font-bold">
+            Invitation Form
           </span>
         </div>
       </div>
 
-      <div className="px-2 mb-10 mt-4">
+      <div className="px-5 mb-10 mt-4 ">
         <CreateInviteForm
           isMutatingDbResource={hasUserFilledForm}
           isMutatingDbResourceHandler={sethasUserFilledForm}

@@ -11,7 +11,7 @@ import { z, ZodError } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { SetStateAction, Dispatch } from "react";
+import { SetStateAction, Dispatch, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/Input";
@@ -20,6 +20,7 @@ import { AddDepartmentToCentralComponent } from "@/components/AddDeptsToCentralC
 import { useAddDepartmentToCentralStore } from "@/providers/AddDepartmentToCentral.Provider";
 import { toast } from "@/hooks/use-toast";
 import { X } from "lucide-react";
+import SuccessModal from "@/components/SuccessModal";
 
 interface CreateCentralFormProps {
   isMutatingDbResourceHandler: Dispatch<SetStateAction<boolean>>;
@@ -36,6 +37,7 @@ export function CreateCentralForm({
 }: CreateCentralFormProps) {
 
   const {selectedDepartments} = useAddDepartmentToCentralStore(state => state.addDepartmentToCentralState)
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const form = useForm<z.infer<typeof CreateCentralProfileSchema>>({
     resolver: zodResolver(CreateCentralProfileSchema),
@@ -139,14 +141,24 @@ export function CreateCentralForm({
           </div>
 
           <AddDepartmentToCentralComponent />
+            <div>
 
           <Button
             type="submit"
             variant={"default"}
             className="bg-primarycol text-white w-full mt-2"
+            onClick={() => setIsModalOpen(true)}
           >
             Submit
           </Button>
+
+          <SuccessModal
+        isVisible={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title="Invite sent"
+        message="Your invitation has been sent successfully"
+      />
+            </div>
         </form>
       </Form>
     </div>

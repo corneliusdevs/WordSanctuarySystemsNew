@@ -111,3 +111,9 @@ export interface InvitationsTable {
   position: string;
   status: 'Sent' | 'Registered' | 'Accepted' | 'Declined';
 }
+
+export type AccessRequest = {
+  name: string;
+  installment: string;
+  position: string;
+};

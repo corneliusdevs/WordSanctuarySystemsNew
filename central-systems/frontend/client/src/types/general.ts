@@ -105,11 +105,13 @@ export type Member = {
   position: string;
 };
 
+type Status = 'Sent' | 'Registered' | 'Accepted' | 'Declined';
+
 export interface InvitationsTable {
   name: string;
   email: string;
   position: string;
-  status: 'Sent' | 'Registered' | 'Accepted' | 'Declined';
+  status: Status
 }
 
 export type AccessRequest = {
@@ -117,3 +119,12 @@ export type AccessRequest = {
   installment: string;
   position: string;
 };
+
+type TrendDirection = 'up' | 'down';
+
+export interface Department {
+  name: string;
+  members: number;
+  kpi: number;
+  trend: TrendDirection;
+}

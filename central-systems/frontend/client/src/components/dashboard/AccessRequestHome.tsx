@@ -1,3 +1,4 @@
+'use client';
 import React from 'react'
 import AccessRequestTable from './AccessRequestTable'
 import { AccessRequest } from '@/types/general'
@@ -26,7 +27,7 @@ const AccessRequestHome = () => {
             </div>
           </div>
         
-    <AccessRequestTable requests={requests} onView={handleView} />
+    <AccessRequestTable requests={requests}  />
 
     </div>
   )

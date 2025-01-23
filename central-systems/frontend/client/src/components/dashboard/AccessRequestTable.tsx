@@ -1,12 +1,22 @@
+"use client"
+
 import { AccessRequest } from '@/types/general';
 import React from 'react'
+import { useRouter } from "next/navigation";
+
 
 interface AccessRequestProps {
     requests: AccessRequest[];
-    onView: (request: AccessRequest) => void;
+    // onView: (request: AccessRequest) => void;
   }
+  
+  const handleView = (request) => {
+    const router = useRouter();
+    router.push(`/dashboard/request-details?id=${request.id}`);
+  };
 
-const AccessRequestTable: React.FC<AccessRequestProps> = ({ requests, onView }) => {
+
+const AccessRequestTable: React.FC<AccessRequestProps> = ({ requests }) => {
   return (
     <div className="">
       <table className="min-w-full bg-white rounded-lg overflow-hidden">
@@ -43,7 +53,7 @@ const AccessRequestTable: React.FC<AccessRequestProps> = ({ requests, onView }) 
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm">
                 <button
-                  onClick={() => onView(request)}
+                  onClick={() => handleView(request)}
                   className="bg-[#3A2D4A] text-white px-4 py-1 rounded-md text-sm hover:bg-purple-700 transition-colors duration-200"
                 >
                   view

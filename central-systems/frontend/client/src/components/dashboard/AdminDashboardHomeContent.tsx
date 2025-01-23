@@ -1,6 +1,6 @@
 import React from "react";
 import AdminDashboardHomeCard from "./AdminDashboardHomeCard";
-import { Link } from "lucide-react";
+// import { Link } from "lucide-react";
 import { IoMailOpenOutline } from "react-icons/io5";
 import { LuMessageSquareDiff } from "react-icons/lu";
 import DashboardItemCard from "./DashboardItemCard";
@@ -8,6 +8,7 @@ import { PiChurchLight } from "react-icons/pi";
 import { CgMenuGridO } from "react-icons/cg";
 import { MdGroups } from "react-icons/md";
 import { LuNetwork } from "react-icons/lu";
+import Link from "next/link";
 
 
 
@@ -23,7 +24,7 @@ const AdminDashboardHomeContent = () => {
         // imageSrc=""
         Icon={<PiChurchLight className="h-20 w-20 font-thin" />}
       />
-
+      <Link href="/dashboard/admin-dashboard/departments">
       <AdminDashboardHomeCard
         text="10"
         styles=""
@@ -31,7 +32,7 @@ const AdminDashboardHomeContent = () => {
         // imageSrc=""
         Icon={<LuNetwork className="h-20 w-20 font-thin" />}
       />
-
+      </Link>
       <AdminDashboardHomeCard
         text="15"
         styles={""}

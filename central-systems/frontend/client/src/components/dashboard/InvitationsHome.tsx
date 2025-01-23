@@ -1,3 +1,4 @@
+'use client';
 import React from "react";
 import { IoAdd } from "react-icons/io5";
 import DashboardNavbar from "./DashboardNavbar";

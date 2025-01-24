@@ -57,10 +57,10 @@ export function CreateInviteForm({
             render={({ field }) => {
               return (
                 <FormItem className="mb-2">
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>Email Address</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="e.g owolabitosin@gmail.com"
+                      placeholder=""
                       {...field}
                     />
                   </FormControl>
@@ -77,7 +77,7 @@ export function CreateInviteForm({
                 <FormItem className="mb-2">
                   <FormLabel>Invitation Desciption</FormLabel>
                   <FormControl>
-                    <Input placeholder="Reason(s) for invitation" {...field} />
+                    <Input placeholder="" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -93,7 +93,7 @@ export function CreateInviteForm({
               variant={"default"}
               className="bg-primarycol text-white w-full mt-2"
             >
-              Submit
+              Invite
             </Button>
           )}
         </form>

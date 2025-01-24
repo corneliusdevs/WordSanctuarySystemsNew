@@ -53,7 +53,7 @@ export function IndividualOnboardingForm({
 
   const onSubmit = async (data: any) => {
     console.log(
-      "here are the values of indinvidualProfile onboarding form ",
+      "here are the values of individualProfile onboarding form ",
       data
     );
     updateIndividualDataHandler({
@@ -72,34 +72,22 @@ export function IndividualOnboardingForm({
 
   return (
     <div
-      className={`${isMutatingDbResource && "pointer-events-none opacity-70"}`}
+      className={`${isMutatingDbResource && "pointer-events-none opacity-70"} p-4`} // Padding added
     >
+      {/* Heading with extra bold and centered */}
+      <h1 className="text-primarycol text-2xl font-extrabold mb-4 text-center">INDIVIDUAL DATA</h1>
+
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <FormField
-            control={form.control}
-            name="name"
-            render={({ field }) => {
-              return (
-                <FormItem className="mb-2">
-                  <FormLabel>Name </FormLabel>
-                  <FormControl>
-                    <Input placeholder="enter your name here" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              );
-            }}
-          />
           <FormField
             control={form.control}
             name="surname"
             render={({ field }) => {
               return (
-                <FormItem className="mb-2">
-                  <FormLabel>Surname </FormLabel>
+                <FormItem className="mb-4"> {/* Increased margin for better spacing */}
+                  <FormLabel className="text-[#3A2D4A] text-[16px] capitalize font-bold">Surname</FormLabel>
                   <FormControl>
-                    <Input placeholder="enter your surname here" {...field} />
+                    <Input placeholder="Enter your surname" {...field} className="text-[16px] border-black" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -108,13 +96,41 @@ export function IndividualOnboardingForm({
           />
           <FormField
             control={form.control}
-            name="email"
+            name="firstname"
+            render={({ field }) => (
+              <FormItem className="mb-4">
+                <FormLabel className="text-[#3A2D4A] text-[16px] capitalize font-bold">First Name</FormLabel>
+                <FormControl>
+                  <Input placeholder="Enter your first name" {...field} className="text-[16px] border-black" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="middlename"
+            render={({ field }) => (
+              <FormItem className="mb-4">
+                <FormLabel className="text-[#3A2D4A] text-[16px] capitalize font-bold">Middle Name</FormLabel>
+                <FormControl>
+                  <Input placeholder="Enter your middle name" {...field} className="text-[16px] border-black" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="birthday"
             render={({ field }) => {
               return (
-                <FormItem className="mb-2">
-                  <FormLabel>Email </FormLabel>
+                <FormItem className="mb-4">
+                  <FormLabel className="text-[#3A2D4A] text-[16px] capitalize font-bold">Birthday</FormLabel>
                   <FormControl>
-                    <Input placeholder="enter your email here" {...field} />
+                    <Input placeholder="DD-MM-YYYY" {...field} className="text-[16px] border-black" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -124,44 +140,53 @@ export function IndividualOnboardingForm({
 
           <FormField
             control={form.control}
-            name="phone_contact"
-            render={({ field }) => {
-              return (
-                <FormItem className="mb-2">
-                  <FormLabel>Phone </FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="enter your phone number here"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              );
-            }}
+            name="profile_id"
+            render={({ field }) => (
+              <FormItem className="mb-4">
+                <FormLabel className="text-[#3A2D4A] text-[16px] capitalize font-bold">Profile No</FormLabel>
+                <FormControl>
+                  <Input placeholder="Enter your profile number" {...field} className="text-[16px] border-black" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
+
           <FormField
             control={form.control}
             name="giving_number"
             render={({ field }) => {
               return (
-                <FormItem className="mb-2">
-                  <FormLabel>Giving Number </FormLabel>
+                <FormItem className="mb-4">
+                  <FormLabel className="text-[#3A2D4A] text-[16px] capitalize font-bold">Giving Number</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder="enter your giving number here"
-                      {...field}
-                    />
+                    <Input placeholder="Enter your giving number here" {...field} className="text-[16px] border-black" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               );
             }}
           />
-          {/* ADD LEADERSHIP LEVEL DROPDOWN HERE */}
-          {/* select leadership level */}
+
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => {
+              return (
+                <FormItem className="mb-4">
+                  <FormLabel className="text-[#3A2D4A] text-[16px] capitalize font-bold">Email</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Enter your email here" {...field} className="text-[16px] border-black" />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              );
+            }}
+          />
+
+          {/* Leadership Level dropdown */}
           <div className="my-4">
-            <div className="text-sm">Leadership Level</div>
+            <div className="font-bold text-[#3A2D4A] text-[16px">Leadership Level</div>
             <SelectComponent
               placeholder={"Select leadership level"}
               label="Leadership level"
@@ -170,52 +195,62 @@ export function IndividualOnboardingForm({
             />
           </div>
 
-          {/* select life class topic  */}
+          {/* Life class topic dropdown */}
           <div className="my-4">
-            <div className="text-sm">Life class topic</div>
+            <div className="text-sm font-bold">Life class topic</div>
             <SelectComponent
               placeholder={"Select Lifeclass topic"}
               label="Life class topics"
               onValueChange={setLifeClassTopic}
               itemsToSelect={lifeClassTopicsSelectComponentPayload}
-              
             />
           </div>
 
+          <FormField
+            control={form.control}
+            name="lifeclass_teacher"
+            render={({ field }) => (
+              <FormItem className="mb-4">
+                <FormLabel className="text-[#3A2D4A] text-[16px] capitalize font-bold">Lifeclass Teacher</FormLabel>
+                <FormControl>
+                  <Input placeholder="Enter teacher's name" {...field} className="text-[16px] border-black" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
           <FormField
             control={form.control}
-            name="birthday"
-            render={({ field }) => {
-              return (
-                <FormItem className="mb-2">
-                  <FormLabel>Birthday </FormLabel>
-                  <FormControl>
-                    <Input placeholder="e.g 04-12 in dd-mm format" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              );
-            }}
+            name="mentor"
+            render={({ field }) => (
+              <FormItem className="mb-4">
+                <FormLabel className="text-[#3A2D4A] text-[16px] capitalize font-bold">Mentor</FormLabel>
+                <FormControl>
+                  <Input placeholder="Enter mentor's name" {...field} className="text-[16px] border-black" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
+
 
           <FormField
             control={form.control}
             name={"passport"}
             render={({ field: { value, onChange, ...fieldProps } }) => {
               return (
-                <FormItem className="mb-2">
-                  <FormLabel>Passport</FormLabel>
+                <FormItem className="mb-4">
+                  <FormLabel className="text-[#3A2D4A] text-[16px] capitalize font-bold">Passport</FormLabel>
                   <FormControl>
                     <Input
-                      className=""
+                      className="text-[16px] border-black"
                       type="file"
                       {...fieldProps}
                       accept="image/png, image/jpeg, image/jpg"
                       onChange={(event) => {
-                        const file = event.target.files?.[0]; // get first file
+                        const file = event.target.files?.[0];
                         onChange(file);
-                        console.log(value)
                       }}
                     />
                   </FormControl>
@@ -230,19 +265,17 @@ export function IndividualOnboardingForm({
             name={"signature"}
             render={({ field: { value, onChange, ...fieldProps } }) => {
               return (
-                <FormItem className="mb-2">
-                  <FormLabel>Signature</FormLabel>
+                <FormItem className="mb-4">
+                  <FormLabel className="text-[#3A2D4A] text-[16px] capitalize font-bold">Signature</FormLabel>
                   <FormControl>
                     <Input
-                      className=""
+                      className="text-[16px] border-black"
                       type="file"
                       {...fieldProps}
                       accept="image/png, image/jpeg, image/jpg"
                       onChange={(event) => {
-                        const file = event.target.files?.[0]; // get first file
+                        const file = event.target.files?.[0];
                         onChange(file);
-                        console.log(value)
-
                       }}
                     />
                   </FormControl>
@@ -257,7 +290,7 @@ export function IndividualOnboardingForm({
             variant={"default"}
             className={`${
               isMutatingDbResource && "pointer-events-none opacity-70"
-            } mt-2 bg-primarycol text-white w-full `}
+            } mt-2 bg-primarycol text-white w-full`}
           >
             Submit
           </Button>

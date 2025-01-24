@@ -24,7 +24,7 @@ const TwoDashIcon: FC<{ className?: string }> = ({ className }) => (
 const Navbar: FC = () => {
   const navbarItems = [
     { text: "Home", link: "/" },
-    { text: "About", link: "about-us" },
+    { text: "About", link: "aboutSection" },
     { text: "Installations", link: "installation" },
     { text: "Contact Us", link: "contact-us" },
   ];
@@ -32,7 +32,7 @@ const Navbar: FC = () => {
   const [openNavbar, setOpenNavbar] = useState<boolean>(false);
 
   return (
-    <nav className="md:hidden w-full bg-primarycol shadow-lg">
+    <nav className="md:hidden w-full bg-primarycol shadow-lg fixed z-50 pt-0 mt-0">
       <MaxwidthWrapper>
         <div className="flex justify-between items-center h-16 px-6">
           {/* Logo */}

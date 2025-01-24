@@ -14,7 +14,7 @@ const DesktopNavbar: FC = () => {
   ];
 
   return (
-    <nav className="hidden md:block w-full bg-primarycol shadow-lg">
+    <nav className="hidden md:block w-full bg-primarycol shadow-lg fixed z-50">
       <MaxwidthWrapper>
         <div className="flex justify-between items-center h-20 px-29">
           {/* Logo */}

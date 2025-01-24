@@ -5,32 +5,19 @@ import Image from "next/image";
 
 const VisionSection: FC = () => {
   return (
-    <section className="relative w-full h-[50vh]">
+    <section className="relative bg-primarycol w-full h-[30vh]">
       {/* Background and Layout */}
       <div className="absolute inset-0 flex">
         {/* Left Background */}
-        <div className="w-1/2 bg-primarycol"></div>
-        {/* Right Background */}
-        <div className="w-1/2 relative">
-          <Image
-            src="/assets/vision.jpg"
-            alt="Vision Background"
-            layout="fill"
-            objectFit="cover"
-            className="object-cover opacity-60"
-          />
-          <div className="absolute inset-0 w-full h-full bg-primarycol mix-blend-overlay"></div>
-        </div>
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-primarycol to-transparent"></div>
+        <div className="bg-primarycol"></div>
       </div>
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center uppercase text-center w-full h-full px-6">
         {/* Vision */}
-        <div className="mb-10">
-        <h2 className="text-[clamp(60px, 8vw, 70px)] font-normal text-white lg:text-[clamp(60px, 8vw, 70px)] xl:text-[clamp(60px, 8vw, 70px)]">VISION</h2>
-        <p className="text-[clamp(16px, 4vw, 28px)] font-bold text-white mt-4 relative lg:text-[clamp(20px, 5vw, 32px)] xl:text-[clamp(24px, 6vw, 36px)]">
+        <div className="mb-5 mt-3">
+        <h2 className="text-[15px] mb-0 font-medium text-white lg:text-[clamp(60px, 8vw, 70px)] xl:text-[clamp(60px, 8vw, 70px)]">VISION</h2>
+        <p className="text-[17.83px] font-bold text-white mt-4 relative lg:text-[clamp(20px, 5vw, 32px)] xl:text-[clamp(24px, 6vw, 36px)]">
             A CHURCH THAT{" "}
             <span className="relative inline-block">
               <span className="absolute inset-0 w-auto h-full z-0">
@@ -38,7 +25,7 @@ const VisionSection: FC = () => {
                   src="/assets/heaven.jpg"
                   alt="Heaven Background"
                   layout="fill"
-                  objectFit="cover" // ensure the image covers the text properly
+                  objectFit="cover"
                   className="rounded-md"
                 />
               </span>
@@ -51,7 +38,7 @@ const VisionSection: FC = () => {
         </div>
 
         {/* Mission */}
-        <div className="mb-10 ">
+        <div className="mb-5">
           <h3 className="text-[clamp(24px, 5vw, 40px)] font-normal text-white">MISSION</h3>
           <p className="text-[clamp(16px, 4vw, 28px)] font-normal capitalize text-white mt-1">
             A gathering of achievers
@@ -59,7 +46,7 @@ const VisionSection: FC = () => {
         </div>
 
         {/* Mandate */}
-        <div>
+        <div className="mb-3">
           <h3 className="text-[clamp(24px, 5vw, 40px)] font-normal text-white">MANDATE</h3>
           <p className="text-[clamp(16px, 4vw, 28px)] font-normal capitalize text-white mt-1">
             Making a Family For God On Earth.

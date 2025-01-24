@@ -220,7 +220,7 @@ const LoginComponent = () => {
   }, [hasEnteredOtp, otp]);
 
   return (
-    <div className="flex flex-col h-[100vh]">
+    <div className="flex flex-col ml-0">
       {/* Top Section */}
       <div className="h-[40vh] relative">
         <img
@@ -237,8 +237,8 @@ const LoginComponent = () => {
         </div>
       </div>
       {/* Bottom Section */}
-      <div className="h-[60vh] flex justify-center items-center mt-1 py-0">
-        <div className="flex flex-col w-[300px] md:w-[400px] bg-white px-4 py-[50px] ">
+      <div className="flex mt-0 py-0 ml-0">
+        <div className="flex flex-col w-[300px] md:w-[400px] bg-white px-0 py-[50px] ">
           <div className="text-primarycol text-2xl text-center w-full mb-2">
             {isEmailVerified ? "Enter OTP" : ""}
           </div>

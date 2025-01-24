@@ -13,12 +13,12 @@ const Installation: FC = () => {
   ];
 
   return (
-    <section className="w-full py-10 bg-white">
+    <section className="w-full py-10 bg-white justify-center items-center">
       <div className="max-w-7xl mx-auto px-4">
         {/* Images */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 justify-center items-center">
+        <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-6 lg justify-center items-center">
           {installations.map((installation, index) => (
-            <div key={index} className="relative w-24 h-48 sm:w-28 sm:h-56 md:w-36 md:h-64 lg:w-40 lg:h-72 xl:w-48 xl:h-84 overflow-hidden rounded-lg">
+            <div key={index} className="relative w-[117.01px] h-[152.46px] sm:w-28 sm:h-56 md:w-36 md:h-64 lg:w-40 lg:h-72 xl:w-48 xl:h-84 overflow-hidden rounded-lg">
               <Image
                 src={installation.imgSrc}
                 alt={installation.location}

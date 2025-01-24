@@ -36,7 +36,7 @@ const AboutSection: FC = () => {
       {/* Image Section */}
       <div className="grid grid-cols-3 sm:grid-cols-3 gap-8 justify-items-center w-full ml-0 px-0">
         {/* First Image */}
-        <div className="relative rounded-lg w-24 h-48 sm:w-32 sm:h-64 md:w-48 md:h-72 lg:w-64 lg:h-96 xl:w-80 xl:h-120">
+        <div className="relative rounded-lg w-[110.64px] h-[118.44px] sm:w-32 sm:h-64 md:w-48 md:h-72 lg:w-64 lg:h-96 xl:w-80 xl:h-120">
           <Image
             src="/assets/about1.jpg"
             alt="Who We Are"
@@ -54,7 +54,7 @@ const AboutSection: FC = () => {
         </div>
 
         {/* Second Image */}
-        <div className="relative rounded-lg w-24 h-48 sm:w-32 sm:h-64 md:w-48 md:h-72 lg:w-64 lg:h-96 xl:w-80 xl:h-120">
+        <div className="relative rounded-lg w-[110.64px] h-[118.44px] sm:w-32 sm:h-64 md:w-48 md:h-72 lg:w-64 lg:h-96 xl:w-80 xl:h-120">
           <Image
             src="/assets/about2.jpg"
             alt="Connect With Us"
@@ -72,7 +72,7 @@ const AboutSection: FC = () => {
         </div>
 
         {/* Third Image */}
-        <div className="relative rounded-lg w-24 h-48 sm:w-32 sm:h-64 md:w-48 md:h-72 lg:w-64 lg:h-96 xl:w-80 xl:h-120">
+        <div className="relative rounded-lg w-[110.64px] h-[118.44px] sm:h-64 md:w-48 md:h-72 lg:w-64 lg:h-96 xl:w-80 xl:h-120">
           <Image
             src="/assets/about3.jpg"
             alt="Our Celebration"

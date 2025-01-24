@@ -10,6 +10,8 @@ export interface TCreateDepartmentalProfile {
   members: DeptMember[];
   dues_paid_per_individual: Dues[];
   installation_id: string;
+  central: "";
+  central_id: string;
   createdAt: string;
   modifiedAt: string;
 }
@@ -33,6 +35,18 @@ export const CreateDepartmetalProfileSchema = z.object({
       message: "invalid finance_id field",
     })
     .optional(),
+  central: z
+    .string()
+    .min(3, {
+      message: "central must be selected",
+    })
+    .optional(),  
+  central_id: z
+    .string()
+    .min(7, {
+      message: "invalid central_id field",
+    })
+    .optional(),  
   installation_id: z
     .string()
     .min(7, {
@@ -110,6 +124,12 @@ export const ValidateCreateDepartmetalProfileSchema = z.object({
   }),
   installation_id: z.string().min(7, {
     message: "invalid installation_id field",
+  }),
+  central: z.string().min(3, {
+    message: "invalid central field",
+  }),
+  central_id: z.string().min(7, {
+    message: "invalid central_id field",
   }),
   members: z
     .array(

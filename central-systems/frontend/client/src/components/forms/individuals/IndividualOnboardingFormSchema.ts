@@ -3,14 +3,16 @@ import * as z from "zod";
 import { zfd } from "zod-form-data";
 
 export interface TCreateIndividualProfile {
-  name: string;
   surname: string;
+  firstname: string;
+  middlename: string;
   email: string;
+  profile_id: string;
   giving_number: string;
   leadership_level: Heirarchy;
   lifeclass_topic: number;
-  lifeclass_teacher_profile_id: string;
-  mentor_profile_id: string;
+  lifeclass_teacher: string;
+  mentor: string;
   installation_id: string;
   signature: string;
   passport: string;
@@ -21,14 +23,15 @@ export interface TCreateIndividualProfile {
 
 export interface TIndividualProfile {
   profile_id: string;
-  name: string;
   surname: string;
+  firstname: string;
+  middlename: string;
   email: string;
   giving_number: string;
   leadership_level: Heirarchy;
   lifeclass_topic: number;
-  lifeclass_teacher_profile_id: string;
-  mentor_profile_id: string;
+  lifeclass_teacher: string;
+  mentor: string;
   installation_id: string;
   signature: string;
   passport: string;
@@ -41,10 +44,13 @@ export interface TIndividualProfile {
 const birthdayRegex = /^(0[1-9]|[12][0-9]|3[01])[-/](0[1-9]|1[0-2])$/;
 
 export const CreateIndividualProfileSchema = z.object({
-  name: z.string().min(3, {
-    message: "name must be at least 3 characters",
-  }),
   surname: z.string().min(3, {
+    message: "surname must be at least 3 characters",
+  }),
+  firstname: z.string().min(3, {
+    message: "surname must be at least 3 characters",
+  }),
+  middlename: z.string().min(3, {
     message: "surname must be at least 3 characters",
   }),
   email: z.string().email(),
@@ -52,6 +58,10 @@ export const CreateIndividualProfileSchema = z.object({
   giving_number: z.string().min(3, {
     message: "giving_number must be at least 3 characters",
   }),
+
+  profile_id: z.string().min(3, {
+    message: "Profile number must be at least 3 characters",
+  }),  
 
   installation_id: z.string().min(4, {
     message: "invalid installation_id field",
@@ -70,12 +80,12 @@ export const CreateIndividualProfileSchema = z.object({
 
   lifeclass_topic: z.number().optional(),
 
-  lifeclass_teacher_profile_id: z.string().min(4, {
-    message: "invalid lifeclass_teacher_profile_id field",
+  lifeclass_teacher: z.string().min(4, {
+    message: "invalid lifeclass_teacher field",
   }).optional(),
 
-  mentor_profile_id: z.string().min(4, {
-    message: "invalid mentor_profile_id field",
+  mentor: z.string().min(4, {
+    message: "invalid mentor field",
   }).optional(),
 
   departments: z.array(z.string()).min(1, {
@@ -153,16 +163,16 @@ export const UpdateIndividualProfileSchema = z.object({
     ])
     .optional(),
   lifeclass_topic: z.number().optional(),
-  lifeclass_teacher_profile_id: z
+  lifeclass_teacher: z
     .string()
     .min(7, {
-      message: "invalid lifeclass_teacher_profile_id field",
+      message: "invalid lifeclass_teacher field",
     })
     .optional(),
-  mentor_profile_id: z
+  mentor: z
     .string()
     .min(4, {
-      message: "invalid mentor_profile_id field",
+      message: "invalid mentor field",
     })
     .optional(),
   signature: z.string().optional(),

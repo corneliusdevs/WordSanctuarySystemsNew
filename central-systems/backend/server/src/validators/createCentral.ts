@@ -59,6 +59,14 @@ export const UpdateCentralProfileSchema = z.object({
     .optional(),
 });
 
+export const CentralProfileByIdSchema = z.object({
+  central_id: z
+  .string()
+  .min(7, {
+    message: "Invalid central_id",
+  }),
+});
+
 export const CentralIdValidator = z.object({
   central_id: z.string().min(7, {
     message: "invalid central_id",

@@ -77,3 +77,54 @@ export interface DepartmentType {
   createdAt: Date,
   modifiedAt: Date
 }
+
+
+export type UserData = {
+  username: string;
+  title: string;
+}
+
+export interface KPIData {
+  finance: number;
+  people: number;
+  operation: number;
+  improvement: number;
+  location: string;
+}
+
+export interface KPICardProps {
+  data: KPIData[]; // Accepts an array
+  isLoading?: boolean;
+  error?: string | null;
+}
+
+
+export type Member = {
+  name: string;
+  installment: string;
+  position: string;
+};
+
+type Status = 'Sent' | 'Registered' | 'Accepted' | 'Declined';
+
+export interface InvitationsTable {
+  name: string;
+  email: string;
+  position: string;
+  status: Status
+}
+
+export type AccessRequest = {
+  name: string;
+  installment: string;
+  position: string;
+};
+
+type TrendDirection = 'up' | 'down';
+
+export interface Department {
+  name: string;
+  members: number;
+  kpi: number;
+  trend: TrendDirection;
+}

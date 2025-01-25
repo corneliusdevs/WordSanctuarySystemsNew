@@ -1,5 +1,5 @@
 # Step 1: Use an official Node.js image as the base image
-FROM node:16 AS builder
+FROM node:18 AS builder
 
 # Step 2: Set the working directory in the container
 WORKDIR /app
@@ -18,7 +18,7 @@ RUN npm install --save-dev typescript
 RUN npx tsc
 
 # Step 7: Use a smaller base image for production
-FROM node:16-slim
+FROM node:18-slim
 
 # Step 8: Set the working directory in the container for production
 WORKDIR /app

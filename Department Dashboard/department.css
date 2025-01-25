@@ -210,9 +210,13 @@
     font-weight: 800;
     margin-bottom: 10px
   }
-  .overview button{
+  .overview .but{
     background: #fff;
     color: #333;
+    height: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease;
   }
   .add{
     align-items: center;
@@ -229,6 +233,9 @@
     text-decoration: none;
     color: #3A2D4A;
   }
+  .chart{
+    height: 260px;
+  }
   @media (max-width: 768px) {
     .nav-links {
       display: none;
@@ -236,7 +243,7 @@
       background-color:#3A2D4A;
       position: absolute;
       top: 60px;
-      left: 0;
+      left: 60;
       right: 0;
       padding: 10px;
       border-radius: 5px;

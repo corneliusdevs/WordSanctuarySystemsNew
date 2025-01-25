@@ -8,7 +8,7 @@ on:
       - "central-systems/frontend/client**" # Triggers for changes in cms frontend (Next.js)
       - "central-systems/backend/server**" # Triggers for changes in cms backend (Express.js)
       - "data-layer-microservice*/server**" # Triggers for changes in cms frontend (Next.js)
-      - "kpi/backend/server**" # Triggers for changes in cms backend (Express.js)
+      - "kpi/backend/**" # Triggers for changes in cms backend (Express.js)
 
   pull_request:
     branches:
@@ -17,7 +17,7 @@ on:
       - "central-systems/frontend/client**" # Triggers for changes in cms frontend (Next.js)
       - "central-systems/backend/server**" # Triggers for changes in cms backend (Express.js)
       - "data-layer-microservice/server**" # Triggers for changes in cms frontend (Next.js)
-      - "kpi/backend/server**" # Triggers for changes in cms backend (Express.js)
+      - "kpi/backend/**" # Triggers for changes in cms backend (Express.js)
 
 jobs:
   build_and_push:
@@ -53,8 +53,8 @@ jobs:
       - name: Build and push backend for kpi
         working-directory: ./kpi/backend
         run: |
-          docker build -t cdevsit/cms-backend:${GITHUB_SHA} .
-          docker push cdevsit/cms-backend:${GITHUB_SHA}
+          docker build -t cdevsit/kpi-backend:${GITHUB_SHA} .
+          docker push cdevsit/kpi-backend:${GITHUB_SHA}
 
       # Backend (Express.js) Build and Push for data-layer-microservice
       - name: Build and push backend for data-layer-microservice

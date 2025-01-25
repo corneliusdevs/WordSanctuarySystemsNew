@@ -1,5 +1,5 @@
 # Step 1: Use an official Node.js image as the build environment
-FROM node:16 AS builder
+FROM node:18 AS builder
 
 # Step 2: Set the working directory
 WORKDIR /app
@@ -17,7 +17,7 @@ COPY . .
 RUN npm run build
 
 # Step 7: Use a smaller base image for production (node:16-slim)
-FROM node:16-slim
+FROM node:18-slim
 
 # Step 8: Set the working directory for production
 WORKDIR /app

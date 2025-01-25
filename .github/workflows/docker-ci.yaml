@@ -9,6 +9,7 @@ on:
       - "central-systems/backend/server**" # Triggers for changes in cms backend (Express.js)
       - "data-layer-microservice*/server**" # Triggers for changes in cms frontend (Next.js)
       - "kpi/backend/**" # Triggers for changes in cms backend (Express.js)
+      - "deployment/nginx/**" # Triggers for changes in nginx configuration
 
   pull_request:
     branches:
@@ -18,6 +19,7 @@ on:
       - "central-systems/backend/server**" # Triggers for changes in cms backend (Express.js)
       - "data-layer-microservice/server**" # Triggers for changes in cms frontend (Next.js)
       - "kpi/backend/**" # Triggers for changes in cms backend (Express.js)
+      - "deployment/nginx/**" # Triggers for changes in nginx configuration
 
 jobs:
   build_and_push:
@@ -36,11 +38,14 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       # Frontend (Next.js) Build and Push for central-systems
+      # push two images with a ${GITHUB_SHA} that represents the commit hash for better versioning and use the latest tag so that we can automatically pull the latest image without manually specifying it in the docker compose file
       - name: Build and push frontend for central systems
         working-directory: ./central-systems/frontend/client
         run: |
           docker build -t cdevsit/cms-frontend:${GITHUB_SHA} .
           docker push cdevsit/cms-frontend:${GITHUB_SHA}
+          docker tag cdevsit/cms-frontend:${GITHUB_SHA} cdevsit/cms-frontend:latest
+          docker push cdevsit/cms-frontend:latest
 
       # Backend (Express.js) Build and Push for central-systems
       - name: Build and push backend for central-systems
@@ -48,6 +53,9 @@ jobs:
         run: |
           docker build -t cdevsit/cms-backend:${GITHUB_SHA} .
           docker push cdevsit/cms-backend:${GITHUB_SHA}
+          docker tag cdevsit/cms-backend:${GITHUB_SHA} cdevsit/cms-backend:latest
+          docker push cdevsit/cms-backend:latest
+
 
       # Backend (Express.js) Build and Push for kpi
       - name: Build and push backend for kpi
@@ -55,6 +63,8 @@ jobs:
         run: |
           docker build -t cdevsit/kpi-backend:${GITHUB_SHA} .
           docker push cdevsit/kpi-backend:${GITHUB_SHA}
+          docker tag cdevsit/kpi-backend:${GITHUB_SHA} cdevsit/kpi-backend:latest
+          docker push cdevsit/kpi-backend:latest
 
       # Backend (Express.js) Build and Push for data-layer-microservice
       - name: Build and push backend for data-layer-microservice
@@ -62,3 +72,14 @@ jobs:
         run: |
           docker build -t cdevsit/cms-data-layer-backend:${GITHUB_SHA} .
           docker push cdevsit/cms-data-layer-backend:${GITHUB_SHA}
+          docker tag cdevsit/cms-data-layer-backend:${GITHUB_SHA} cdevsit/cms-data-layer-backend:latest
+          docker push cdevsit/cms-data-layer-backend:latest
+      
+      # Backend (Express.js) Build and Push for cms-nginx image
+      - name: Build and push backend for cms-nginx-server
+        working-directory: ./deployment/nginx
+        run: |
+          docker build -t cdevsit/cms-nginx-server:${GITHUB_SHA} .
+          docker push cdevsit/cms-nginx-server:${GITHUB_SHA}
+          docker tag cdevsit/cms-nginx-server:${GITHUB_SHA} cdevsit/cms-nginx-server:latest
+          docker push cdevsit/cms-nginx-server:latest

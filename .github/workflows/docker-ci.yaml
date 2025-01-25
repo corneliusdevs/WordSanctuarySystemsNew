@@ -5,19 +5,19 @@ on:
     branches:
       - main
     paths:
-      - "central-systems*/frontend/client**" # Triggers for changes in cms frontend (Next.js)
-      - "central-systems*/backend/server**" # Triggers for changes in cms backend (Express.js)
+      - "central-systems/frontend/client**" # Triggers for changes in cms frontend (Next.js)
+      - "central-systems/backend/server**" # Triggers for changes in cms backend (Express.js)
       - "data-layer-microservice*/server**" # Triggers for changes in cms frontend (Next.js)
-      - "kpi*/backend/server**" # Triggers for changes in cms backend (Express.js)
+      - "kpi/backend/server**" # Triggers for changes in cms backend (Express.js)
 
   pull_request:
     branches:
       - main
     paths:
-      - "central-systems*/frontend/client**" # Triggers for changes in cms frontend (Next.js)
-      - "central-systems*/backend/server**" # Triggers for changes in cms backend (Express.js)
-      - "data-layer-microservice*/server**" # Triggers for changes in cms frontend (Next.js)
-      - "kpi*/backend/server**" # Triggers for changes in cms backend (Express.js)
+      - "central-systems/frontend/client**" # Triggers for changes in cms frontend (Next.js)
+      - "central-systems/backend/server**" # Triggers for changes in cms backend (Express.js)
+      - "data-layer-microservice/server**" # Triggers for changes in cms frontend (Next.js)
+      - "kpi/backend/server**" # Triggers for changes in cms backend (Express.js)
 
 jobs:
   build_and_push:
@@ -39,26 +39,26 @@ jobs:
       - name: Build and push frontend for central systems
         working-directory: ./central-systems/frontend/client
         run: |
-          docker build -t cdevsit/cms-frontend:latest .
-          docker push cdevsit/cms-frontend:latest
+          docker build -t cdevsit/cms-frontend:${GITHUB_SHA} .
+          docker push cdevsit/cms-frontend:${GITHUB_SHA}
 
       # Backend (Express.js) Build and Push for central-systems
       - name: Build and push backend for central-systems
         working-directory: ./central-systems/backend/server
         run: |
-          docker build -t cdevsit/cms-backend:latest .
-          docker push cdevsit/cms-backend:latest
+          docker build -t cdevsit/cms-backend:${GITHUB_SHA} .
+          docker push cdevsit/cms-backend:${GITHUB_SHA}
 
       # Backend (Express.js) Build and Push for kpi
       - name: Build and push backend for kpi
         working-directory: ./kpi/backend
         run: |
-          docker build -t cdevsit/cms-backend:latest .
-          docker push cdevsit/cms-backend:latest
+          docker build -t cdevsit/cms-backend:${GITHUB_SHA} .
+          docker push cdevsit/cms-backend:${GITHUB_SHA}
 
       # Backend (Express.js) Build and Push for data-layer-microservice
       - name: Build and push backend for data-layer-microservice
         working-directory: ./data-layer-microservice/server
         run: |
-          docker build -t cdevsit/cms-data-layer-backend:latest .
-          docker push cdevsit/cms-data-layer-backend:latest
+          docker build -t cdevsit/cms-data-layer-backend:${GITHUB_SHA} .
+          docker push cdevsit/cms-data-layer-backend:${GITHUB_SHA}

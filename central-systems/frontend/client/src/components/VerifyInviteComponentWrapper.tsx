@@ -4,6 +4,7 @@ import { useState } from "react";
 import VerifyInviteComponent from "./VerifyInviteComponent";
 import OnboardIndividualComponent from "./dashboard/IndividualOnboardingComponent";
 
+
 const VerifyInviteComponentWrapper = () => {
   const [isVerified, setIsverified] = useState<boolean>(false);
   

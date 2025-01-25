@@ -1,42 +1,5 @@
-# # Use the official Node.js image as a base image
-# FROM node:16 AS builder
-
-# # Set the working directory
-# WORKDIR /app
-
-# # Copy the package.json and package-lock.json (or yarn.lock) files
-# COPY package*.json ./
-
-# # Install dependencies
-# RUN npm install --frozen-lockfile
-
-# # Copy the rest of the application code
-# COPY . .
-
-# # Build the Next.js app
-# RUN npm run build
-
-# # Use a smaller, production-ready image to serve the app
-# FROM node:16-slim
-
-# # Set the working directory
-# WORKDIR /app
-
-# # Copy the built Next.js app from the builder stage
-# COPY --from=builder /app ./
-
-# # Install only production dependencies
-# RUN npm install --production --frozen-lockfile
-
-# # Expose the port your app runs on (default for Next.js is 3000)
-# EXPOSE 3000
-
-# # Command to run the Next.js app
-# CMD ["npm", "start"]
-
-
-# Use the official Node.js image as a base image for the build
-FROM node:16 AS builder
+# Use the official Node.js image with version >=18.17.0 for building the app
+FROM node:18 AS builder
 
 # Set the working directory
 WORKDIR /app
@@ -61,13 +24,13 @@ ARG CLOUDINARY_API_ENV_VARIABLE
 RUN npm run build
 
 # Use a smaller, production-ready image to serve the app
-FROM node:16-slim
+FROM node:18-slim
 
 # Set the working directory inside the container for production
 WORKDIR /app
 
 # Copy the built Next.js app from the builder stage
-COPY --from=builder /app ./
+COPY --from=builder /app .
 
 # Install only production dependencies
 RUN npm install --production --frozen-lockfile
@@ -84,4 +47,3 @@ ENV CLOUDINARY_API_ENV_VARIABLE="${CLOUDINARY_API_ENV_VARIABLE}"
 
 # Command to run the Next.js app
 CMD ["npm", "start"]
-

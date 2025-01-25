@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Department Dashboard</title>
+  <link rel="shortcut icon" href="../images/logo.png" type="image/x-icon">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="department.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-brand"><img src="../images/logo.png" alt="50x50" style="height: 210px;margin-left: -40px;"></div>
+    <div class="menu-toggle" id="menu-toggle" onclick="toggleMenu()">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="search-bar">
+    <input type="text" placeholder="Welcome john">
+  </div>
+  <div class="back"><a href="../Central Dashboard/index.html"><i class="fas fa-arrow-left" style="font-size: 30px;margin-top: 30px;"></i></a></div>
+  <div class="head">
+    <h2>Departments</h2>
+  </div>
+  <div class="d-add">
+    <h3>Add Department</h3>
+    <div class="plus"><a href="adddepartment.html"><i class="fa fa-plus"></i></a></div>
+  </div>
+  <div class="table">
+    <table>
+        <tr>
+            <th>Department</th>
+            <th>Number of Members</th>
+            <th>KPI index</th>
+            <th></th>
+        </tr>
+        <tr>
+            <td>Choir</td>
+            <td>15</td>
+            <td>20% <i class="fa fa-arrow-trend-up"></i></td>
+            <td style="height: 20px;"><a href="kpiview.html"  style="padding: 5px;">view</a></td>
+        </tr>
+        <tr>
+            <td>Evangelism</td>
+            <td>10</td>
+            <td>10% <i class="fa fa-arrow-trend-up"></i></td>
+            <td style="height: 20px;"><a href="#"  style="padding: 5px;">view</a></td>
+        </tr>
+        <tr>
+            <td>Drama</td>
+            <td>12</td>
+            <td>25% <i class="fa fa-arrow-trend-up"></i></td>
+            <td style="height: 20px;"><a href="#" style="padding: 5px;">view</a></td>
+        </tr>
+        <tr>
+            <td>Children</td>
+            <td>10</td>
+            <td>1% <i class="fa fa-arrow-trend-down"></i></td>
+            <td style="height: 20px;"><a href="#"  style="padding: 5px;">view</a></td>
+        </tr>
+        <tr>
+            <td>Teens</td>
+            <td>7</td>
+            <td>15% <i class="fa fa-arrow-trend-up"></i></td>
+            <td style="height: 20px;"><a href="#" style="padding: 5px;">view</a></td>
+        </tr>
+        <tr>
+            <td>Ulchering</td>
+            <td>4</td>
+            <td>50% <i class="fa fa-arrow-trend-up"></i></td>
+            <td style="height: 20px;"><a href="#" style="padding: 5px;">view</a></td>
+        </tr>
+        <tr>
+          <td>Media</td>
+          <td>5</td>
+          <td>15%<i class="fa fa-arrow-trend-up"></i></td>
+          <td style="height: 20px;"><a href="#" style="padding: 5px;">view</a></td>
+      </tr>
+    </table>
+  </div>
+  <script src="../script.js"></script>
+  
+  </body>
+  </html>

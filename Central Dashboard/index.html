@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <title>Word Sanctuary</title>
+  <link rel="shortcut icon" href="../images/logo.png" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-brand"><img src="../images/logo.png" alt="50x50" style="height: 210px;margin-left: -40px;"></div>
+    <div class="menu-toggle" id="menu-toggle" onclick="toggleMenu()">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="search-bar">
+    <div class="search-container">
+      <input
+        type="text"
+        placeholder="Welcome, John"
+        id="search-input"
+      />
+      
+      <button class="search-btn" aria-label="Search">
+        <select name="pages" >
+          <option value="1">Central Dashboard</option>
+          <option value="2">Installation Dashboard</option>
+          <option value="3">Member Dashboard</option>
+          <option value="4">Department Dashboard</option>
+        </select>
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+  </div>
+  <div class="section">
+  <div class="department">
+    <h2>7 DEPARTMENT</h2>
+    <button class="department-d"><a href="../Department Dashboard/department.html">DEPARTMENT DASHBOARD</a></button>
+  </div><br>
+  <div class="member">
+    <h2>100 MEMBERS</h2>
+    <button class="member-d" ><a href="../Members Dashboard/members.html">MEMBERS DASHBOARD</a></button>
+  </div></div>
+  <div class="project">
+    <h2>PROJECTS</h2>
+  </div>
+  <div class="ledgers">
+    <h2>15 LEDGERS</h2>
+  </div>
+  <div class="card">
+    <div class="pas">
+        <h2>PASTORS</h2>
+        <P>2</P>
+    </div>
+    <div class="min">
+        <h2>MINISTERS</h2>
+        <P>3</P>
+    </div>
+    <div class="hods">
+        <h2>HODS</h2>
+        <P>4</P>
+    </div>
+    <div class="a-hods">
+        <h2>ASSISTANT HOD'S</h2>
+        <P>5</P>
+    </div>
+    <div class="e-ass">
+        <h2>EXECUTIVE ASSISTANT</h2>
+        <P>6</P>
+    </div></div>
+    <div class="s-more">
+    <button>see more...</button>
+    </div>
+ 
+  <script src="../script.js"></script>
+</body>
+</html>

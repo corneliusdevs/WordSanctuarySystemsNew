@@ -1,0 +1,261 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+  }
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #3A2D4A;
+    color: #fff;
+    padding: 10px 20px;
+    position: relative;
+    height: 100px;
+  }
+  
+  .navbar-brand {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+  }
+  
+  .nav-links li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1em;
+    transition: color 0.3s;
+  }
+  
+  .nav-links li a:hover {
+    color: #00bcd4;
+  }
+  
+  .signup-btn {
+    background-color: #00bcd4;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .signup-btn:hover {
+    background-color: #0097a7;
+  }
+  
+  /* Hamburger Icon */
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+  }
+  
+  .menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  
+  /* Toggle for 'X' */
+  .menu-toggle.open .bar:nth-child(1) {
+    transform: rotate(45deg) translateY(8px);
+  }
+  
+  .menu-toggle.open .bar:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .menu-toggle.open .bar:nth-child(3) {
+    transform: rotate(-45deg) translateY(-8px);
+  }
+  
+  /* Search Bar */
+  .search-bar {
+    display: none;
+    background-color:#3A2D4A;
+    padding: 10px;
+    text-align: center;
+    height: 20px;
+  }
+  
+  .search-bar input {
+    width: 70%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    margin-top: -10px;
+    border-radius: 50px;
+    border: none;
+  }
+  .head{
+    text-align: center;
+    color: #3A2D4A;
+    
+  }
+  .d-add h3{
+    margin: 20px 0px 0px 10px;
+  }
+  .plus{
+    border: 2px solid #3A2D4A;
+    text-align: center;
+    width: 70px;
+    height: 40px;
+    margin: 40px 0px 40px 170px;
+    border-radius: 10px;
+  }
+  .plus i{
+    color: #3A2D4A;
+    font-size: 35px;
+  }
+  table{
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    width: 100%;
+    border-spacing: 10px;
+    
+  }
+  th, td {
+    text-align: left;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  td a {
+    text-decoration: none;
+    background-color: #3A2D4A;
+    color: #fff;
+    height: 0px;
+    border-radius: 10px;
+    font-size: 15px;
+  }
+  .first{
+    background-color: #0097a7;
+    color: #3A2D4A;
+  }
+  form{
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+  }
+  label{
+    margin-bottom: 10px;
+  }
+  form input{
+    height: 50px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #3A2D4A;
+  }
+  .access select{
+    height: 35px;
+    width: 170px;
+    background: #fff;
+    border: 1px solid #3A2D4A;
+    border-radius: 10px;
+    border-style: solid;
+    padding-left: 10px;
+    margin-bottom: 20px;
+  }
+  button{
+    height: 40px;
+    color: #fff;
+    font-weight: bolder;
+    background-color: #3A2D4A;
+    border: none;
+    border-radius: 30px;
+    margin-top: 30px;
+  }
+  button a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 15px;
+  }
+  .overview{
+   margin: 20px;
+  }
+  .dep{
+    margin-bottom: 20px;
+  }
+  .dep h3{
+    color: #3A2D4A;
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+  .num{
+    margin-bottom: 20px;
+  }
+  .num h3{
+    color: #3A2D4A;
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+  .kpi{
+    margin-bottom: 20px;
+  }
+  .kpi h3{
+    color: #3A2D4A;
+    font-weight: 800;
+    margin-bottom: 10px
+  }
+  .overview button{
+    background: #fff;
+    color: #333;
+  }
+  .add{
+    align-items: center;
+    padding: 10px;
+    margin: 20px;
+    border: 1px solid #3A2D4A;
+    height: 40px;
+    width: 150px;
+    border-radius: 10px;
+  }
+  .add a{
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+    color: #3A2D4A;
+  }
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      background-color:#3A2D4A;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      right: 0;
+      padding: 10px;
+      border-radius: 5px;
+    }
+  
+    .nav-links.show {
+      display: flex;
+    }
+  
+    .menu-toggle {
+      display: flex;
+    }
+  
+    .signup-btn {
+      display: none;
+    }
+  
+    .search-bar {
+      display: block;
+    }
+  }
+  

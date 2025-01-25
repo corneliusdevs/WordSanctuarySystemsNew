@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_CENTRAL_SYSTEMS_BASE_API: "http://localhost:4999"
+        CLOUDINARY_CLOUD_NAME: "dcbtxqzzq"
+        CLOUDINARY_API_KEY: "261536765774386"
+        CLOUDINARY_API_SECRET: "XlaHDCVPF1d62PRWzJa7IbNLJ0U"
+        CLOUDINARY_API_ENV_VARIABLE: "CLOUDINARY_URL=cloudinary://261536765774386:XlaHDCVPF1d62PRWzJa7IbNLJ0U@dcbtxqzzq"
+    ports:
+      - "3000:3000"
+    environment:
+      # Ensure the runtime environment has the same NEXT_PUBLIC_ prefixed variables
+      NEXT_PUBLIC_CENTRAL_SYSTEMS_BASE_API: "http://localhost:4999"
+      CLOUDINARY_CLOUD_NAME: "dcbtxqzzq"
+      CLOUDINARY_API_KEY: "261536765774386"
+      CLOUDINARY_API_SECRET: "XlaHDCVPF1d62PRWzJa7IbNLJ0U"
+      CLOUDINARY_API_ENV_VARIABLE: "CLOUDINARY_URL=cloudinary://261536765774386:XlaHDCVPF1d62PRWzJa7IbNLJ0U@dcbtxqzzq"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

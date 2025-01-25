@@ -1,5 +1,9 @@
 import express from "express";
-import { createCentralProfileController } from "../controllers/central.controller";
+import { createCentralProfileController,
+    deleteCentralProfileByIdController,
+    getAllCentralsProfilesControler,
+    getCentralProfileByIdControler,
+    updateCentralProfileByIdController } from "../controllers/central.controller";
 // import {
 //   createCentralProfile,
 //   deleteCentralProfileById,
@@ -10,15 +14,15 @@ import { createCentralProfileController } from "../controllers/central.controlle
 
 const centralsRouter = express.Router();
 
-// centralsRouter.get("/fetch/:centralId", getCentralProfileById);
+centralsRouter.get("/fetch/:centralId", getCentralProfileByIdControler);
 
-// centralsRouter.get("/all", getAllCentralsProfiles)
+centralsRouter.get("/all", getAllCentralsProfilesControler)
 
 centralsRouter.post("/create", createCentralProfileController);
 
-// centralsRouter.post("/update", updateCentralProfileById);
+centralsRouter.post("/update", updateCentralProfileByIdController);
 
-// centralsRouter.post("/delete", deleteCentralProfileById);
+centralsRouter.post("/delete", deleteCentralProfileByIdController);
 
 
 export default centralsRouter;

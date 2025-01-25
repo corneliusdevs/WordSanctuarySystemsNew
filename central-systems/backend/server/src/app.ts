@@ -4,6 +4,7 @@ import dotenv from "dotenv"
 import cors from "cors" 
 import profilesRouter from "./routers/profiles.router";
 import cookiesParser from "cookie-parser"
+import kpiRouter from "./routers/kpi.router";
 
 const app = express();
 
@@ -34,6 +35,7 @@ app.get("/", (req: Request, res: Response) => {
 
 app.use("/api/auth", authRouter)
 app.use("/api/profiles", profilesRouter)
+app.use("/api/departments", kpiRouter)
 
 // Graceful shutdown - Disconnect Prisma Clients when the server shuts down
 process.on("SIGINT", async () => {

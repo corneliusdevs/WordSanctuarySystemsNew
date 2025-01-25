@@ -1,15 +1,20 @@
 import express from "express";
-import { createDepartmentClassController, getAllDepartmentClasses } from "../controllers/departmentClass.controller";
+import { 
+    createDepartmentClassController, 
+    deleteDepartmentClassController, 
+    getAllDepartmentClasses, 
+    getDepartmentClassByIdController, 
+    updateDepartmentClassController } from "../controllers/departmentClass.controller";
 
 
 const departmentClassRouter = express.Router();
 
-// departmentClassRouter.get("/fetch/:departmentClassID", getDepartmentClassById);
+departmentClassRouter.get("/fetch/:departmentClassID", getDepartmentClassByIdController);
 
 departmentClassRouter.get("/all", getAllDepartmentClasses);
 
 departmentClassRouter.post("/create", createDepartmentClassController);
-// departmentClassRouter.post("/update", updateDepartmentClassById);
-// departmentClassRouter.post("/delete", deleteDepartmentClassById);
+departmentClassRouter.post("/update", updateDepartmentClassController);
+departmentClassRouter.post("/delete", deleteDepartmentClassController);
 
 export default departmentClassRouter;

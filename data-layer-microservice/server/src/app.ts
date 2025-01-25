@@ -14,7 +14,7 @@ app.use(express.json()); // Middleware for parsing JSON bodies
 
 app.get("/", (req: Request, res: Response)=>{
     res.send("hello, database microservice running")
-}) 
+})
 
 // Define routes for the app
 app.use('/api/database/mongodb', mongoDbRouter);

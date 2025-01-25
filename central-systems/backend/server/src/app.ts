@@ -15,7 +15,7 @@ dotenv.config() // call the dotenv package to use the env variables
 app.use(express.json()) // middleware for parsing body of requests 
 
 app.use(cookiesParser()); // allows us to read and set cookies
- 
+
 // Define CORS options (optional)
 const corsOptions = {
   origin: 'http://localhost:3000', // specify the allowed domain or use '*' to allow all

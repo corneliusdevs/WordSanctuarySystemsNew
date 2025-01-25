@@ -16,7 +16,7 @@ export default function MembersDashboardPage() {
     }
   }
   useEffect(()=>{
-    shouldredirect()
+    shouldredirect() 
   }, [])
 
   return (

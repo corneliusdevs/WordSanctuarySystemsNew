@@ -1,12 +1,17 @@
-"use client"
+
 import DashboardNavbar from "@/components/dashboard/DashboardNavbar";
-import OnboardIndividualComponent from "@/components/dashboard/IndividualOnboardingComponent";
+import dynamic from 'next/dynamic'
+ 
+const OnboardIndividualComponentWithNoSSR = dynamic(
+  () => import('@/components/dashboard/IndividualOnboardingComponent'),
+  { ssr: false }
+)
 
 export default function OnboardIndividualPage() {
   return (
     <div>
       <DashboardNavbar />
-      <OnboardIndividualComponent titleText="Onboard an Individual"/>
+      <OnboardIndividualComponentWithNoSSR titleText="Onboard an Individual"/>
     </div>
   );
 }

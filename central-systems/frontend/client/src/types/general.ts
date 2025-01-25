@@ -107,6 +107,9 @@ export type Member = {
 
 type Status = 'Sent' | 'Registered' | 'Accepted' | 'Declined';
 
+export type InvitationStatus = 'Sent' | 'Registered' | 'Accepted' | 'Declined';
+
+
 export interface InvitationsTable {
   name: string;
   email: string;

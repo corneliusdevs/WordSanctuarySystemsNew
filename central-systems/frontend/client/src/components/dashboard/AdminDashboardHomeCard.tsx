@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 
 interface AdminDashboardItemCardProps {
   styles: string;
@@ -11,12 +10,10 @@ interface AdminDashboardItemCardProps {
 }
 
 const AdminDashboardHomeCard = ({
-  styles,
   title,
   text,
   // imageSrc,
   Icon,
-  progress,
 }: AdminDashboardItemCardProps) => {
   return (
     <div>

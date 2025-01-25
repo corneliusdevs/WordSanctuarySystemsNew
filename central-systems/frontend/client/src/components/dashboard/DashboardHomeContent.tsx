@@ -2,7 +2,6 @@ import Link from "next/link";
 import DashboardItemCard from "./DashboardItemCard";
 import { LuMessageSquareDiff } from "react-icons/lu";
 import { IoMailOpenOutline } from "react-icons/io5";
-import { Progress } from "@/components/ui/progress";
 
 const DashboardHomeComponent = () => {
   return (

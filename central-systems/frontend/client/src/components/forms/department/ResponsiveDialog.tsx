@@ -1,6 +1,5 @@
 import * as React from "react";
 
-
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -42,8 +41,8 @@ interface ResponsiveDialogProps {
   customJSXContent?: React.ReactNode;
   isDisabled?: boolean;
   cancelButtonOff?: boolean;
-  dialogOnMobile? : boolean; // controls if a dialog should be used in mobile or not
-  fitContentToHeight?: boolean;  // determines if the scroll area component height used should be set to fit-content or a default height should be used 
+  dialogOnMobile?: boolean; // controls if a dialog should be used in mobile or not
+  fitContentToHeight?: boolean; // determines if the scroll area component height used should be set to fit-content or a default height should be used
 }
 
 export function ResponsiveDialog({
@@ -59,11 +58,13 @@ export function ResponsiveDialog({
   cancelButtonOff,
   dialogOnMobile,
   fitContentToHeight,
-  ...props
 }: ResponsiveDialogProps) {
   const [open, setOpen] = React.useState(false);
   const isDesktop = useMediaQuery("(min-width: 500px)");
 
+
+  console.log(buttonSize, buttonClassname, buttonVariant, isDisabled);
+  
   if (isDesktop || dialogOnMobile) {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
@@ -101,7 +102,9 @@ export function ResponsiveDialog({
           <DrawerTitle>{title}</DrawerTitle>
           <DrawerDescription>{description && description}</DrawerDescription>
         </DrawerHeader>
-        <ScrollArea className={`w-full ${fitContentToHeight ? "h-fit" : "h-[65vh]"} my-4`}>
+        <ScrollArea
+          className={`w-full ${fitContentToHeight ? "h-fit" : "h-[65vh]"} my-4`}
+        >
           {customJSXContent && customJSXContent}
         </ScrollArea>
         <DrawerFooter className="pt-2">

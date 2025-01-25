@@ -1,5 +1,5 @@
 import express from 'express'
-import { invitationRequestController, requestLoginCredentailsController, submitAccessRequestController, verifyInvitationRequestController, verifyLoginRequestController } from '../controllers/auth.controller'
+import { invitationRequestController, logoutControlller, requestLoginCredentailsController, submitAccessRequestController, verifyInvitationRequestController, verifyLoginRequestController } from '../controllers/auth.controller'
 
 
 const authRouter = express.Router()
@@ -7,6 +7,8 @@ const authRouter = express.Router()
 //  login route handlers
 
 authRouter.post("/access/request/login", requestLoginCredentailsController)
+
+authRouter.post("/logout", logoutControlller)
 
 authRouter.post("/access/request/login/verify", verifyLoginRequestController)
 

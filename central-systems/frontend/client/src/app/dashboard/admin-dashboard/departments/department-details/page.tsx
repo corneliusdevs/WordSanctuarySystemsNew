@@ -1,8 +1,6 @@
-import DepartmentCard from '@/components/dashboard/DepartmentCard'
 import DepartmentCardHome from '@/components/dashboard/DepartmentCardHome'
-import React from 'react'
 
-const DepartmentDetails = () => {
+function DepartmentDetails(){
   return (
     <div>
         <DepartmentCardHome/>

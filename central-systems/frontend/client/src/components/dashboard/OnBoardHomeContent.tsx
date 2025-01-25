@@ -13,35 +13,35 @@ const OnBoardHomeComponent = () => {
             <DashboardItemCard
               toptext="Installation"
               bottomText="25 Onboarded"
-              styles=""
+              title=""
             />
           </Link>
           <Link href={"/dashboard/onboard/department"}>
             <DashboardItemCard
               toptext="Department"
               bottomText="10 Onboarded"
-              styles=""
+              title=""
             />
           </Link>
           <Link href={"/dashboard/onboard/department/type"}>
             <DashboardItemCard
               toptext="Department Types"
               bottomText="10 Created"
-              styles=""
+              title=""
             />
           </Link>
           <Link href={"/dashboard/onboard/individual"}>
             <DashboardItemCard
               toptext="Individual"
               bottomText="10 Onboarded"
-              styles={""}
+              title=""
             />
           </Link>
           <Link href={"/dashboard/onboard/centrals"}>
             <DashboardItemCard
               toptext="Centrals"
               bottomText="10 Onboarded"
-              styles={""}
+              title=""
             />
           </Link>
         </div>

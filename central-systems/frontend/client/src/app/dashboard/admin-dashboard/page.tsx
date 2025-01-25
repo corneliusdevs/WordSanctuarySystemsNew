@@ -3,7 +3,7 @@ import DashboardNavbar from '@/components/dashboard/DashboardNavbar'
 import DashboardWelcomeComponent from '@/components/dashboard/DashboardWelcomeComponent'
 import React from 'react'
 
-const AdminDashboard = () => {
+function AdminDashboard () {
   return (
     <div>
       <DashboardNavbar />

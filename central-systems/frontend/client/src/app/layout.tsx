@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { InstallationMemberStoreProvider } from "@/providers/AddMembersStoreProvider";
 import { DepartmentMemberStoreProvider } from "@/providers/AddDeptMemberProvider";
 import { AddDepartmentToCentralStoreProvider } from "@/providers/AddDepartmentToCentral.Provider";
+import { ProfileStoreProvider } from "@/providers/ProfileStoreProvider";
 
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
@@ -30,13 +31,15 @@ export default function RootLayout({
     <html lang="en">
       <body className={`m-0 p-0 antialiased`}>
         {/* the state used by add member component */}
-        <InstallationMemberStoreProvider>
-          <DepartmentMemberStoreProvider>
-            <AddDepartmentToCentralStoreProvider>
-              {children}
-            </AddDepartmentToCentralStoreProvider>
-          </DepartmentMemberStoreProvider>
-        </InstallationMemberStoreProvider>
+        <ProfileStoreProvider> 
+          <InstallationMemberStoreProvider>
+            <DepartmentMemberStoreProvider>
+              <AddDepartmentToCentralStoreProvider>
+                {children}
+              </AddDepartmentToCentralStoreProvider>
+            </DepartmentMemberStoreProvider>
+          </InstallationMemberStoreProvider>
+        </ProfileStoreProvider>
         <Toaster />
       </body>
     </html>

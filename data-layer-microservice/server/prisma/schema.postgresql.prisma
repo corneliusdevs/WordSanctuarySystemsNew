@@ -97,19 +97,5 @@ model DepartmentClass {
     modifiedAt            DateTime @updatedAt
 }
 
-// model AccountsClass {
-//     account_class_id   String   @id @default(cuid())
-//     account_class_name String @unique
-//     description  String
-//     createdAt                DateTime @default(now()) // automatically set to the current date/time when the
-//     modifiedAt               DateTime @updatedAt
-// }
 
-// model Accounts {
-//     account_id   String   @id @default(cuid())
-//     profile_id String // Id of the profile associated with the account
-//     account_type_id String  // must correspond to an account class id
-//     permisions  Json
-//     createdAt                DateTime @default(now()) // automatically set to the current date/time when the
-//     modifiedAt               DateTime @updatedAt
-// }
+

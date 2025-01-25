@@ -81,7 +81,7 @@ const removeInstallationMemberFromState = (
   membersInInstallation: SelectedMemberDetails[],
   profile_id: string
 ) => {
-  let membersInInstallationCopy = [...membersInInstallation];
+  const membersInInstallationCopy = [...membersInInstallation];
 
   for (let i = 0; i < membersInInstallationCopy.length; i++) {
     // if the product is already in the state,

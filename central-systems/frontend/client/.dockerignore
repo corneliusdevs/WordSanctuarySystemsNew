@@ -1,0 +1,39 @@
+# Ignore node_modules since they will be installed inside the container
+node_modules
+
+# Ignore build artifacts
+.next
+
+# Ignore Next.js cache
+.next/cache
+
+# Ignore environment variable files (e.g., .env files)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Ignore log files
+*.log
+
+# Ignore local IDE/editor files
+.vscode
+.idea
+*.swp
+*.swo
+
+# Ignore temporary files
+*.tmp
+*.bak
+*.swp
+
+# Ignore git files
+.git
+.gitignore
+
+# Ignore Docker-related files
+Dockerfile
+.dockerignore
+
+# Ignore any other custom files you don't want in the image

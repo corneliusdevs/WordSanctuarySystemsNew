@@ -1,7 +1,7 @@
 import DepartmentHome from '@/components/dashboard/DepartmentHome'
 import React from 'react'
 
-const Departments = () => {
+function Departments()  {
   return (
     <div>
       <DepartmentHome/>

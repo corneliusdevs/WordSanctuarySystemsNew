@@ -1,19 +1,16 @@
 "use client";
-import Image from "next/image";
-import { LuMessageSquareDiff } from "react-icons/lu";
 
 interface DashboardItemCardProps {
-  styles: string;
+  styles?: string;
   title: string;
   toptext: string;
   bottomText: string;
   // imageSrc: string;
-  Icon: React.ReactNode;
+  Icon?: React.ReactNode;
   progress?: number;
 }
 
 const DashboardItemCard = ({
-  styles,
   title,
   toptext,
   bottomText,
@@ -35,7 +32,7 @@ const DashboardItemCard = ({
     <section className="rounded-2xl shadow-lg border p-4 bg-white max-w-full max-h-xs">
       <header className="flex items-center justify-between">
         <h2 className="text-xl font-medium text-gray-500 uppercase">{title}</h2>
-        <div>{Icon}</div>
+        <div>{Icon && Icon}</div>
       </header>
       <div className="mt-4 flex justify-between">
         <h1 className="font-bold text-gray-900 text-9xl">{toptext}</h1>

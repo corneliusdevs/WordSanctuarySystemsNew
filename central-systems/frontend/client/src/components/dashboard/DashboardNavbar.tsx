@@ -1,22 +1,19 @@
 "use client";
 
-// import { CalendarDays, Contact2, Mail, MailCheck } from "lucide-react";
 
 import Image from "next/image";
 
-import { FC, useState } from "react";
+import { useState } from "react";
 
 import Link from "next/link";
 
-import ButtonWithIcons from "../ButtonWithIcon";
-import Sidebar from "../Sidebar";
-import { usePathname } from "next/navigation";
+// import { usePathname } from "next/navigation";
 import { FiMenu, FiX } from "react-icons/fi";
 
 // interface DashboardNavbarProps {}
 
-const DashboardNavbar: FC = () => {
-  const currentPath = usePathname();
+const DashboardNavbar = () => {
+  // const currentPath = usePathname();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -92,7 +89,7 @@ const DashboardNavbar: FC = () => {
         <div className="pr-[20px]">
           <Image
             src="/assets/Vector.png"
-            alt="mclev logo"
+            alt="word sanctuary logo"
             height={10}
             width={73.02}
             className=""
@@ -100,30 +97,30 @@ const DashboardNavbar: FC = () => {
         </div>
         <div className=" pl-[50px] pt-[10px]">
           <nav className="hidden md:flex space-x-8 text-sm font-medium text-gray-500">
-            <a
-              href="#home"
+            <Link
+              href="/dashboard/members"
               className="hover:text-[#FFFFFF] transition-colors duration-200"
             >
               Home
-            </a>
-            <a
+            </Link>
+            <Link
               href="#support"
               className="hover:text-[#FFFFFF] transition-colors duration-200"
             >
               Onboard
-            </a>
-            <a
+            </Link>
+            <Link
               href="/dashboard/members"
               className="hover:text-[#FFFFFF] transition-colors duration-200"
             >
               Profile
-            </a>
-            <a
-              href="#support"
+            </Link>
+            <Link
+              href="/dashboard/logout"
               className="hover:text-[#FFFFFF] transition-colors duration-200"
             >
               Log Out
-            </a>
+            </Link>
           </nav>
 
           {/* Menu Icon for Mobile */}
@@ -145,35 +142,35 @@ const DashboardNavbar: FC = () => {
         {isMenuOpen && (
           <div className="absolute top-16 right-0 w-1/4 bg-[#3A2D4A] text-gray-400 shadow-lg rounded-lg p-4 z-10 md:hidden">
             <nav className="flex flex-col space-y-4">
-              <a
+              <Link
                 href="#home"
                 className="hover:text-[#FFFFFF] transition-colors duration-200"
                 onClick={toggleMenu} // Close the menu when a link is clicked
               >
                 Home
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#support"
                 className="hover:text-[#FFFFFF] transition-colors duration-200"
                 onClick={toggleMenu}
               >
                 Onboard
-              </a>
+              </Link>
 
-              <a
+              <Link
                 href="/dashboard/members"
                 className="hover:text-[#FFFFFF] transition-colors duration-200"
                 onClick={toggleMenu}
               >
                 Profile
-              </a>
-              <a
-                href="#support"
+              </Link>
+              <Link
+                href="/dashboard/logout"
                 className="hover:text-[#FFFFFF] transition-colors duration-200"
                 onClick={toggleMenu}
               >
                 Log Out
-              </a>
+              </Link>
             </nav>
           </div>
         )}

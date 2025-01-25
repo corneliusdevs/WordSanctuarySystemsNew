@@ -1,4 +1,4 @@
-//import MaxwidthWrapper from "@/components/Min_Max_Width_Wrapper";
+import MaxwidthWrapper from "@/components/Min_Max_Width_Wrapper";
 import DesktopNavbar from "@/components/navbar/DesktopNavbar";
 import Navbar from "@/components/navbar/Navbar";
 import Hero from "@/components/Hero";
@@ -12,7 +12,7 @@ import Footer from "@/components/footer/Footer";
 export default function Home() {
   return (
     <div className="">
-      {/* <MaxwidthWrapper> */}
+      <MaxwidthWrapper>
         <main className="">
         {/* <DesktopNavbar />
         <Navbar /> */}
@@ -27,7 +27,7 @@ export default function Home() {
           <Installation />
         </main>
         <Footer/>
-      {/* </MaxwidthWrapper> */}
+      </MaxwidthWrapper>
     </div>
   );
 }

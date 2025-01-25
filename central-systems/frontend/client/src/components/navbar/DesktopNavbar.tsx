@@ -8,14 +8,15 @@ import MaxwidthWrapper from "../Min_Max_Width_Wrapper";
 const DesktopNavbar: FC = () => {
   const navbarItems = [
     { text: "Home", link: "/" },
-    { text: "About", link: "about-us" },
-    { text: "Installations", link: "installation" },
-    { text: "Services", link: "services" },
-    { text: "Sign In", link: "sign-in" }, // Replacing "Onboard" with "Sign In"
+    { text: "About", link: "/" },
+    { text: "Installations", link: "/" },
+    { text: "Services", link: "/" },
+    { text: "Logout", link: "/dashboard/logout" },
+    { text: "Sign In", link: "auth/login" }, // Replacing "Onboard" with "Sign In"
   ];
 
   return (
-    <nav className="hidden md:block w-full bg-primarycol shadow-lg">
+    <nav className="hidden md:block w-full bg-primarycol shadow-lg pr-6">
       <MaxwidthWrapper>
         <div className="flex justify-between items-center h-20 px-29">
           {/* Logo */}
@@ -35,7 +36,7 @@ const DesktopNavbar: FC = () => {
               <Link
                 key={`${item.text}-${index}`}
                 href={`/${item.link}`}
-                className="text-white hover:text-gray-300 transition duration-300 text-lg uppercase"
+                className="text-white hover:bg-white/90 hover:text-primarycol p-2 transition duration-300 text-lg uppercase"
               >
                 {item.text}
               </Link>

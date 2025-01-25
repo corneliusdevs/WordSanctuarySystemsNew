@@ -7,7 +7,7 @@ const app = express()
 dotenv.config() // allows us to use the env variables
 app.use(express.json()); // Middleware for parsing JSON bodies
 const PORT = process.env.PORT || 5003
-
+ 
 app.get("/", (req: Request, res: Response)=>{
     res.send("hello, kpi-backend microservice running")
 })

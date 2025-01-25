@@ -5,7 +5,7 @@ import { SelectWithSearchOptionType } from "@/components/SelectSearchComponent";
 import { DepartmentType, Heirarchy } from "@/types/general";
 
 export function removeItemFromList(item: string, itemsList: string[]) {
-  let index = itemsList.indexOf(item);
+  const index = itemsList.indexOf(item);
   const itemsListCopy = [...itemsList];
   if (index !== -1) {
     console.log("splicing the item ", index);
@@ -60,7 +60,7 @@ const leaderShipLevelLookupReverse = new Map([
 ]);
 
 export function extractLeadershipLevelFromProfileId (str:string){
-    // @ts-ignore
+    // @ts-expect-error this works but typescript complains 
     const leadership_level:FormattedLeadershipLevelNames = str.split(" ")[0]
     
     return leaderShipLevelLookupReverse.get(leadership_level)

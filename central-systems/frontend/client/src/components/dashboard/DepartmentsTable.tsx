@@ -1,7 +1,6 @@
 "use strict";
 import React from "react";
-import { ArrowUpRight } from "lucide-react";
-import { departments } from "./mock-data/departments";
+// import { departments } from "./mock-data/departments";
 import { FaArrowTrendDown } from "react-icons/fa6";
 import { FaArrowTrendUp } from "react-icons/fa6";
 import { Department } from "@/types/general";
@@ -42,7 +41,7 @@ const DepartmentTable: React.FC<DepartmentProps> = ({ departments }) => {
         <tbody>
           {departments.map((dept, index) => (
             <tr
-              key={dept.name}
+              key={dept.name + index}
               className="border-t border-gray-200 hover:bg-gray-50 transition-colors"
             >
               <td className="py-3 px-4 text-gray-900">{dept.name}</td>

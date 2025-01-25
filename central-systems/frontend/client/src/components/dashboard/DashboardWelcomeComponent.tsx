@@ -1,8 +1,6 @@
 import React from "react";
-import { FC } from "react";
-import { UserData } from "../../types/general";
 
-const DashboardWelcomeComponent: FC<UserData> = ({ username, title }) => {
+const DashboardWelcomeComponent = ({ username }: {username:string, title:string}) => {
   return (
     <div className="absolute top-2 left-4 right-4 bg-white rounded-3xl p-4 z-5 mt-[100px]">
       <div className="flex items-center justify-between">
@@ -12,9 +10,9 @@ const DashboardWelcomeComponent: FC<UserData> = ({ username, title }) => {
         </div>
         <div className="flex items-center">
           <div className="flex flex-col items-center">
-            <span className="text-wrap font-semibold text-center text-sm leading-none">
-              Central <br /> Dashboard
-            </span>
+            {/* <span className="text-wrap font-semibold text-center text-sm leading-none">
+              {``} <br /> Dashboard
+            </span> */}
             {/* <span className="font-medium text-wrap">Dashboard</span> */}
           </div>
           <button

@@ -1,6 +1,6 @@
 import { KPIData } from "@/types/general";
 
-export const departments = [
+export const departments: {name:string, members:number, kpi:number, trend: "up" | "down"}[] = [
     { name: 'Choir', members: 15, kpi: 20, trend: 'up' },
     { name: 'Evangelism', members: 10, kpi: 10, trend: 'down' },
     { name: 'Drama', members: 12, kpi: 25, trend: 'up' },

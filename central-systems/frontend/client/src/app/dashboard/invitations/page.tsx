@@ -1,4 +1,4 @@
-import CreateInviteComponent from "@/components/dashboard/CreateInviteComponent";
+// import CreateInviteComponent from "@/components/dashboard/CreateInviteComponent";
 import InvitationsHome from "@/components/dashboard/InvitationsHome";
 
 

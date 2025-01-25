@@ -3,9 +3,8 @@ import { EmailValidatorObj } from "../validators/createIndividualProfileValidato
 import { sendLoginCredentialsToEmailService } from "../../services/mailing/mailer";
 import { TokenTypes } from "../../services/mailing/saveTokenService";
 import { ZodError } from "zod";
-import { getAllIndividualProfiles } from "../postgres/profiles/individualController";
 import { mongoDbClient, postgresClient } from "../../db_connections/prismaClients";
-import { getInvitationTokenValidator, getLoginCredentailsValidator } from "../validators/accounts/invitationRequestValidator";
+import { getLoginCredentailsValidator } from "../validators/accounts/invitationRequestValidator";
 
 
 
@@ -13,22 +12,6 @@ import { getInvitationTokenValidator, getLoginCredentailsValidator } from "../va
 export const loginRequestController = async (req:Request, res:Response)=>{
     try{
        const parsedBody = EmailValidatorObj.parse(req.body);
-
-    //    check if the email is registered in the system 
-    const profile = await postgresClient.profiles.findUnique({
-        where: {
-            email: parsedBody.email
-        }
-    })
-
-    if(!profile){
-       res.status(401).json({
-        success: false,
-        message: "No profile associated with this email" 
-       })
-
-       return
-    }
        
        const response = await sendLoginCredentialsToEmailService(parsedBody.email, TokenTypes.LOGIN)
 
@@ -36,7 +19,7 @@ export const loginRequestController = async (req:Request, res:Response)=>{
        if(response){
           res.status(200).json({
             success: true,
-            message: "Invitation sent"
+            message: "Login credentials sent"
           })
 
           return
@@ -95,7 +78,7 @@ export const getLoginCredentailsController = async (req:Request, res:Response)=>
             success: true,
             data: {
                 ...loginCredentials,
-                profile_id: profile ? profile.profile_id : ""
+                profile_details: profile
             },
          })
 

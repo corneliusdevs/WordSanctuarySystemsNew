@@ -21,7 +21,6 @@ const renderLabel = ({
   innerRadius,
   outerRadius,
   percent,
-  index,
 }: any) => {
   const radius = innerRadius + (outerRadius - innerRadius) + 10; // Position the label closer
   const x = cx + radius * Math.cos(-midAngle * (Math.PI / 180));

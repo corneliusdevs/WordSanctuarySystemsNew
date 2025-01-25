@@ -9,7 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Dispatch, FC, SetStateAction } from "react";
+import { FC } from "react";
 import { Button } from "./ui/button";
 
 export type SelectItem = {
@@ -22,12 +22,12 @@ interface SelectProps {
   label: string;
   itemsToSelect: SelectItem[];
   // onValueChange: Dispatch<SetStateAction<string>>
-  onValueChange: (value:string)=>void;
-  onValueChangeTaskFxn?: ()=> void
-  selectedValue?: string
-  shouldDisplayExecuteValueChangeButton?: boolean,
-  executeValueChangeButtonText?: string,
-  executeValueChangeButtonStyle?: string
+  onValueChange: (value: string) => void;
+  onValueChangeTaskFxn?: () => void;
+  selectedValue?: string;
+  shouldDisplayExecuteValueChangeButton?: boolean;
+  executeValueChangeButtonText?: string;
+  executeValueChangeButtonStyle?: string;
 }
 
 const SelectComponent: FC<SelectProps> = ({
@@ -39,47 +39,49 @@ const SelectComponent: FC<SelectProps> = ({
   selectedValue,
   shouldDisplayExecuteValueChangeButton,
   executeValueChangeButtonText,
-  executeValueChangeButtonStyle
+  executeValueChangeButtonStyle,
 }) => {
-
-  React.useEffect(()=>{
-    if(onValueChangeTaskFxn){
+  React.useEffect(() => {
+    if (onValueChangeTaskFxn) {
       // execute the onValueChangeTaskFxn function
-      onValueChangeTaskFxn()
+      onValueChangeTaskFxn();
     }
-
-  }, [selectedValue])
+  }, [selectedValue]);
 
   return (
     <div>
+      <Select onValueChange={onValueChange}>
+        <SelectTrigger className="">
+          <SelectValue placeholder={placeholder} />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectLabel>{label}</SelectLabel>
 
-    <Select onValueChange={onValueChange}>
-      <SelectTrigger className="">
-        <SelectValue placeholder={placeholder} />
-      </SelectTrigger>
-      <SelectContent>
-        <SelectGroup>
-          <SelectLabel>{label}</SelectLabel>
-
-          {itemsToSelect.map((item, index) => {
-            return (
-              <SelectItem key={item.name + index} value={item.value}>
-                {item.name}
-              </SelectItem>
-            );
-          })}
-
-          
-        </SelectGroup>
-      </SelectContent>
-    </Select>
-    {
-       shouldDisplayExecuteValueChangeButton && executeValueChangeButtonText &&  <Button variant={"default"} className={executeValueChangeButtonStyle} onClick={()=>{
-          onValueChangeTaskFxn && onValueChangeTaskFxn()
-       }}>
-          {executeValueChangeButtonText}
-       </Button>
-    }
+            {itemsToSelect.map((item, index) => {
+              return (
+                <SelectItem key={item.name + index} value={item.value}>
+                  {item.name}
+                </SelectItem>
+              );
+            })}
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+      {shouldDisplayExecuteValueChangeButton &&
+        executeValueChangeButtonText && (
+          <Button
+            variant={"default"}
+            className={executeValueChangeButtonStyle}
+            onClick={() => {
+              if (onValueChangeTaskFxn) {
+                onValueChangeTaskFxn();
+              }
+            }}
+          >
+            {executeValueChangeButtonText}
+          </Button>
+        )}
     </div>
   );
 };

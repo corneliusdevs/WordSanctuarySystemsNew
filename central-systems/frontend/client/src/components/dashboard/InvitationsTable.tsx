@@ -1,8 +1,8 @@
-import { InvitationsTable } from "@/types/general";
+import { InvitationsTable as InvitationsTableType } from "@/types/general";
 import React from "react";
 
 interface InvitationsTableProps {
-  invitations: InvitationsTable[];
+  invitations: InvitationsTableType[];
 }
 
 const InvitationsTable: React.FC<InvitationsTableProps> = ({ invitations }) => {

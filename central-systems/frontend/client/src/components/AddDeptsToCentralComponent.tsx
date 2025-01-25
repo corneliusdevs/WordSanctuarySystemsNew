@@ -7,9 +7,9 @@ import { ResponsiveDialog } from "./forms/department/ResponsiveDialog";
 import { useAddDepartmentToCentralStore } from "@/providers/AddDepartmentToCentral.Provider";
 import SelectedDepartmentsViewer from "./SelectedCentralsViewer";
 
-interface AddDepartmentToCentralComponentProps {}
+// interface AddDepartmentToCentralComponentProps {}
 
-export const AddDepartmentToCentralComponent = ({}: AddDepartmentToCentralComponentProps) => {
+export const AddDepartmentToCentralComponent = () => {
   //  state from the store in zustnad
   const {
     setAllDepartmentsData,

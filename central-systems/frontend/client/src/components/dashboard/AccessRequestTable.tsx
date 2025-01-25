@@ -1,8 +1,9 @@
 "use client"
 
+import { navigate } from '@/app/actions';
 import { AccessRequest } from '@/types/general';
 import React from 'react'
-import { useRouter } from "next/navigation";
+
 
 
 interface AccessRequestProps {
@@ -11,8 +12,7 @@ interface AccessRequestProps {
   }
   
   const handleView = (request) => {
-    const router = useRouter();
-    router.push(`/dashboard/request-details?id=${request.id}`);
+    navigate(`/dashboard/request-details?id=${request.id}`);
   };
 
 

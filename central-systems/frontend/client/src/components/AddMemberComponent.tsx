@@ -7,9 +7,8 @@ import { ResponsiveDialog } from "./forms/department/ResponsiveDialog";
 import { useAddMemberStore } from "@/providers/AddMembersStoreProvider";
 import SelectedMembersViewer from "./SelectedMembersViewer";
 
-interface AddMemberComponentProps {}
 
-export const AddMemberComponent = ({}: AddMemberComponentProps) => {
+export const AddMemberComponent = () => {
   //  state from the store in zustnad
   const {
     setAllMembersData,

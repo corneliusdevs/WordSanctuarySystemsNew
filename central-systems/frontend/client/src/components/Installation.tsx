@@ -13,18 +13,18 @@ const Installation: FC = () => {
   ];
 
   return (
-    <section className="w-full py-10 bg-white">
-      <div className="max-w-7xl mx-auto px-4">
+    <section className="w-full py-10 bg-white flex justify-center">
+      <div className="w-full mx-auto px-4 flex justify-center">
         {/* Images */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 justify-center items-center">
+        <div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 justify-center items-center">
           {installations.map((installation, index) => (
-            <div key={index} className="relative w-28 h-52 overflow-hidden rounded-lg">
+            <div key={index} className="relative w-full h-52 overflow-hidden rounded-3xl">
               <Image
                 src={installation.imgSrc}
                 alt={installation.location}
                 layout="fill"
                 objectFit="cover"
-                className="rounded-3xl"
+                className="rounded-3xl hover:scale-105 duration-500 transition-all"
               />
               <div className="absolute bottom-4 left-4 text-white">
                 <h3 className="text-lg font-bold">{installation.location}</h3>

@@ -27,7 +27,8 @@ const Navbar: FC = () => {
     { text: "About", link: "about-us" },
     { text: "Installations", link: "installation" },
     { text: "Services", link: "services" },
-    { text: "Sign In", link: "sign-in" },
+    { text: "Logout", link: "/dashboard/logout" },
+    { text: "Sign In", link: "auth/login" },
   ];
 
   const [openNavbar, setOpenNavbar] = useState<boolean>(false);

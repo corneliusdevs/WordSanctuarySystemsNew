@@ -1,0 +1,93 @@
+# services:
+#   # Nginx service
+#   nginx:
+#     build:
+#       context: ./nginx
+#     image: cdevsit/cms-nginx:latest  # Push this to Docker Hub or build locally
+#     ports:
+#       - "80:80"  # Expose port 80 for Nginx
+#     networks:
+#       - app-network
+#     depends_on:
+#       - cms-frontend
+#       - cms-backend
+#       - kpi-backend
+#       - cms-data-layer-backend
+
+#   # Frontend (Next.js) service
+#   cms-frontend:
+#     image: cdevsit/cms-frontend:latest  # Built and pushed via CI/CD
+#     networks:
+#       - app-network
+#     restart: always
+
+#   # Backend (Express.js) for CMS
+#   cms-backend:
+#     image: cdevsit/cms-backend:latest  # Built and pushed via CI/CD
+#     networks:
+#       - app-network
+#     restart: always
+
+#   # Backend (Express.js) for KPI
+#   kpi-backend:
+#     image: cdevsit/kpi-backend:latest  # Built and pushed via CI/CD
+#     networks:
+#       - app-network
+#     restart: always
+
+#   # Backend (Express.js) for Data Layer Microservice
+#   cms-data-layer-backend:
+#     image: cdevsit/cms-data-layer-backend:latest  # Built and pushed via CI/CD
+#     networks:
+#       - app-network
+#     restart: always
+
+# networks:
+#   app-network:
+#     driver: bridge
+
+services:
+  # Nginx service
+  nginx:
+    image: cdevsit/cms-nginx-server:latest  # Pulls this from Docker Hub
+    ports:
+      - "80:80"  # Expose port 80 for Nginx
+    networks:
+      - app-network
+    depends_on:
+      - cms-frontend
+      - cms-backend
+      - kpi-backend
+      - cms-data-layer-backend
+
+  # Frontend (Next.js) service
+  cms-frontend:
+    image: cdevsit/cms-frontend:latest  # Pulls this from Docker Hub
+    networks:
+      - app-network
+    restart: always
+
+  # Backend (Express.js) for CMS
+  cms-backend:
+    image: cdevsit/cms-backend:latest  # Pulls this from Docker Hub
+    networks:
+      - app-network
+    restart: always
+
+  # Backend (Express.js) for KPI
+  kpi-backend:
+    image: cdevsit/kpi-backend:latest  # Pulls this from Docker Hub
+    networks:
+      - app-network
+    restart: always
+
+  # Backend (Express.js) for Data Layer Microservice
+  cms-data-layer-backend:
+    image: cdevsit/cms-data-layer-backend:latest  # Pulls this from Docker Hub
+    networks:
+      - app-network
+    restart: always
+
+networks:
+  app-network:
+    driver: bridge

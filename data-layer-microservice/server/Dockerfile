@@ -35,6 +35,9 @@
 # Step 1: Use an official Node.js image as the build environment
 FROM node:18 AS builder
 
+# Install OpenSSL 1.1 for prisma client generation
+RUN apt-get update && apt-get install -y libssl1.1
+
 # Step 2: Set the working directory
 WORKDIR /app
 

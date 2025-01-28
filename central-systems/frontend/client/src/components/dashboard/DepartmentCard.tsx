@@ -1,6 +1,7 @@
-"use strict"
+"use state"
+
 import React from "react";
-import { mockData } from "./charts/mockData/KPIData";
+// import { mockData } from "./charts/mockData/KPIData";
 import CustomPieChart from "./charts/CustomPieChart";
 import { departmentKPI } from "./mock-data/departments";
 
@@ -9,10 +10,10 @@ interface DepartmentCardProps {
   numberOfMembers: number;
 }
 
-const DepartmentCard: React.FC<DepartmentCardProps> = ({
+const DepartmentCard = ({
   department,
   numberOfMembers,
-}) => {
+}: DepartmentCardProps) => {
   return (
     <div>
       <div>

@@ -6,6 +6,7 @@ import { Button } from "./ui/button";
 import { toast } from "@/hooks/use-toast";
 import { Check, X } from "lucide-react";
 import { navigate } from "@/app/actions";
+import { useProfileStore } from "@/providers/ProfileStoreProvider";
 
 const LoginComponent = () => {
   const [email, setEmail] = useState<string>("");
@@ -22,6 +23,10 @@ const LoginComponent = () => {
 
   const [tokenExpiredError, setTokenExpiredError] = useState<boolean>(false);
   console.log(otp, email);
+
+  console.log(verificationSuccess, verificationErorr, tokenExpiredError);
+
+  const {setLogInStatus, populateProfile} = useProfileStore(state => state)
 
   useEffect(() => {
     const authenticateEmail = async () => {
@@ -122,7 +127,7 @@ const LoginComponent = () => {
     };
 
     authenticateEmail();
-  }, [hasEnteredEmail]);
+  }, [hasEnteredEmail, email]);
 
   useEffect(() => {
     const verifyCredentials = async () => {
@@ -147,6 +152,7 @@ const LoginComponent = () => {
               headers: {
                 "Content-Type": "application/json",
               },
+              credentials: "include",
               body: JSON.stringify({
                 email,
                 otp,
@@ -190,10 +196,12 @@ const LoginComponent = () => {
               ),
             });
 
+            // update profile store with login details
+             populateProfile(responseData.profile)
+             setLogInStatus(true)
             //  redirect to members dashboard
-            navigate("/dashboard/members")
+            navigate("/dashboard/members");
           } else {
-
             toast({
               title: "Invalid Credentials",
               description: (
@@ -233,14 +241,12 @@ const LoginComponent = () => {
     verifyCredentials();
   }, [hasEnteredOtp, otp]);
 
-
-
   return (
     <div
       className="bg-center"
       style={{ backgroundImage: "url('/assets/new4.jpg')" }}
     >
-      <div className="flex justify-center items-center w-full h-[100vh] bg-gray-400/90 backdrop-blur-sm  px-5">
+      <div className="flex justify-center items-center w-full h-[100vh] bg-primarycol/55 backdrop-blur-sm  px-5">
         <div className="flex flex-col">
           <div className="width-[210px] md:w-[400px] bg-white px-4 py-[50px] pt-[30px] rounded-md shadow-xl border-[1px]">
             <div className="text-primarycol text-2xl text-center w-full mb-2">

@@ -31,7 +31,6 @@ export function CreateInviteForm({
   isMutatingDbResource,
   isMutatingDbResourceHandler,
   updateInviteDeatilsHandler,
-  customSubmitButton,
 }: CreateInviteFormProps) {
   const form = useForm<z.infer<typeof CreateInvitationFormSchema>>({
     resolver: zodResolver(CreateInvitationFormSchema),

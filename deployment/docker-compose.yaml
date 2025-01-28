@@ -1,0 +1,74 @@
+services:
+  # Nginx service
+  nginx:
+    image: cdevsit/cms-nginx-server:latest # Pulls this from Docker Hub
+    ports:
+      - "80:80" # Expose port 80 for Nginx
+    networks:
+      - app-network
+    depends_on:
+      - cms-frontend
+      - cms-backend
+      - kpi-backend
+      - cms-data-layer-backend
+    # environment:
+    #   - NGINX_HOST=${NGINX_HOST}
+    #   - NGINX_PORT=${NGINX_PORT}
+    #   - NGINX_ENV=${NGINX_ENV}
+
+  # Frontend (Next.js) service
+  cms-frontend:
+    image: cdevsit/cms-frontend:latest # Pulls this from Docker Hub
+    networks:
+      - app-network
+    restart: always
+    environment:
+      - NEXT_PUBLIC_CENTRAL_SYSTEMS_BASE_API=${NEXT_PUBLIC_CENTRAL_SYSTEMS_BASE_API}
+      - CLOUDINARY_CLOUD_NAME=${CLOUDINARY_CLOUD_NAME}
+      - CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY}
+      - CLOUDINARY_API_SECRET=${CLOUDINARY_API_SECRET}
+      - CLOUDINARY_CLOUD_NAME=${CLOUDINARY_CLOUD_NAME}
+      - CLOUDINARY_API_ENV_VARIABLE=${CLOUDINARY_API_ENV_VARIABLE}
+
+  # Backend (Express.js) for CMS
+  cms-backend:
+    image: cdevsit/cms-backend:latest # Pulls this from Docker Hub
+    networks:
+      - app-network
+    restart: always
+    environment:
+      - DATA_LAYER_SYSTEMS_BASE_API=${DATA_LAYER_SYSTEMS_BASE_API}
+      - DATA_LAYER_KPI_ENDPOINT=${DATA_LAYER_KPI_ENDPOINT}
+      - DATA_LAYER_POSTGRESS_ENDPOINT=${DATA_LAYER_POSTGRESS_ENDPOINT}
+      - JWT_SIGN_SECRET=${JWT_SIGN_SECRET}
+      - ROOT_USER_EMAIL=${ROOT_USER_EMAIL}
+      - NODE_ENV=${NODE_ENV}
+
+  # Backend (Express.js) for KPI
+  kpi-backend:
+    image: cdevsit/kpi-backend:latest # Pulls this from Docker Hub
+    networks:
+      - app-network
+    restart: always
+    environment:
+      - CENTRAL_SYSTEMS_BASE_API=${CENTRAL_SYSTEMS_BASE_API}
+      - DATA_LAYER_MICROSERVICE_KPI_API=${DATA_LAYER_MICROSERVICE_KPI_API}
+      - CENTRAL_SYSTEMS_POSTGRESS_API=${CENTRAL_SYSTEMS_POSTGRESS_API}
+
+  # Backend (Express.js) for Data Layer Microservice
+  cms-data-layer-backend:
+    image: cdevsit/cms-data-layer-backend:latest # Pulls this from Docker Hub
+    networks:
+      - app-network
+    restart: always
+    environment:
+      - MONGODB_CONN_URI=${MONGODB_CONN_URI}
+      - POSTGRES_CONN_URI=${POSTGRES_CONN_URI}
+      - ROOT_USER_EMAIL=${ROOT_USER_EMAIL}
+      - ROOT_USER_PASSWORD=${ROOT_USER_PASSWORD}
+      - CENTRAL_SYSTEMS_FRONTEND_URL=${CENTRAL_SYSTEMS_FRONTEND_URL}
+
+
+networks:
+  app-network:
+    driver: bridge

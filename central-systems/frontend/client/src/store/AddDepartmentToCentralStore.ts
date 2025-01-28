@@ -82,7 +82,7 @@ const removeDepartmentFromCentralFromState = (
   departmentsInCentral: SelectedDepartmentDetails[],
   department_id: string
 ) => {
-  let departmentsInCentralCopy = [...departmentsInCentral];
+  const departmentsInCentralCopy = [...departmentsInCentral];
 
   for (let i = 0; i < departmentsInCentralCopy.length; i++) {
     // if the product is already in the state,

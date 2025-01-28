@@ -1,5 +1,6 @@
 generator client_mongo {
     provider = "prisma-client-js"
+    binaryTargets = ["native", "debian-openssl-3.0.x"]
     output   = "./generated-clients/mongo"
 }
 
@@ -30,12 +31,18 @@ enum TokenType {
     LOGIN
 }
 
-
 enum FinanceEntityType {
     DEPARTMENT
     INDIVIDUAL
     CENTRAL
     INSTALLATION
+}
+
+enum PermissionType {
+    CREATE
+    READ
+    UPDATE
+    DELETE
 }
 
 // test schema for checking db connection
@@ -109,19 +116,37 @@ model AccessRequests {
 }
 
 model AuthTokens {
-    token_id   String   @id @default(auto()) @map("_id") @mongodb.ObjectId
+    token_id   String    @id @default(auto()) @map("_id") @mongodb.ObjectId
     token      String
     expiration Int
     email      String
     otp        String
     token_type TokenType
-    createdAt  DateTime @default(now())
-    modifiedAt DateTime @updatedAt
+    createdAt  DateTime  @default(now())
+    modifiedAt DateTime  @updatedAt
 }
 
 model InvitationRequets {
-    invite_id String  @id @default(auto()) @map("_id") @mongodb.ObjectId
-    email String
+    invite_id   String @id @default(auto()) @map("_id") @mongodb.ObjectId
+    email       String
     description String // reason for the invite
     //profile_id_of_sender 
+}
+
+// This model keeps track of the kind of permissions attached to a resource
+model Resources {
+    resource_id   String         @id @default(auto()) @map("_id") @mongodb.ObjectId
+    resource_name String
+    permission    PermissionType
+    createdAt     DateTime       @default(now())
+    modifiedAt    DateTime       @default(now())
+}
+
+model UserAccountsProfile {
+    account_id  String   @id @default(auto()) @map("_id") @mongodb.ObjectId
+    profile_id  String   @unique // Id of the profile associated with the account
+    accounts    Json // is an array of accounts associated with this account
+    permissions Json // an array of permissions associated with this account
+    createdAt   DateTime @default(now()) // automatically set to the current date/time when the
+    modifiedAt  DateTime @updatedAt
 }

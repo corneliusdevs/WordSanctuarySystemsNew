@@ -4,7 +4,7 @@
 import { Member } from "@/types/general";
 import React from "react";
 import { members } from "./mock-data/members";
-import Members from "./MembersTable";
+// import Members from "./MembersTable";
 import MembersTable from "./MembersTable";
 
 const MembersHome = () => {

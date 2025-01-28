@@ -3,7 +3,6 @@ import React from "react";
 import { IoAdd } from "react-icons/io5";
 import DashboardNavbar from "./DashboardNavbar";
 import DashboardWelcomeComponent from "./DashboardWelcomeComponent";
-import { FaArrowLeft } from "react-icons/fa6";
 import InvitationsTable from "./InvitationsTable";
 import { invitations } from "./mock-data/invitations";
 import { IoArrowBack } from "react-icons/io5";

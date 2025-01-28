@@ -15,7 +15,7 @@ import { SetStateAction, Dispatch } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/Input";
-import { CreateDepartmetalProfileSchema, DepartmentMemberArrayValidator, OtherCreateDepartmentValidators, ValidateCreateDepartmetalProfileSchema } from "./CreateDepartmentFormSchema";
+import { CreateDepartmetalProfileSchema, OtherCreateDepartmentValidators, ValidateCreateDepartmetalProfileSchema } from "./CreateDepartmentFormSchema";
 
 import { AddDepartmentMemberComponent } from "@/components/AddDepartmentMemberComponent";
 import { SelectInstallationComponent } from "@/components/SelectInstallationComponent";

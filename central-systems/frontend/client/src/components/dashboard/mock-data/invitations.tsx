@@ -1,4 +1,11 @@
-export const invitations = [
+import { InvitationStatus } from "@/types/general";
+
+export const invitations: {
+  name: string,
+  email: string,
+  position: string,
+  status: InvitationStatus
+}[] = [
     {
       name: 'Samuel King',
       email: 'samuelKi...',

@@ -249,8 +249,11 @@ RUN npm run build
 # Step 2: Production Stage
 FROM node:18
 
-# Install libssl1.1 (THIS IS THE KEY CHANGE)
-RUN apt-get update && apt-get install -y libssl1.1
+# # Install libssl1.1 (THIS IS THE KEY CHANGE)
+# RUN apt-get update && apt-get install -y libssl1.1
+# Update and install necessary packages, including ca-certificates
+RUN apt-get update && apt-get install -y ca-certificates && \
+    apt-get install -y libssl1.1
 
 WORKDIR /app
 

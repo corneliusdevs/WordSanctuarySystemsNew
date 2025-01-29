@@ -249,6 +249,9 @@ RUN npm run build
 # Step 2: Production Stage
 FROM node:18-slim
 
+# Install libssl1.1 (THIS IS THE KEY CHANGE)
+RUN apt-get update && apt-get install -y libssl1.1
+
 WORKDIR /app
 
 # Copy necessary files from builder

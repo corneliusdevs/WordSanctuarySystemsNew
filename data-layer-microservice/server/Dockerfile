@@ -223,7 +223,7 @@
 FROM node:18 AS builder
 
 # Install OpenSSL 3.0 for Prisma client generation
-RUN apt-get update && apt-get install -y libssl3 
+RUN apt-get update && apt-get install -y openssl libssl3 
 
 # Set working directory
 WORKDIR /app

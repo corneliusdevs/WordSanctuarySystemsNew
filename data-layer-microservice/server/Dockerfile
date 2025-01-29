@@ -220,10 +220,10 @@
 
 
 # Step 1: Build Stage
-FROM node:18-bullseye AS builder
+FROM node:18 AS builder
 
 # Install OpenSSL 3.0 for Prisma client generation
-# RUN apt-get update && apt-get install -y libssl3
+RUN apt-get update && apt-get install -y libssl3
 
 # Set working directory
 WORKDIR /app
@@ -247,13 +247,13 @@ COPY src ./src
 RUN npm run build
 
 # Step 2: Production Stage
-FROM node:18-bullseye-slim
+FROM node:18-slim
 
 # # Install OpenSSL 1.1 and 3.0 to support both binary targets
 # RUN apt-get update && apt-get install -y openssl libssl1.1 libssl3
 
-# Install OpenSSL 1.1 and 3.0 to support both binary targets
-RUN apt-get update && apt-get install -y libssl3
+# # Install OpenSSL 1.1 and 3.0 to support both binary targets
+# RUN apt-get update && apt-get install -y libssl1.1 libssl3
 
 WORKDIR /app
 

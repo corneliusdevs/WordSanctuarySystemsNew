@@ -249,8 +249,11 @@ RUN npm run build
 # Step 2: Production Stage
 FROM node:18-bullseye-slim
 
+# # Install OpenSSL 1.1 and 3.0 to support both binary targets
+# RUN apt-get update && apt-get install -y openssl libssl1.1 libssl3
+
 # Install OpenSSL 1.1 and 3.0 to support both binary targets
-RUN apt-get update && apt-get install -y openssl libssl1.1 libssl3
+RUN apt-get update && apt-get install -y openssl libssl3
 
 WORKDIR /app
 

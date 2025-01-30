@@ -128,7 +128,7 @@ export default function CreateInviteComponent() {
       <div className="mt-8">
         
     <Link href='/dashboard/invitations'>
-      <IoArrowBack className="h-10 w-20" />
+      <IoArrowBack className="h-8 w-16" />
       </Link>
         <div className="w-full justify-center items-center flex">
           <span className="text-primarycol text-center text-3xl mb-8 font-bold">

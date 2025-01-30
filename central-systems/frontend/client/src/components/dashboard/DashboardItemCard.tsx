@@ -16,7 +16,7 @@ const DashboardItemCard = ({
   bottomText,
   // imageSrc,
   Icon,
-  progress
+  progress,
 }: DashboardItemCardProps) => {
   return (
     // <div className="">
@@ -34,22 +34,22 @@ const DashboardItemCard = ({
         <h2 className="text-xl font-medium text-gray-500 uppercase">{title}</h2>
         <div>{Icon && Icon}</div>
       </header>
-      <div className="mt-4 flex justify-between">
-        <h1 className="font-bold text-gray-900 text-9xl">{toptext}</h1>
-        <p className="text-2xl font-medium p-5 mt-6">{bottomText}</p>
+      <div className="mt-2 flex justify-between">
+        <h1 className="font-bold text-gray-900 text-8xl">{toptext}</h1>
+        <p className="text-xl font-medium p-5 mt-2">{bottomText}</p>
       </div>
       <div>
-      {progress !== undefined && (
-        <div className="mt-4">
-          <div className="relative h-5 bg-gray-200 rounded-full">
-            <div
-              className="absolute h-full bg-[#392C49] rounded-full"
-              style={{ width: `${progress}%` }}
-            ></div>
+        {progress !== undefined && (
+          <div className="mt-4">
+            <div className="relative h-5 bg-gray-200 rounded-full">
+              <div
+                className="absolute h-full bg-[#392C49] rounded-full"
+                style={{ width: `${progress}%` }}
+              ></div>
+            </div>
+            <p className="mt-1 text-lg font-semibold">RESPOSE RATE</p>
           </div>
-          <p className="mt-1 text-lg font-semibold">RESPOSE RATE</p>
-        </div>
-      )}
+        )}
       </div>
     </section>
   );

@@ -49,15 +49,15 @@ const CustomPieChart: React.FC<{ data: KPIData }> = ({ data }) => {
   ];
 
   return (
-    <div className="w-48 h-60">
+    <div className="w-44 h-52">
       <ResponsiveContainer width="100%" height="90%">
         <PieChart>
           <Pie
             data={chartData}
-            cx="45%"
+            cx="54%"
             cy="45%"
             labelLine={false}
-            outerRadius={60}
+            outerRadius={64}
             fill="#8884d8"
             dataKey="value"
             label={renderLabel} // Apply the custom label

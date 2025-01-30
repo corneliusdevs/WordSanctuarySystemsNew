@@ -6,7 +6,7 @@ import { IoMailOpenOutline } from "react-icons/io5";
 const DashboardHomeComponent = () => {
   return (
     <>
-      <div className="pt-10 px-[20px] flex flex-col gap-10 align-middle">
+      <div className="pt-10 px-[30px] flex flex-col gap-10 align-middle">
         <Link href={"/dashboard/invitations"}>
           <DashboardItemCard
             toptext="25"
@@ -14,7 +14,7 @@ const DashboardHomeComponent = () => {
             styles=""
             title={"INVITATIONS"}
             // imageSrc="/central-systems/frontend/client/public/assets/Frame.png"
-            Icon={<LuMessageSquareDiff className="h-20 w-20 font-thin" />}
+            Icon={<LuMessageSquareDiff className="h-20 w-20" />}
             progress={58}
           />
         </Link>
@@ -25,7 +25,7 @@ const DashboardHomeComponent = () => {
           styles=""
           title={"ACCESS REQUESTS"}
           // imageSrc=""
-          Icon={<IoMailOpenOutline className="h-20 w-20 font-thin" />}
+          Icon={<IoMailOpenOutline className="h-20 w-20" />}
           progress={undefined}
         />
         </Link>
@@ -36,7 +36,7 @@ const DashboardHomeComponent = () => {
           styles={""}
           title={"INVITATIONS REQUEST"}
           // imageSrc="/../../../public/assets/Frame.png"
-          Icon={<LuMessageSquareDiff className="h-20 w-20 font-thin" />}
+          Icon={<LuMessageSquareDiff className="h-20 w-20" />}
           progress={undefined}
         />
         </Link>

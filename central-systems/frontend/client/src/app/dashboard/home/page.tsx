@@ -13,7 +13,7 @@ export default function DashboardHome() {
     <main className="overflow-hidden">
       <DashboardNavbar />
       <DashboardWelcomeComponent username={"Eluan"} title={""} />
-      <div className="flex items-center justify-center w-auto">
+      <div className="">
         <KPICard data={[mockData, mockData2]} isLoading={false} error={null} />
       </div>
       <div className="">

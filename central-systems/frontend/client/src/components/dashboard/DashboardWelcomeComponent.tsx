@@ -5,7 +5,7 @@ const DashboardWelcomeComponent = ({ username }: {username:string, title:string}
     <div className="absolute top-2 left-4 right-4 bg-white rounded-3xl p-4 z-5 mt-[100px]">
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-1">
-          <span className="font-bold text-2xl">Welcome,</span>
+          <span className="font-bold text-xl">Welcome,</span>
           <span className="text-xl">{username}</span>
         </div>
         <div className="flex items-center">

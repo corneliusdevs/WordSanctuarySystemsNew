@@ -11,7 +11,7 @@ const AccessRequestHome = () => {
     <div>
       <div className="mt-8">
         <Link href="/dashboard/home">
-          <IoArrowBack className="h-10 w-20" />
+          <IoArrowBack className="h-8 w-16 mb-3" />
         </Link>
         <div className="w-full justify-center items-center flex">
           <span className="text-primarycol text-center text-3xl mb-8 font-bold">

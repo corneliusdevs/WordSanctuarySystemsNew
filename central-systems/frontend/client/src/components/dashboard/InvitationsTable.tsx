@@ -13,25 +13,25 @@ const InvitationsTable: React.FC<InvitationsTableProps> = ({ invitations }) => {
           <tr>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-sm font-semibold text-gray-900"
+              className="px-2 py-3 text-left text-base font-semibold text-gray-900"
             >
               Name
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-sm font-semibold text-gray-900"
+              className="px-2 py-3 text-left text-base font-semibold text-gray-900"
             >
               Email
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-sm font-semibold text-gray-900"
+              className="px-2 py-3 text-left text-base font-semibold text-gray-900"
             >
               Position
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-sm font-semibold text-gray-900"
+              className="px-2 py-3 text-left text-base font-semibold text-gray-900"
             >
               Status
             </th>
@@ -40,18 +40,18 @@ const InvitationsTable: React.FC<InvitationsTableProps> = ({ invitations }) => {
         <tbody className="divide-y divide-gray-200 bg-white">
           {invitations.map((invitation, index) => (
             <tr key={index} className="hover:bg-gray-50">
-              <td className="px-6 py-4 text-sm text-gray-900">
+              <td className="px-2 py-4 text-base text-gray-900">
                 {invitation.name}
               </td>
-              <td className="px-6 py-4 text-sm text-gray-500">
+              <td className="px-2 py-4 text-base text-gray-500">
                 {invitation.email}
               </td>
-              <td className="px-6 py-4 text-sm text-gray-500">
+              <td className="px-2 py-4 text-base text-gray-500">
                 {invitation.position}
               </td>
-              <td className="px-6 py-4 text-sm">
+              <td className="px- py-4 text-base">
                 <span
-                  className={`inline-flex w-20 justify-center px-2.5 py-0.5 rounded-full text-xs font-medium text-white bg-[#3A2D4A]`}
+                  className={`inline-flex w-20 justify-center px-2.5 py-0.5 rounded-full text-sm font-medium text-white bg-[#3A2D4A]`}
                 >
                   {invitation.status}
                 </span>

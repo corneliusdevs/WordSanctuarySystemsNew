@@ -404,25 +404,18 @@
       width: 80%;
       height: 20px;
     }
-    .project{
-      width: 60%;
-      
-      height: 40px;
-    }
-    .ledgers{
-      width: 60%;
-      padding: 15px;
-      height: 40px;
-      
-    }
   }
   @media (max-width: 480px) {
     .project{
       width: 80%; 
       padding: 10px;
+  
+      
+      height: 40px;
     }
     .ledgers {
       width: 80%; 
       padding: 10px;
+      height: 40px;
     }
   }

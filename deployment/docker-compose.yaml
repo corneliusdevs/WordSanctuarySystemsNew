@@ -10,7 +10,9 @@ services:
       - cms-frontend
       - cms-backend
       - kpi-backend
-      - cms-data-layer-backend
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+      # - cms-data-layer-backend
     # environment:
     #   - NGINX_HOST=${NGINX_HOST}
     #   - NGINX_PORT=${NGINX_PORT}
@@ -43,6 +45,8 @@ services:
       - JWT_SIGN_SECRET=${JWT_SIGN_SECRET}
       - ROOT_USER_EMAIL=${ROOT_USER_EMAIL}
       - NODE_ENV=${NODE_ENV}
+    extra_hosts:
+        - "host.docker.internal:host-gateway"
 
   # Backend (Express.js) for KPI
   kpi-backend:
@@ -54,6 +58,8 @@ services:
       - CENTRAL_SYSTEMS_BASE_API=${CENTRAL_SYSTEMS_BASE_API}
       - DATA_LAYER_MICROSERVICE_KPI_API=${DATA_LAYER_MICROSERVICE_KPI_API}
       - CENTRAL_SYSTEMS_POSTGRESS_API=${CENTRAL_SYSTEMS_POSTGRESS_API}
+    extra_hosts:
+        - "host.docker.internal:host-gateway"
 
   # Backend (Express.js) for Data Layer Microservice
   # cms-data-layer-backend:

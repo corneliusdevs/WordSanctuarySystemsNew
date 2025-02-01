@@ -347,6 +347,8 @@
   }
   .s-more button{
     border-radius: 20px;
+    background-color: white;
+    color: #333;
     border: none;
     height: 30px;
     padding: 10px;

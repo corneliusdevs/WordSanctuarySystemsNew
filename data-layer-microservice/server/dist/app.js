@@ -27,10 +27,10 @@ app.get("/", (req, res) => {
     res.send("hello, database microservice running");
 });
 // Define routes for the app
-app.use('/api/database/mongodb', mongoDbRouter_1.default);
-app.use('/api/database/postgres', postgresRouter_1.default);
-app.use('/api/kpi', kpi_router_1.default);
-app.use('/api/accounts', accounts_router_1.default);
+app.use('/api/data-layer/database/mongodb', mongoDbRouter_1.default);
+app.use('/api/data-layer/database/postgres', postgresRouter_1.default);
+app.use('/api/data-layer/kpi', kpi_router_1.default);
+app.use('/api/data-layer/accounts', accounts_router_1.default);
 // Graceful shutdown - Disconnect Prisma Clients when the server shuts down
 process.on('SIGINT', () => __awaiter(void 0, void 0, void 0, function* () {
     console.log('Closing Prisma clients...');

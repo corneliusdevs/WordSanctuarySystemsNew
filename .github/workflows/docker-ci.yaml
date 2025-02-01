@@ -67,13 +67,13 @@ jobs:
           docker push cdevsit/kpi-backend:latest
 
       # Backend (Express.js) Build and Push for data-layer-microservice
-      - name: Build and push backend for data-layer-microservice
-        working-directory: ./data-layer-microservice/server
-        run: |
-          docker build -t cdevsit/cms-data-layer-backend:${GITHUB_SHA} .
-          docker push cdevsit/cms-data-layer-backend:${GITHUB_SHA}
-          docker tag cdevsit/cms-data-layer-backend:${GITHUB_SHA} cdevsit/cms-data-layer-backend:latest
-          docker push cdevsit/cms-data-layer-backend:latest
+      # - name: Build and push backend for data-layer-microservice
+      #   working-directory: ./data-layer-microservice/server
+      #   run: |
+      #     docker build -t cdevsit/cms-data-layer-backend:${GITHUB_SHA} .
+      #     docker push cdevsit/cms-data-layer-backend:${GITHUB_SHA}
+      #     docker tag cdevsit/cms-data-layer-backend:${GITHUB_SHA} cdevsit/cms-data-layer-backend:latest
+      #     docker push cdevsit/cms-data-layer-backend:latest
       
       # Backend (Express.js) Build and Push for cms-nginx image
       - name: Build and push backend for cms-nginx-server

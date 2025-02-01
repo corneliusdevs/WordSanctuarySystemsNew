@@ -33,9 +33,9 @@ app.get("/", (req: Request, res: Response) => {
   res.send("hello, central-systems server running");
 });
 
-app.use("/api/auth", authRouter)
-app.use("/api/profiles", profilesRouter)
-app.use("/api/departments", kpiRouter)
+app.use("/cms/api/auth", authRouter)
+app.use("/cms/api/profiles", profilesRouter)
+app.use("/cms/api/departments", kpiRouter)
 
 // Graceful shutdown - Disconnect Prisma Clients when the server shuts down
 process.on("SIGINT", async () => {

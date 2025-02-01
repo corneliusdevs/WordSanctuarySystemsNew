@@ -56,17 +56,17 @@ services:
       - CENTRAL_SYSTEMS_POSTGRESS_API=${CENTRAL_SYSTEMS_POSTGRESS_API}
 
   # Backend (Express.js) for Data Layer Microservice
-  cms-data-layer-backend:
-    image: cdevsit/cms-data-layer-backend:latest # Pulls this from Docker Hub
-    networks:
-      - app-network
-    restart: always
-    environment:
-      - MONGODB_CONN_URI=${MONGODB_CONN_URI}
-      - POSTGRES_CONN_URI=${POSTGRES_CONN_URI}
-      - ROOT_USER_EMAIL=${ROOT_USER_EMAIL}
-      - ROOT_USER_PASSWORD=${ROOT_USER_PASSWORD}
-      - CENTRAL_SYSTEMS_FRONTEND_URL=${CENTRAL_SYSTEMS_FRONTEND_URL}
+  # cms-data-layer-backend:
+  #   image: cdevsit/cms-data-layer-backend:latest # Pulls this from Docker Hub
+  #   networks:
+  #     - app-network
+  #   restart: always
+  #   environment:
+  #     - MONGODB_CONN_URI=${MONGODB_CONN_URI}
+  #     - POSTGRES_CONN_URI=${POSTGRES_CONN_URI}
+  #     - ROOT_USER_EMAIL=${ROOT_USER_EMAIL}
+  #     - ROOT_USER_PASSWORD=${ROOT_USER_PASSWORD}
+  #     - CENTRAL_SYSTEMS_FRONTEND_URL=${CENTRAL_SYSTEMS_FRONTEND_URL}
 
 
 networks:

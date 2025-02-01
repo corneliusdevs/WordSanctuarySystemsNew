@@ -4,9 +4,9 @@
   "description": "This will expose and server all the api end points unique to the central-systems",
   "main": "app.js",
   "scripts": {
-    "start": "tsc",
-    "dev": "nodemon",
-    "build": "node dist/app.js",
+    "start": "tsc && node dist/app.js",
+    "dev": "nodemon src/app.ts",
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "corneliusdevs",

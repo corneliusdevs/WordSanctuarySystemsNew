@@ -14,7 +14,7 @@ RUN npm install --frozen-lockfile
 COPY . .
 
 # Set environment variables during build (Next.js will use them for build time)
-ARG NEXT_PUBLIC_CENTRAL_SYSTEMS_BASE_API="http://localhost:4999"
+ARG NEXT_PUBLIC_CENTRAL_SYSTEMS_BASE_API="/cms"
 ARG CLOUDINARY_CLOUD_NAME
 ARG CLOUDINARY_API_KEY
 ARG CLOUDINARY_API_SECRET

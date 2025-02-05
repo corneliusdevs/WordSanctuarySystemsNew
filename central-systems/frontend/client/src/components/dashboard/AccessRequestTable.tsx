@@ -10,7 +10,7 @@ interface AccessRequestProps {
 }
 
 const handleView = (request) => {
-  navigate(`/dashboard/access-request/access-request-details?id=${request.id}`);
+  navigate(`/dashboard/home/access-request/access-request-details?id=${request.id}`);
 };
 
 const AccessRequestTable: React.FC<AccessRequestProps> = ({ requests }) => {

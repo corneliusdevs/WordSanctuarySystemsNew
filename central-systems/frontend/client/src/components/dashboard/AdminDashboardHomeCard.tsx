@@ -17,7 +17,7 @@ const AdminDashboardHomeCard = ({
 }: AdminDashboardItemCardProps) => {
   return (
     <div>
-      <section className="rounded-2xl shadow-lg border p-4 bg-white max-w-full max-h-xs">
+      <section className="rounded-2xl shadow-xl border p-4 bg-white max-w-full max-h-xs">
         <header className="flex items-center justify-between">
           <h2 className="text-2xl font-medium text-gray-500 uppercase pl-5">
             {title}

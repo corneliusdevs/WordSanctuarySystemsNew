@@ -8,7 +8,7 @@ export default function OnBoardPage(){
 
     return (
         <main>
-            <DashboardNavbar />
+            {/* <DashboardNavbar /> */}
             <OnBoardHomeComponent />
         </main>
     )

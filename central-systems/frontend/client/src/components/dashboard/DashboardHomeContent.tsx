@@ -7,7 +7,7 @@ const DashboardHomeComponent = () => {
   return (
     <>
       <div className="pt-10 px-[30px] flex flex-col gap-10 align-middle">
-        <Link href={"/dashboard/invitations"}>
+        <Link href={"/dashboard/home/invitations"}>
           <DashboardItemCard
             toptext="25"
             bottomText=""
@@ -18,7 +18,7 @@ const DashboardHomeComponent = () => {
             progress={58}
           />
         </Link>
-        <Link href={"/dashboard/access-request"}>
+        <Link href={"/dashboard/home/access-request"}>
         <DashboardItemCard
           toptext="10"
           bottomText="NEW REQUEST"
@@ -29,7 +29,7 @@ const DashboardHomeComponent = () => {
           progress={undefined}
         />
         </Link>
-        <Link href={"/dashboard/invitation-request"}>
+        <Link href={"/dashboard/home/invitation-request"}>
         <DashboardItemCard
           toptext="25"
           bottomText="NEW REQUEST"

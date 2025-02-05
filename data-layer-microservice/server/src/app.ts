@@ -17,10 +17,10 @@ app.get("/", (req: Request, res: Response)=>{
 })
 
 // Define routes for the app
-app.use('/api/database/mongodb', mongoDbRouter);
-app.use('/api/database/postgres', postgresRouter);
-app.use('/api/kpi', kpiRouter)
-app.use('/api/accounts', accountsRouter)
+app.use('/api/data-layer/database/mongodb', mongoDbRouter);
+app.use('/api/data-layer/database/postgres', postgresRouter);
+app.use('/api/data-layer/kpi', kpiRouter)
+app.use('/api/data-layer/accounts', accountsRouter)
 
 // Graceful shutdown - Disconnect Prisma Clients when the server shuts down
 process.on('SIGINT', async () => {

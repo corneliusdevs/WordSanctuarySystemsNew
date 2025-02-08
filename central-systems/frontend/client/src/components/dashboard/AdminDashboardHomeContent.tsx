@@ -25,7 +25,7 @@ const AdminDashboardHomeContent = () => {
         Icon={<PiChurchLight className="h-14 w-14 font-thin mt-5" />}
       />
       </Link>
-      <Link href="/dashboard/admin-dashboard/departments">
+      <Link href="/dashboard/onboard/department">
       <AdminDashboardHomeCard
         text="10"
         styles=""

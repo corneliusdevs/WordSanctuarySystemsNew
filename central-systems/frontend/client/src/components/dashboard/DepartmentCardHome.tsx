@@ -4,7 +4,7 @@ import { IoArrowBack } from "react-icons/io5";
 import DashboardNavbar from "./DashboardNavbar";
 import DashboardWelcomeComponent from "./DashboardWelcomeComponent";
 import Link from "next/link";
-// import DepartmentCard from "./DepartmentCard";
+import DepartmentCard from "./DepartmentCard";
 
 const DepartmentCardHome = () => {
   return (
@@ -13,8 +13,8 @@ const DepartmentCardHome = () => {
       <DashboardWelcomeComponent username={""} title="" />
 
       <div className="mt-8">
-        <Link href="/dashboard/admin-dashboard/departments">
-          <IoArrowBack className="h-10 w-20" />
+        <Link href="/dashboard/onboard/department">
+          <IoArrowBack className="h-10 w-8" />
         </Link>
         <div className="w-full justify-center items-center flex">
           <span className="text-primarycol text-center text-3xl font-bold">
@@ -22,7 +22,7 @@ const DepartmentCardHome = () => {
           </span>
         </div>
       </div>
-      {/* <DepartmentCard department={"Choir"} numberOfMembers={15} /> */}
+      <DepartmentCard department={"Choir"} numberOfMembers={15} />
     </div>
   );
 };

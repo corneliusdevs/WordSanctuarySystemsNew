@@ -8,6 +8,9 @@ import { DepartmentTypeForm } from "../forms/department/DepartmentTypeForm";
 import { CreateDepartmentClassFormSchema } from "../forms/department/DepartmentTypeFormSchema";
 import { toast } from "@/hooks/use-toast";
 import { Check, X } from "lucide-react";
+import DashboardWelcomeComponent from "./DashboardWelcomeComponent";
+import Link from "next/link";
+import { IoArrowBack } from "react-icons/io5";
 
 export default function DepartmentTypeOnboardingComponent() {
   const [hasUserFilledForm, sethasUserFilledForm] = useState<boolean>(false);
@@ -35,12 +38,11 @@ export default function DepartmentTypeOnboardingComponent() {
           ),
         });
 
-
         const central_systems_base_api =
           process.env.NEXT_PUBLIC_CENTRAL_SYSTEMS_BASE_API;
 
-          // save the department details
-         await fetch(
+        // save the department details
+        await fetch(
           `${central_systems_base_api}/api/profiles/departments/class/create`,
           {
             method: "POST",
@@ -109,9 +111,10 @@ export default function DepartmentTypeOnboardingComponent() {
                 </div>
               ),
             });
-          }).finally(()=>{
-            sethasUserFilledForm(false)
-            setFormDetails(null)
+          })
+          .finally(() => {
+            sethasUserFilledForm(false);
+            setFormDetails(null);
           });
       }
     };
@@ -122,16 +125,20 @@ export default function DepartmentTypeOnboardingComponent() {
   return (
     <div>
       <DashboardNavbar />
+      <DashboardWelcomeComponent username={""} title={""} />
 
-      <div className="mt-4">
+      <div className="mt-8">
+        <Link href="/dashboard/onboard/department/type">
+          <IoArrowBack className="h-10 w-8" />
+        </Link>
         <div className="w-full justify-center items-center flex">
-          <span className="text-primarycol text-center text-2xl">
-            Create a Department Type
+          <span className="text-primarycol text-center text-3xl font-bold">
+            Department Type
           </span>
         </div>
       </div>
 
-      <div className="px-2 mb-10 mt-4">
+      <div className="px-5 mb-10 mt-4">
         <DepartmentTypeForm
           isMutatingDbResource={hasUserFilledForm}
           isMutatingDbResourceHandler={sethasUserFilledForm}

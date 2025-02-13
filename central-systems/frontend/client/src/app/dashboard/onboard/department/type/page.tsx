@@ -1,9 +1,12 @@
-import DepartmentTypeOnboardingComponent from "@/components/dashboard/DepartmentTypeOnboardingComponent";
+// import DepartmentTypeOnboardingComponent from "@/components/dashboard/DepartmentTypeOnboardingComponent";
+
+import DepartmentTypeHome from "@/components/dashboard/DepartmentTypeHome";
 
 export default function OnboardIndividualPage() {
   return (
     <div>
-      <DepartmentTypeOnboardingComponent />
+      {/* <DepartmentTypeOnboardingComponent /> */}
+      <DepartmentTypeHome/>
     </div>
   );
 }

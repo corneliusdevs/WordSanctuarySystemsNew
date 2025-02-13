@@ -125,7 +125,7 @@ const { clearSelectedDepartments } = useAddDepartmentToCentralStore( state => st
 
       createDepartment();
     }
-  }, [hasUserFilledForm, formDetails]);
+  });
 
   console.log(formDetails)
   return (

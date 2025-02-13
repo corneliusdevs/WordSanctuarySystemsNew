@@ -9,9 +9,9 @@ import { installations } from "./mock-data/installations";
 import InstallationsCard from "./InstallationsCard";
 
 
-const handleCountryChange = (selectedCountry: string) => {
-    console.log('Selected country:', selectedCountry);
-  };
+// const handleCountryChange = (selectedCountry: string) => {
+//     console.log('Selected country:', selectedCountry);
+//   };
 
 
 const InstallationsCardHome = () => {

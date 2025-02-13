@@ -239,7 +239,7 @@ const LoginComponent = () => {
     };
 
     verifyCredentials();
-  }, [hasEnteredOtp, otp]);
+  });
 
   return (
     <div

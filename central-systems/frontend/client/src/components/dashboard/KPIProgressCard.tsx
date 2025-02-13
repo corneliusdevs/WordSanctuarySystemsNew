@@ -1,6 +1,6 @@
 import React from 'react'
 import { FaArrowTrendUp, FaArrowTrendDown } from 'react-icons/fa6';
-import { Progress } from '../ui/progress';
+// import { Progress } from '../ui/progress';
 // import { Progress } from '../ui/progress'
 // import { ProgressIndicator } from '@radix-ui/react-progress'
 

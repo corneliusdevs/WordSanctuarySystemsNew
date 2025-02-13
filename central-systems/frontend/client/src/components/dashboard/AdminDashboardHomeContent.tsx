@@ -34,6 +34,7 @@ const AdminDashboardHomeContent = () => {
         Icon={<LuNetwork className="h-14 w-14 font-thin mt-5" />}
       />
       </Link>
+      <Link href="/dashboard/onboard/department/type">
       <AdminDashboardHomeCard
         text="15"
         styles={""}
@@ -41,7 +42,8 @@ const AdminDashboardHomeContent = () => {
         // imageSrc=""
         Icon={<CgMenuGridO className="h-14 w-14 font-thin mt-5" />}
       />
-
+      </Link>
+      <Link href="/dashboard/onboard/individual">
       <AdminDashboardHomeCard
         text="25"
         styles=""
@@ -49,7 +51,8 @@ const AdminDashboardHomeContent = () => {
         // imageSrc=""
         Icon={<MdGroups className="h-14 w-14 font-thin mt-5" />}
       />
-
+      </Link>
+      <Link href="/dashboard/onboard/centrals">
 <AdminDashboardHomeCard
         text="10"
         styles=""
@@ -57,6 +60,7 @@ const AdminDashboardHomeContent = () => {
         // imageSrc=""
         Icon={<FaArrowsToCircle className="h-14 w-14 font-thin mt-5" />}
       />
+      </Link>
     </div>
   );
 };

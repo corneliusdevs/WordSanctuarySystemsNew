@@ -25,7 +25,7 @@ const AccessRequestCardHome = () => {
         <DashboardWelcomeComponent username={''} title={''}/>
         
         <div className="mt-8">   
-        <Link href='/dashboard/access-request'>
+        <Link href='/dashboard/home/access-request'>
           <IoArrowBack className="h-8 w-16 mb-3" />
           </Link>
             <div className="w-full justify-center items-center flex">

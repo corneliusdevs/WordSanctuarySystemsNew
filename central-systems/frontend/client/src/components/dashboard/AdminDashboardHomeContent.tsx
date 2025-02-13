@@ -16,7 +16,7 @@ import { FaArrowsToCircle } from "react-icons/fa6";
 const AdminDashboardHomeContent = () => {
   return (
     <div className="pt-10 px-[40px] flex flex-col gap-10 align-middle mt-5">
-      <Link href="/dashboard/admin-dashboard/installations">
+      <Link href="/dashboard/onboard/installation">
       <AdminDashboardHomeCard
         text="25"
         styles=""

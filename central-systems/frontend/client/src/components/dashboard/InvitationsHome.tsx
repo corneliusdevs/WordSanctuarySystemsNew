@@ -20,16 +20,18 @@ const InvitationsHome = () => {
         <h1 className="text-4xl text-center font-bold text-[#3A2D4A]">
           Invitations
         </h1>
+        <Link href="/dashboard/home/invitations/create-invite">
         <h2 className="text-xl text-[#3A2D4A] ml-5 mt-5 font-bold">
           New Invite
         </h2>
         <div className="flex items-center justify-center py-10">
-          <Link href="/dashboard/invitations/create-invite">
+         
             <div className="flex items-center justify-center h-14 w-20 rounded-3xl border-4 border-[#3A2D4A] ">
               <IoAdd className="h-12 w-12 text-[#3A2D4A] font-bold" />
             </div>
-          </Link>
+            
         </div>
+        </Link>
       </div>
       <div>
         <h1 className="text-xl text-[#3A2D4A] ml-5 mt-5 font-bold mb-5">

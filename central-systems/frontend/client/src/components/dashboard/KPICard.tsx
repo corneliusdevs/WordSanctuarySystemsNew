@@ -3,6 +3,7 @@ import { KPICardProps } from "../../types/general";
 import CustomPieChart from "./charts/CustomPieChart";
 import LoadingState from "../../helpers/LoadingState";
 import ErrorState from "../../helpers/ErrorState";
+import Link from "next/link";
 
 const COLORS = {
   finance: "#4C168D", // green
@@ -79,9 +80,11 @@ const KPICard: React.FC<KPICardProps> = ({
           ></span>
           <span className="text-sm">Improvement </span>
         </div>
+        <Link href='/dashboard/kpiprogress'>
         <button className="border w-20 h-10 ml-32 shadow-lg rounded-2xl">
           more
         </button>
+        </Link>
       </div>
     </div>
   );

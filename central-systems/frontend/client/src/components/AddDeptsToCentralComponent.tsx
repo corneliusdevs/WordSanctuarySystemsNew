@@ -71,7 +71,7 @@ export const AddDepartmentToCentralComponent = () => {
     };
 
     fetchAllDepartments();
-  }, []);
+  });
 
   return (
     <div>

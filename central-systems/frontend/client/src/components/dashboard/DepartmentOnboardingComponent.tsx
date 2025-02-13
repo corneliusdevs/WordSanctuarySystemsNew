@@ -129,7 +129,7 @@ export default function OnboardDepartmentComponent() {
 
       createDepartment();
     }
-  }, [hasUserFilledForm, formDetails]);
+  });
 
   return (
     <div>

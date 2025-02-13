@@ -116,6 +116,13 @@ const DashboardNavbar = () => {
               Profile
             </Link>
             <Link
+                href="/dashboard/members"
+                className="hover:text-[#FFFFFF] transition-colors duration-200"
+                onClick={toggleMenu}
+              >
+                Dashboards
+              </Link>
+            <Link
               href="/dashboard/logout"
               className="hover:text-[#FFFFFF] transition-colors duration-200"
             >
@@ -140,17 +147,17 @@ const DashboardNavbar = () => {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="absolute top-16 right-0 w-1/4 bg-[#3A2D4A] text-gray-400 shadow-lg rounded-lg p-4 z-10 md:hidden">
+          <div className="absolute top-16 right-0 w-1/3 bg-[#3A2D4A] text-gray-400 shadow-lg rounded-lg p-4 z-10 md:hidden mt-5">
             <nav className="flex flex-col space-y-4">
               <Link
-                href="#home"
+                href="/dashboard/home"
                 className="hover:text-[#FFFFFF] transition-colors duration-200"
                 onClick={toggleMenu} // Close the menu when a link is clicked
               >
                 Home
               </Link>
               <Link
-                href="#support"
+                href="/dashboard/onboard"
                 className="hover:text-[#FFFFFF] transition-colors duration-200"
                 onClick={toggleMenu}
               >
@@ -163,6 +170,14 @@ const DashboardNavbar = () => {
                 onClick={toggleMenu}
               >
                 Profile
+              </Link>
+
+              <Link
+                href="/dashboard/members"
+                className="hover:text-[#FFFFFF] transition-colors duration-200"
+                onClick={toggleMenu}
+              >
+                Dashboards
               </Link>
               <Link
                 href="/dashboard/logout"

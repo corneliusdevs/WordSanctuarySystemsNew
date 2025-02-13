@@ -13,8 +13,8 @@ const DepartmentHome = () => {
         <DashboardWelcomeComponent username={''} title={''}/>
         <div className="mt-8">
         
-        <Link href='/dashboard/admin-dashboard'>
-          <IoArrowBack className="h-10 w-20" />
+        <Link href='/dashboard/onboard'>
+          <IoArrowBack className="h-10 w-8" />
           </Link>
             <div className="w-full justify-center items-center flex">
               <span className="text-primarycol text-center text-3xl mb-8 font-bold">

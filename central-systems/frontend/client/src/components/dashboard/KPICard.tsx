@@ -3,6 +3,7 @@ import { KPICardProps } from "../../types/general";
 import CustomPieChart from "./charts/CustomPieChart";
 import LoadingState from "../../helpers/LoadingState";
 import ErrorState from "../../helpers/ErrorState";
+import Link from "next/link";
 
 const COLORS = {
   finance: "#4C168D", // green
@@ -50,38 +51,40 @@ const KPICard: React.FC<KPICardProps> = ({
         </article>
       </div>
 
-      <div className=" w-fit grid grid-cols-3 gap-4 px-5">
+      <div className="grid grid-cols-3 gap-2 px-5">
         <div className="flex items-center">
           <span
-            className="w-6 h-6 rounded-lg mr-2"
+            className="w-5 h-5 rounded-lg mr-2"
             style={{ backgroundColor: COLORS.finance }}
           ></span>
           <span className="text-sm">Finance </span>
         </div>
         <div className="flex items-center">
           <span
-            className="w-6 h-6 rounded-lg mr-2"
+            className="w-5 h-5 rounded-lg mr-2"
             style={{ backgroundColor: COLORS.people }}
           ></span>
           <span className="text-sm">People </span>
         </div>
         <div className="flex items-center">
           <span
-            className="w-6 h-6 rounded-lg mr-2"
+            className="w-5 h-5 rounded-lg mr-2"
             style={{ backgroundColor: COLORS.operation }}
           ></span>
           <span className="text-sm">Operation </span>
         </div>
         <div className="flex items-center">
           <span
-            className="w-6 h-6 rounded-lg mr-2"
+            className="w-5 h-5 rounded-lg mr-2"
             style={{ backgroundColor: COLORS.improvement }}
           ></span>
           <span className="text-sm">Improvement </span>
         </div>
-        <button className="border w-20 h-10 ml-40 shadow-lg rounded-2xl">
+        <Link href='/dashboard/kpiprogress'>
+        <button className="border w-20 h-10 ml-32 shadow-lg rounded-2xl">
           more
         </button>
+        </Link>
       </div>
     </div>
   );

@@ -39,7 +39,7 @@ export const Logout = () => {
 
   useEffect(() => {
     logout();
-  },[]);
+  });
 
   return (
     <div className="flex justify-center flex-col items-center w-full h-[100vh] bg-primarycol/60 text-white">

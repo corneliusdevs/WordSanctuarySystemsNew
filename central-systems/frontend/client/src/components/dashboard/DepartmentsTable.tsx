@@ -4,11 +4,16 @@ import React from "react";
 import { FaArrowTrendDown } from "react-icons/fa6";
 import { FaArrowTrendUp } from "react-icons/fa6";
 import { Department } from "@/types/general";
+import { navigate } from "@/app/actions";
 
 interface DepartmentProps {
   departments: Department[];
   // onView: (member: Member) => void;
 }
+
+const handleView = (request) => {
+  navigate(`/dashboard/onboard/department/department-details?id=${request.id}`);
+};
 
 const DepartmentTable: React.FC<DepartmentProps> = ({ departments }) => {
   const TrendIcon = ({ trend }: { trend: "up" | "down" }) => {
@@ -56,6 +61,7 @@ const DepartmentTable: React.FC<DepartmentProps> = ({ departments }) => {
                 <button
                   className="px-3 py-1 text-sm text-white bg-[#3A2D4A] rounded-full transition-colors"
                   aria-label={`View ${dept.name} department details`}
+                  onClick={() => handleView(dept)}
                 >
                   view
                 </button>

@@ -71,7 +71,7 @@ export const AddDepartmentMemberComponent = () => {
     };
 
     fetchAllIndividuals();
-  });
+  }, []);
 
   return (
     <div>

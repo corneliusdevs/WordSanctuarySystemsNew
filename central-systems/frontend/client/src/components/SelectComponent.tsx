@@ -36,7 +36,7 @@ const SelectComponent: FC<SelectProps> = ({
   itemsToSelect,
   onValueChange,
   onValueChangeTaskFxn,
-  // selectedValue,
+  selectedValue,
   shouldDisplayExecuteValueChangeButton,
   executeValueChangeButtonText,
   executeValueChangeButtonStyle,
@@ -46,7 +46,7 @@ const SelectComponent: FC<SelectProps> = ({
       // execute the onValueChangeTaskFxn function
       onValueChangeTaskFxn();
     }
-  });
+  }, [selectedValue]);
 
   return (
     <div>

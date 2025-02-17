@@ -131,3 +131,23 @@ export interface Department {
   kpi: number;
   trend: TrendDirection;
 }
+
+export type CentralsTableDetails = {
+  departmentType: string;
+  numberOfDepartments: number;
+};
+
+export type CentralsDeptDetails = {
+  departmentType: string;
+  departmentName: string;
+  installation: string;
+  members: number;
+}
+
+// export type CentralsDetails = {
+//   deptName: string;
+//   installation: string;
+//   members: number;
+//   headOfDept: string;
+//   assistantHeadOfDept: string
+// }

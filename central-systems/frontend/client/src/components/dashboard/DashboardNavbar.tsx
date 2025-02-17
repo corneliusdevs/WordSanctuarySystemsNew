@@ -98,13 +98,13 @@ const DashboardNavbar = () => {
         <div className=" pl-[50px] pt-[10px]">
           <nav className="hidden md:flex space-x-8 text-sm font-medium text-gray-500">
             <Link
-              href="/dashboard/members"
+              href="/dashboard/home"
               className="hover:text-[#FFFFFF] transition-colors duration-200"
             >
               Home
             </Link>
             <Link
-              href="#support"
+              href="/dashboard/onboard"
               className="hover:text-[#FFFFFF] transition-colors duration-200"
             >
               Onboard
@@ -116,7 +116,7 @@ const DashboardNavbar = () => {
               Profile
             </Link>
             <Link
-                href="/dashboard/members"
+                href="/dashboard/"
                 className="hover:text-[#FFFFFF] transition-colors duration-200"
                 onClick={toggleMenu}
               >
@@ -173,7 +173,7 @@ const DashboardNavbar = () => {
               </Link>
 
               <Link
-                href="/dashboard/members"
+                href="/dashboard/"
                 className="hover:text-[#FFFFFF] transition-colors duration-200"
                 onClick={toggleMenu}
               >

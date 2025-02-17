@@ -1,5 +1,6 @@
 
 import DashboardNavbar from "@/components/dashboard/DashboardNavbar";
+import IndividualsHome from "@/components/dashboard/IndividualsHome";
 import dynamic from 'next/dynamic'
  
 const OnboardIndividualComponentWithNoSSR = dynamic(
@@ -10,8 +11,9 @@ const OnboardIndividualComponentWithNoSSR = dynamic(
 export default function OnboardIndividualPage() {
   return (
     <div>
-      <DashboardNavbar />
-      <OnboardIndividualComponentWithNoSSR titleText="Onboard an Individual"/>
+      {/* <DashboardNavbar />
+      <OnboardIndividualComponentWithNoSSR titleText="Onboard an Individual"/> */}
+      <IndividualsHome/>
     </div>
   );
 }

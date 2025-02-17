@@ -70,7 +70,7 @@ export const AddMemberComponent = () => {
     };
 
     fetchAllIndividuals();
-  });
+  }, []);
 
   return (
     <div>

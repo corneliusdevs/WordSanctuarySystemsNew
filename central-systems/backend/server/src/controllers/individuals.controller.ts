@@ -37,9 +37,11 @@ export const createIndividualProfile = async (
       return;
     }
 
+   const responseFromDatalayer = await createProfileResponse.json()
+
     res.status(500).json({
       success: false,
-      message: "Could not send create profile. Please try again later.",
+      message: responseFromDatalayer?.message ||  "Could not send create profile. Please try again later.",
     });
   } catch (err) {
     console.log(`createIndividualprofile controller encountered an err`, err);

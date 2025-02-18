@@ -41,12 +41,13 @@ const SelectComponent: FC<SelectProps> = ({
   executeValueChangeButtonText,
   executeValueChangeButtonStyle,
 }) => {
-  React.useEffect(() => {
+
+React.useEffect(() => {
     if (onValueChangeTaskFxn) {
       // execute the onValueChangeTaskFxn function
       onValueChangeTaskFxn();
     }
-  });
+  }, []);
 
   return (
     <div>

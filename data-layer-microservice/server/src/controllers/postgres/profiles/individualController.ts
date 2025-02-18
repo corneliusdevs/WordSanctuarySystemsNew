@@ -31,8 +31,7 @@ export const createIndividualProfile = async (req: Request, res: Response) => {
     } else {
       throw new Error(`Could Not create new profile. Try again later`);
     }
-
-    console.log("request body ", parsedBody);
+    
   } catch (err) {
     console.log("error creating individual profile ", err);
     if (err instanceof ZodError) {

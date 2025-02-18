@@ -15,7 +15,11 @@ import { SetStateAction, Dispatch } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/Input";
-import { CreateDepartmetalProfileSchema, OtherCreateDepartmentValidators, ValidateCreateDepartmetalProfileSchema } from "./CreateDepartmentFormSchema";
+import {
+  CreateDepartmetalProfileSchema,
+  OtherCreateDepartmentValidators,
+  ValidateCreateDepartmetalProfileSchema,
+} from "./CreateDepartmentFormSchema";
 
 import { AddDepartmentMemberComponent } from "@/components/AddDepartmentMemberComponent";
 import { SelectInstallationComponent } from "@/components/SelectInstallationComponent";
@@ -29,7 +33,9 @@ interface CreateDepartmentFormProps {
   isMutatingDbResourceHandler: Dispatch<SetStateAction<boolean>>;
   isMutatingDbResource: boolean;
   updateDepartmentDetailsHandler: Dispatch<
-    SetStateAction<z.infer<typeof ValidateCreateDepartmetalProfileSchema> | null>
+    SetStateAction<z.infer<
+      typeof ValidateCreateDepartmetalProfileSchema
+    > | null>
   >;
 }
 
@@ -45,24 +51,34 @@ export function CreateDepartmentForm({
     },
   });
 
-  const { currentlySelectedDeptTypeId, selectedDepartmentMembers } = useAddDepartmentMemberStore((state)=> state.addMemberToDepartmentState)
-  const { currentlySelectedInstallationId } = useAddMemberStore((state)=> state.addMemberToinstallationState)
-
+  const { currentlySelectedDeptTypeId, selectedDepartmentMembers } =
+    useAddDepartmentMemberStore((state) => state.addMemberToDepartmentState);
+  const { currentlySelectedInstallationId } = useAddMemberStore(
+    (state) => state.addMemberToinstallationState
+  );
 
   const onSubmit = async (
     data: z.infer<typeof CreateDepartmetalProfileSchema>
   ) => {
     // console.log("here are the values of create department form ", data);
 
-    try{
-
+    try {
       const validatedExtraInputs = OtherCreateDepartmentValidators.parse({
         members: selectedDepartmentMembers,
         installation_id: currentlySelectedInstallationId,
-        department_type_id: currentlySelectedDeptTypeId
+        department_type_id: currentlySelectedDeptTypeId,
       });
 
-      const {pastors_dues, ministers_dues, hods_dues, asst_hods_dues, executive_assistants_dues, workers_dues, members_dues, ...restFields} = data
+      const {
+        pastors_dues,
+        ministers_dues,
+        hods_dues,
+        asst_hods_dues,
+        executive_assistants_dues,
+        workers_dues,
+        members_dues,
+        ...restFields
+      } = data;
 
       //  reorganize the submitted data
       const submittedData = {
@@ -73,26 +89,29 @@ export function CreateDepartmentForm({
         department_type: currentlySelectedDeptTypeId,
         centrals: [],
         dues_paid_per_individual: {
-              pastors: pastors_dues,
-              ministers: ministers_dues,
-              hod: hods_dues,
-              asst_hod: asst_hods_dues,
-              executive_assistant: executive_assistants_dues,
-              worker: workers_dues,
-              member: members_dues,
-            },
-      }
+          pastors: pastors_dues,
+          ministers: ministers_dues,
+          hod: hods_dues,
+          asst_hod: asst_hods_dues,
+          executive_assistant: executive_assistants_dues,
+          worker: workers_dues,
+          member: members_dues,
+        },
+      };
 
-      console.log("here are the values of create department form ", submittedData);
+      console.log(
+        "here are the values of create department form ",
+        submittedData
+      );
 
       updateDepartmentDetailsHandler({
-        ...submittedData
+        ...submittedData,
       });
 
       isMutatingDbResourceHandler(true);
-    }catch(err){
+    } catch (err) {
       console.log("Error from department members form ", err);
-      if(err instanceof ZodError){
+      if (err instanceof ZodError) {
         toast({
           title: "Invalid Inputs",
           description: (
@@ -104,7 +123,7 @@ export function CreateDepartmentForm({
             </div>
           ),
         });
-      }else {
+      } else {
         toast({
           title: "Invalid Inputs",
           description: (
@@ -116,10 +135,8 @@ export function CreateDepartmentForm({
             </div>
           ),
         });
-
       }
     }
-
   };
 
   return (

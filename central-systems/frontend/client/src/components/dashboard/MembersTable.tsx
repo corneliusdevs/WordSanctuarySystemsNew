@@ -8,7 +8,7 @@ interface MembersTableProps {
 
 const MembersTable: React.FC<MembersTableProps> = ({ members, onView }) => {
   return (
-    <div className="">
+    <div className="overflow-x-auto">
       <table className="min-w-full bg-white rounded-lg overflow-hidden">
         <thead className="bg-gray-50">
           <tr>
@@ -16,7 +16,7 @@ const MembersTable: React.FC<MembersTableProps> = ({ members, onView }) => {
               Name
             </th>
             <th scope="col" className="px-6 py-3 text-left text-sm font-semibold text-gray-900">
-              Installment
+              Installation
             </th>
             <th scope="col" className="px-6 py-3 text-left text-sm font-semibold text-gray-900">
               Position

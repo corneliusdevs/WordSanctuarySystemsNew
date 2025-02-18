@@ -12,7 +12,7 @@ import { createIndividualProfile,
 
  const individualsRouter = express.Router()
 
- individualsRouter.get("/fetch/:profileId", getIndividualProfileById)
+ individualsRouter.get("/fetch/individual/:profileId", getIndividualProfileById)
 
  individualsRouter.post("/getbyemail", getIndividualProfileByEmail)
 

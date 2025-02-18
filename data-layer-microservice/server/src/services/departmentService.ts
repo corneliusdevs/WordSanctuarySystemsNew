@@ -48,6 +48,37 @@ export const getDepartmentProfileByIdService = async (
   }
 };
 
+export const getDeptAndDepartmentMembersProfilesByIdService = async (
+  department_id: string
+) => {
+  try {
+    const departmentProfile = await postgresClient.departments.findUnique({
+      where: {
+        department_id: department_id,
+      },
+    });
+
+    const parsedDeptMembers = DepartmentMemberArrayValidator.parse(
+      departmentProfile?.members
+    );
+
+    const profile_Ids = parsedDeptMembers.map((member) => member.profile_id);
+
+    const membersProfiles = (
+      await getDeptMembersProfileDetailsService(profile_Ids)
+    ).data;
+
+    return {
+      department_profile: departmentProfile,
+      members_profiles: membersProfiles,
+    };
+  } catch (err) {
+    console.log(`getDeptAndDepartmentMembersProfilesByIdService encountered an error white fetching dept with Id ${department_id}`);
+
+    return null;
+  }
+};
+
 const updateDepartmentMemberDetails = (
   outdated_members_list: z.infer<typeof DepartmentMemberArrayValidator>,
   current_details_of_members: Awaited<
@@ -105,7 +136,6 @@ export const saveDepartmentSnapshotByIdService = async (
         parsedDepartmentMembersList,
         memberProfiles
       );
-
 
       //  check if snapshot is in database
       const existingSnapShotList =
@@ -365,20 +395,22 @@ export const clearDepartmentSnapshotService = async (department_id: string) => {
   }
 };
 
-export const getDepartmentKpiResultByIdService = async (department_id:string)=>{
+export const getDepartmentKpiResultByIdService = async (
+  department_id: string
+) => {
   try {
-     const kpi = await mongoDbClient.departmentalKpiResults.findUnique({
+    const kpi = await mongoDbClient.departmentalKpiResults.findUnique({
       where: {
-        department_id: department_id
-      }
-     })
+        department_id: department_id,
+      },
+    });
 
-     return kpi
-  }catch(err){
-    console.log(`error fetching department kpi `, err)
+    return kpi;
+  } catch (err) {
+    console.log(`error fetching department kpi `, err);
   }
-  return null
-}
+  return null;
+};
 
 export const saveDepartmentKpiResultService = async (
   kpi_parameters: DepartmentKpiParameters,
@@ -392,23 +424,22 @@ export const saveDepartmentKpiResultService = async (
         },
       });
 
-    if(existing_result_profile){
+    if (existing_result_profile) {
+      const parsedExistingResultsProfile = SavedKpiResultsTypeSchema.parse(
+        existing_result_profile
+      );
 
-      const parsedExistingResultsProfile = SavedKpiResultsTypeSchema.parse(existing_result_profile)
-
-       const savedResult = await mongoDbClient.departmentalKpiResults.update({
+      const savedResult = await mongoDbClient.departmentalKpiResults.update({
         where: {
-          department_id: kpi_parameters.department_id
+          department_id: kpi_parameters.department_id,
         },
         data: {
-          kpis: [
-            ...parsedExistingResultsProfile.kpis
-          ]
-        }
-       })
+          kpis: [...parsedExistingResultsProfile.kpis],
+        },
+      });
 
-       return savedResult
-    }else{
+      return savedResult;
+    } else {
       const savedResult = await mongoDbClient.departmentalKpiResults.create({
         data: {
           department_id: kpi_parameters.department_id,
@@ -422,62 +453,65 @@ export const saveDepartmentKpiResultService = async (
           ],
         },
       });
-      
-      return savedResult
-    }
 
+      return savedResult;
+    }
   } catch (err) {
-    if(err instanceof ZodError){
-      console.log(`validaton error `, err.errors)
-      return null
+    if (err instanceof ZodError) {
+      console.log(`validaton error `, err.errors);
+      return null;
     }
 
-    return null
+    return null;
   }
 };
 
-
 export const addDepartmentToMembersProfilesService = async (
-  profile_Ids: string[], department_id:string
+  profile_Ids: string[],
+  department_id: string
 ) => {
   try {
-
     // get the membersProfileSnapshotsData
     const membersProfiles = (
       await getDeptMembersProfileDetailsService(profile_Ids)
     ).data;
 
-
     // add the department to the member's profile
     for (let i = 0; i < membersProfiles.length; i++) {
       if (typeof membersProfiles[i].profile_id === "string") {
         // find the existing profile  o that individual
-        const existingProfile =
-          await postgresClient.profiles.findUnique({
-            where: {
-              profile_id: membersProfiles[i].profile_id,
-            },
-          });
+        const existingProfile = await postgresClient.profiles.findUnique({
+          where: {
+            profile_id: membersProfiles[i].profile_id,
+          },
+        });
 
-
-          // make sure the member is not yet in the department before adding the member
-        if (existingProfile && existingProfile.departments.includes(department_id) === false) {
-
+        // make sure the member is not yet in the department before adding the member
+        if (
+          existingProfile &&
+          existingProfile.departments.includes(department_id) === false
+        ) {
           // filter out none values
-          const filteredDepartments = existingProfile.departments.filter(dept => dept !== "none")  
+          const filteredDepartments = existingProfile.departments.filter(
+            (dept) => dept !== "none"
+          );
 
           // update the profile
           const updatedProfile = await postgresClient.profiles.update({
             where: {
-              profile_id: existingProfile.profile_id
+              profile_id: existingProfile.profile_id,
             },
             data: {
-              departments: [...filteredDepartments, department_id]
-            }
-          })
+              departments: [...filteredDepartments, department_id],
+            },
+          });
 
-          console.log("department added to member's profile ", department_id, existingProfile.profile_id)
-        } 
+          console.log(
+            "department added to member's profile ",
+            department_id,
+            existingProfile.profile_id
+          );
+        }
       }
     }
 
@@ -485,7 +519,6 @@ export const addDepartmentToMembersProfilesService = async (
       success: true,
       message: "department added to members profile",
     };
-
   } catch (err) {
     console.error(
       "could not add department to members profile. Please try again later ",

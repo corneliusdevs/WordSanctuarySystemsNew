@@ -20,7 +20,7 @@ import { AddDepartmentToCentralComponent } from "@/components/AddDeptsToCentralC
 import { useAddDepartmentToCentralStore } from "@/providers/AddDepartmentToCentral.Provider";
 import { toast } from "@/hooks/use-toast";
 import { X } from "lucide-react";
-import SuccessModal from "@/components/SuccessModal";
+// import SuccessModal from "@/components/SuccessModal";
 
 interface CreateCentralFormProps {
   isMutatingDbResourceHandler: Dispatch<SetStateAction<boolean>>;
@@ -147,17 +147,17 @@ export function CreateCentralForm({
             type="submit"
             variant={"default"}
             className="bg-primarycol text-white w-full mt-2"
-            onClick={() => setIsModalOpen(true)}
+            // onClick={() => setIsModalOpen(true)}
           >
             Submit
           </Button>
 
-          <SuccessModal
+          {/* <SuccessModal
         isVisible={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         title="Invite sent"
         message="Your invitation has been sent successfully"
-      />
+      /> */}
             </div>
         </form>
       </Form>

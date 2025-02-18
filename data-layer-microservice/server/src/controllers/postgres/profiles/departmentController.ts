@@ -7,7 +7,7 @@ import {
 } from "../../validators/createDepartmentProfileValidator";
 import { ZodError } from "zod";
 import { PrismaClientKnownRequestError } from "../../../../prisma/generated-clients/postgres/runtime/library";
-import { addDepartmentToMembersProfilesService, createDepartmentSnapshotByIdService } from "../../../services/departmentService";
+import { addDepartmentToMembersProfilesService, createDepartmentSnapshotByIdService, getDeptAndDepartmentMembersProfilesByIdService } from "../../../services/departmentService";
 
 export const createDepartmentProfile = async (req: Request, res: Response) => {
   try {
@@ -161,6 +161,35 @@ export const getAllDepartmentsProfiles = async (
     console.log("error fetching all departmetal profiles ", err);
     res.status(500).json({
       message: "Could not fetch department profiles",
+      errorMessage: "Internal Server Error",
+    });
+  }
+};
+
+export const getDepartmentAndDeptMembersProfiles = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const department_id = req.params?.departmentId;
+
+    if (!department_id) {
+      res.status(404).json({
+        message: "Bad Request",
+        errorMessage: "Invalid or non-existent  department_id",
+      });
+
+      return
+    }
+    
+    const result = await getDeptAndDepartmentMembersProfilesByIdService(department_id);
+
+    res.status(200).json({ success: true, data: result, message:"Department details fetched successfully" });
+
+  } catch (err) {
+    console.log("error fetching all department and department members profiles ", err);
+    res.status(500).json({
+      message: "Could not fetch department and department members profiles",
       errorMessage: "Internal Server Error",
     });
   }

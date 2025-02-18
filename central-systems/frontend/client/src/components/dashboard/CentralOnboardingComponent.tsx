@@ -125,12 +125,12 @@ const { clearSelectedDepartments } = useAddDepartmentToCentralStore( state => st
 
       createDepartment();
     }
-  });
+  }, [formDetails , hasUserFilledForm]);
 
   console.log(formDetails)
   return (
     <div>
-      <DashboardNavbar />
+      {/* <DashboardNavbar /> */}
 
       <div className="mt-4">
         <div className="w-full justify-center items-center flex">

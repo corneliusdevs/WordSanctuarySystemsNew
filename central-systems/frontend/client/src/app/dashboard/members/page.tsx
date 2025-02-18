@@ -16,18 +16,17 @@ export default function MembersDashboardPage() {
     }
   }
   useEffect(()=>{
-    shouldredirect() 
+    // shouldredirect() 
   })
 
   return (
     <div>
-      {isLoggedIn && (
+      {/* {isLoggedIn && ( */}
         <>
-          <DashboardNavbar />
           <DashboardWelcomeComponent username={""} title={""} />
           <MembersHome />
         </>
-      )}
+      {/* )} */}
     </div>
   );
 }

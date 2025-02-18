@@ -123,12 +123,11 @@ export default function DepartmentTypeOnboardingComponent() {
   }, [hasUserFilledForm, formDetails]);
 
   return (
-    <div>
-      <DashboardNavbar />
+    <div className="mt-[50px]">
       <DashboardWelcomeComponent username={""} title={""} />
 
       <div className="mt-8">
-        <Link href="/dashboard/onboard/department/type">
+        <Link href="/dashboard/onboard">
           <IoArrowBack className="h-10 w-8" />
         </Link>
         <div className="w-full justify-center items-center flex">

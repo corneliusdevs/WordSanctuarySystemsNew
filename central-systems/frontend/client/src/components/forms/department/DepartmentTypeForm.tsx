@@ -81,7 +81,7 @@ export function DepartmentTypeForm({
                     <Input
                       placeholder="Enter Description"
                       {...field}
-                      className="rounded-2xl h-20"
+                      className="rounded-2xl"
                     />
                   </FormControl>
                   <FormMessage />

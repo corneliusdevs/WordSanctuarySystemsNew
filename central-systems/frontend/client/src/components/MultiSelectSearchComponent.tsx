@@ -35,8 +35,6 @@ export const MultiSelectSearchComponent = ({
         value={selectedValue}
         setValue={setSelectedValue}
       />
-
-   
     </div>
   );
 };

@@ -8,7 +8,6 @@ import { navigate } from "@/app/actions";
 
 interface DepartmentProps {
   departments: Department[];
-  // onView: (member: Member) => void;
 }
 
 const handleView = (request) => {

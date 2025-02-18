@@ -7,8 +7,6 @@ import {
 import { AddInstallationComponentRole } from "./AddInstallationRoleComponent";
 import { useAddMemberStore } from "@/providers/AddMembersStoreProvider";
 
-// interface SelectedMembersViewerProps {
-// }
 
 export interface SelectedMemberDetails {
   profile_id: string;

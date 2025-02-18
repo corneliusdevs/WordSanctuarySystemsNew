@@ -7,13 +7,11 @@ import { useState } from "react";
 
 import Link from "next/link";
 
-// import { usePathname } from "next/navigation";
 import { FiMenu, FiX } from "react-icons/fi";
 
 // interface DashboardNavbarProps {}
 
 const DashboardNavbar = () => {
-  // const currentPath = usePathname();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -22,15 +20,15 @@ const DashboardNavbar = () => {
   };
 
   return (
-    <div className=" flex justify-between relative bg-[#3A2D4A]">
+    <div className="flex items-center justify-between relative bg-[#3A2D4A]">
       {/* logo */}
       <Link href={"/"}>
-        <div className="">
+        <div className="pl-[20px] flex justify-center items-center mt-[10px]">
           <Image
             src="/assets/logo-main.png"
             alt="mclev logo"
-            height={50}
-            width={200}
+            height={30}
+            width={100}
           />
         </div>
       </Link>
@@ -85,7 +83,7 @@ const DashboardNavbar = () => {
         />
       </div> */}
 
-      <div className="">
+      <div className="px-[30px] h-full flex justify-center items-center">
         <div className="pr-[20px]">
           <Image
             src="/assets/Vector.png"
@@ -104,16 +102,16 @@ const DashboardNavbar = () => {
               Home
             </Link>
             <Link
-              href="#support"
+              href="/dashboard/onboard"
               className="hover:text-[#FFFFFF] transition-colors duration-200"
             >
               Onboard
             </Link>
             <Link
-              href="/dashboard/members"
+              href="/dashboard/profiles"
               className="hover:text-[#FFFFFF] transition-colors duration-200"
             >
-              Profile
+              Profiles
             </Link>
             <Link
                 href="/dashboard/members"

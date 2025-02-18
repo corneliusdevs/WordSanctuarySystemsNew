@@ -29,8 +29,8 @@ export function updateItemsListHandler(
   return itemsList;
 }
 
- export enum FormattedLeadershipLevelNames {
-  PASTOR  = "Pastor",
+export enum FormattedLeadershipLevelNames {
+  PASTOR = "Pastor",
   MINISTER = "Min",
   HOD = "Hod",
   ASSISTANT_HOD = "Asst_Hod",
@@ -44,26 +44,32 @@ const leaderShipLevelLookup = new Map([
   [Heirarchy.MINISTER, FormattedLeadershipLevelNames.MINISTER],
   [Heirarchy.HOD, FormattedLeadershipLevelNames.HOD],
   [Heirarchy.ASSISTANT_HOD, FormattedLeadershipLevelNames.ASSISTANT_HOD],
-  [Heirarchy.EXECUTIVE_ASSISTANT, FormattedLeadershipLevelNames.EXECUTIVE_ASSISTANT],
+  [
+    Heirarchy.EXECUTIVE_ASSISTANT,
+    FormattedLeadershipLevelNames.EXECUTIVE_ASSISTANT,
+  ],
   [Heirarchy.WORKER, FormattedLeadershipLevelNames.WORKER],
   [Heirarchy.MEMBER, FormattedLeadershipLevelNames.MEMBER],
 ]);
 
 const leaderShipLevelLookupReverse = new Map([
   [FormattedLeadershipLevelNames.PASTOR, Heirarchy.PASTOR],
-  [FormattedLeadershipLevelNames.MINISTER ,Heirarchy.MINISTER],
+  [FormattedLeadershipLevelNames.MINISTER, Heirarchy.MINISTER],
   [FormattedLeadershipLevelNames.HOD, Heirarchy.HOD],
   [FormattedLeadershipLevelNames.ASSISTANT_HOD, Heirarchy.ASSISTANT_HOD],
-  [FormattedLeadershipLevelNames.EXECUTIVE_ASSISTANT,Heirarchy.EXECUTIVE_ASSISTANT],
-  [FormattedLeadershipLevelNames.WORKER,  Heirarchy.WORKER],
-  [FormattedLeadershipLevelNames.MEMBER,Heirarchy.MEMBER],
+  [
+    FormattedLeadershipLevelNames.EXECUTIVE_ASSISTANT,
+    Heirarchy.EXECUTIVE_ASSISTANT,
+  ],
+  [FormattedLeadershipLevelNames.WORKER, Heirarchy.WORKER],
+  [FormattedLeadershipLevelNames.MEMBER, Heirarchy.MEMBER],
 ]);
 
-export function extractLeadershipLevelFromProfileId (str:string){
-    // @ts-expect-error this works but typescript complains 
-    const leadership_level:FormattedLeadershipLevelNames = str.split(" ")[0]
-    
-    return leaderShipLevelLookupReverse.get(leadership_level)
+export function extractLeadershipLevelFromProfileId(str: string) {
+  // @ts-expect-error this works but typescript complains
+  const leadership_level: FormattedLeadershipLevelNames = str.split(" ")[0];
+
+  return leaderShipLevelLookupReverse.get(leadership_level);
 }
 
 function formatName(name: string) {
@@ -98,7 +104,13 @@ export function extractAddMembersMultiSelectComponentOptions(
   return extractedData;
 }
 
-
+export function extractIndividualNameAndLeadership(
+  details: TIndividualProfile
+) {
+  return `${leaderShipLevelLookup.get(details.leadership_level)} ${formatName(
+    details.name
+  )} ${formatName(details.surname)}`;
+}
 
 export function extractInstallationsSelectOptions(
   allInstallations: TCreateInstallationProfile[]
@@ -141,7 +153,10 @@ export function extractDepartmentSelectOptions(
 export function extractDeptTypeSelectOptions(
   allDepartmentTypes: DepartmentType[]
 ): SelectWithSearchOptionType[] {
-  console.log("all departmentTypes from extract select options ", allDepartmentTypes);
+  console.log(
+    "all departmentTypes from extract select options ",
+    allDepartmentTypes
+  );
   const extractedData = allDepartmentTypes.map((departmentType) => {
     const label = `${departmentType.department_class_name}`;
 
@@ -157,35 +172,37 @@ export function extractDeptTypeSelectOptions(
   return extractedData;
 }
 
-export function extractDeptTypeIdFromDeptTypeSelectOption(option: string){
-   const elements = option.split(" ")
-   return elements[elements.length - 1]
+export function extractDeptTypeIdFromDeptTypeSelectOption(option: string) {
+  const elements = option.split(" ");
+  return elements[elements.length - 1];
 }
 
-export function extractInstallationIdFromInstallationSelectOption(option: string){
-  const elements = option.split(" ")
-  return elements[elements.length - 1]
+export function extractInstallationIdFromInstallationSelectOption(
+  option: string
+) {
+  const elements = option.split(" ");
+  return elements[elements.length - 1];
 }
 
-export   function extractdepartmentIdFromDepartmentSelectOptions(option: string){
-  const elements = option.split(" ")
-  return elements[elements.length - 1]
+export function extractdepartmentIdFromDepartmentSelectOptions(option: string) {
+  const elements = option.split(" ");
+  return elements[elements.length - 1];
 }
 
 export function extractDepartmentName(inputString: string): string {
   // Split the string into words by space and take all but the last part
-  const parts = inputString.split(' ');
-  
+  const parts = inputString.split(" ");
+
   // Join the name parts (everything except the last one) back into a string
   parts.pop(); // Remove the last part (the ID)
   parts.pop(); // Remove the last part (the department_type)
-  
-  return parts.join(' '); // Join the remaining parts as the name
+
+  return parts.join(" "); // Join the remaining parts as the name
 }
 
 export function extractDepartmentTypeId(inputString: string): string {
   // Split the string into words by space and take all but the last part
-  const parts = inputString.split(' ');
-  
+  const parts = inputString.split(" ");
+
   return parts[parts.length - 2]; // Join the remaining parts as the name
 }

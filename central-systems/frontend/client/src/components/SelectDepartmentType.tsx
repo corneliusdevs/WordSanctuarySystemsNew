@@ -71,7 +71,7 @@ export const SelectDepartmentTypeComponent = () => {
       fetchAllDepartmentTypes();
     }
 
-  });
+  }, []);
 
   return (
     <div>
